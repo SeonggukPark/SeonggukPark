@@ -1,7 +1,6 @@
 ## Seongguk Park
 
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=skook77)](https://github.com/anuraghazra/github-readme-stats)
-
+[![solved.ac tier](http://mazassumnida.wtf/api/pastel/generate_badge?boj=skook77)](https://solved.ac/skook77)
 
 <!--
 **SeonggukPark/SeonggukPark** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
