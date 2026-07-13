@@ -30,7 +30,7 @@
     .join("<br />");
 
   setText("#heroDescription", data.profile.description);
-  setText("#contactText", "연락처와 외부 링크를 content.js에 입력하면 이 영역이 자동으로 갱신됩니다.");
+  setText("#contactText", data.profile.contactDescription || "이메일이나 외부 채널로 연락해 주세요.");
 
   const facts = $("#profileFacts");
   data.profile.facts.forEach((fact) => {
