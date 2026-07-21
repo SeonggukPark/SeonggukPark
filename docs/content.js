@@ -7,9 +7,9 @@
 window.PORTFOLIO_DATA = {
   profile: {
     name: "Seongguk Park",
-    initials: "SP",
+    initials: "PSG",
     role: "Embedded Software Engineer",
-    eyebrow: "EMBEDDED SOFTWARE · ECU · EDGE AI",
+    eyebrow: "Embedded Software · AI",
     title: "하드웨어를 이해하고\n신뢰할 수 있는 소프트웨어를 만듭니다.",
     description:
       "MCU 펌웨어와 차량용 ECU 소프트웨어를 개발해 왔습니다. 임베디드 환경에서 소프트웨어와 하드웨어가 만나는 지점을 이해하며, 문제를 재현하고 원인을 끝까지 추적해 안정적인 시스템으로 구현합니다.",
@@ -41,7 +41,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       name: "Embedded",
-      items: ["MCU", "Embedded Linux", "CAN-FD", "OTA", "BLE"]
+      items: ["MCU", "Linux", "CAN-FD", "OTA", "BLE"]
     },
     {
       name: "AI",
@@ -49,7 +49,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       name: "Tools",
-      items: ["Git", "Bitbucket", "Jira", "Jupyter", "Visual Studio Code"]
+      items: ["Git", "Jira", "Jupyter", "Visual Studio Code"]
     }
   ],
 
