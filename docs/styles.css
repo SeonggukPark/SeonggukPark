@@ -27,6 +27,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -229,12 +230,62 @@ h3 { letter-spacing: -0.025em; }
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.project-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 .project-meta { display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 13px; }
 .project-card h3 { margin: 22px 0 10px; font-size: 25px; }
 .project-card p { margin: 0; color: var(--muted); }
 .project-card .tag-list { margin-top: 18px; }
 .project-links { display: flex; gap: 18px; margin-top: auto; padding-top: 26px; font-size: 14px; font-weight: 750; }
-.project-links a { color: var(--accent); }
+.project-links { color: var(--accent); }
+.project-card:hover .project-links, .project-card:focus-visible .project-links { color: var(--accent-strong); }
+.project-hero { padding: 82px 0 62px; }
+.project-back {
+  display: inline-flex;
+  margin-bottom: 32px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 750;
+}
+.project-back:hover { color: var(--text); }
+.project-list-button { min-height: 40px; padding: 0 14px; font-size: 14px; }
+.project-title {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+}
+.project-lead { max-width: 800px; margin: 24px 0 0; color: var(--muted); font-size: 18px; }
+.project-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 70px;
+  align-items: start;
+}
+.project-sections { display: grid; gap: 58px; }
+.project-section { padding-top: 28px; border-top: 1px solid var(--line); }
+.project-section h2 { margin-bottom: 22px; font-size: clamp(28px, 3vw, 40px); }
+.project-section p { margin: 0; color: var(--muted); font-size: 17px; }
+.project-section p + p { margin-top: 16px; }
+.project-section ul { margin: 0; padding-left: 22px; color: var(--muted); font-size: 17px; }
+.project-section li + li { margin-top: 10px; }
+.project-summary-card {
+  position: sticky;
+  top: 100px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.project-summary-card h2 { margin: 0 0 22px; font-size: 20px; letter-spacing: -0.025em; }
+.project-summary-list { display: grid; gap: 16px; margin: 0; }
+.project-summary-list div { padding-top: 16px; border-top: 1px solid var(--line); }
+.project-summary-list dt { color: var(--muted); font-size: 13px; }
+.project-summary-list dd { margin: 4px 0 0; font-weight: 750; }
+.project-summary-card .tag-list { margin-top: 22px; }
+.project-not-found { min-height: calc(100vh - 140px); display: grid; place-items: center; text-align: center; }
+.project-not-found h1 { margin: 0; font-size: clamp(36px, 5vw, 60px); }
+.project-not-found p { margin: 14px 0 26px; color: var(--muted); }
 .study-layout { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 24px; }
 .study-categories { display: grid; gap: 14px; }
 .study-category { padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
@@ -290,9 +341,10 @@ h3 { letter-spacing: -0.025em; }
   .desktop-nav { display: none; }
   .menu-button { display: inline-flex; align-items: center; }
   .hero { min-height: auto; }
-  .hero-grid, .two-column, .study-layout { grid-template-columns: 1fr; }
+  .hero-grid, .two-column, .study-layout, .project-detail-layout { grid-template-columns: 1fr; }
   .hero-grid { gap: 45px; }
   .profile-card { max-width: 520px; }
+  .project-summary-card { position: static; order: -1; }
   .two-column { gap: 30px; }
   .skill-groups, .card-grid { grid-template-columns: 1fr; }
   .section-heading, .contact-card { align-items: flex-start; flex-direction: column; }
@@ -308,6 +360,7 @@ h3 { letter-spacing: -0.025em; }
   .hero-description { font-size: 16px; }
   .timeline-item { grid-template-columns: 1fr; gap: 8px; }
   .project-card { min-height: auto; }
+  .project-list-button { display: none; }
   .writing-item { grid-template-columns: 1fr; gap: 4px; }
   .writing-source { order: 2; }
   .contact-card { padding: 28px; }

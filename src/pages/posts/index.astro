@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EntryCard from "../../components/EntryCard.astro";
+import { site } from "../../data/site";
+
+const posts = (await getCollection("posts", ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<BaseLayout title="기술 글" description="임베디드 소프트웨어와 시스템 개발을 깊이 있게 정리한 글입니다.">
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Articles</p><h1>깊게 이해하고<br />명확하게 설명합니다.</h1><p class="lead">하나의 주제를 배경, 원리, 구현과 검증까지 연결해 정리합니다.</p></div></header>
+  <section class="page-section"><div class="shell">
+    {posts.length > 0 ? <div class="entry-list">{posts.map((post) => <EntryCard kind="posts" id={post.id} title={post.data.title} description={post.data.description} publishedAt={post.data.publishedAt} tags={post.data.tags} eyebrow={post.data.series} />)}</div> : <div class="empty-state">첫 기술 글을 준비하고 있습니다.<br />기존 글은 <a class="text-link" href={site.links.velog} target="_blank" rel="noreferrer">Velog에서 확인할 수 있습니다 ↗</a></div>}
+  </div></section>
+</BaseLayout>
+

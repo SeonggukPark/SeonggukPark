@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { withBase } from "../lib/site";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+---
+
+<a class="project-card" href={withBase(`/projects/${project.id}/`)}>
+  <div class="card-meta">
+    <span>{project.data.category}</span>
+    <span>{project.data.period}</span>
+  </div>
+  <h3>{project.data.title}</h3>
+  <p>{project.data.description}</p>
+  {project.data.outcomes[0] && <strong class="project-outcome">{project.data.outcomes[0]}</strong>}
+  <div class="tag-row" aria-label="사용 기술">
+    {project.data.tags.slice(0, 5).map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+  <span class="card-link">사례 자세히 보기 <span aria-hidden="true">→</span></span>
+</a>
+

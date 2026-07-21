@@ -106,7 +106,9 @@
       return;
     }
     projects.forEach((project) => {
-      const card = el("article", "project-card");
+      const card = el("a", "project-card");
+      card.href = `./project.html?id=${encodeURIComponent(project.slug)}`;
+      card.setAttribute("aria-label", `${project.title} 프로젝트 상세 보기`);
       const meta = el("div", "project-meta");
       meta.append(el("span", "", project.category), el("span", "", project.period));
       card.append(meta, el("h3", "", project.title), el("p", "", project.summary));
@@ -114,19 +116,7 @@
       project.skills.forEach((skill) => tags.append(el("span", "tag", skill)));
       card.append(tags);
       const links = el("div", "project-links");
-      if (project.detailUrl) {
-        const detail = el("a", "", "상세 보기 ↗");
-        detail.href = project.detailUrl;
-        links.append(detail);
-      }
-      if (project.repositoryUrl) {
-        const repository = el("a", "", "GitHub ↗");
-        repository.href = project.repositoryUrl;
-        repository.target = "_blank";
-        repository.rel = "noreferrer";
-        links.append(repository);
-      }
-      if (!project.detailUrl && !project.repositoryUrl) links.append(el("span", "", "링크 준비 중"));
+      links.append(el("span", "", "프로젝트 자세히 보기 →"));
       card.append(links);
       projectGrid.append(card);
     });

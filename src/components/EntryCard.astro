@@ -1,0 +1,30 @@
+---
+import { formatDate, withBase } from "../lib/site";
+
+interface Props {
+  kind: "posts" | "notes";
+  id: string;
+  title: string;
+  description: string;
+  publishedAt: Date;
+  tags: string[];
+  eyebrow?: string;
+}
+
+const { kind, id, title, description, publishedAt, tags, eyebrow } = Astro.props;
+---
+
+<article class="entry-card">
+  <a href={withBase(`/${kind}/${id}/`)}>
+    <div class="card-meta">
+      <span>{eyebrow ?? (kind === "posts" ? "ARTICLE" : "NOTE")}</span>
+      <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+    </div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <div class="tag-row">
+      {tags.slice(0, 4).map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+  </a>
+</article>
+

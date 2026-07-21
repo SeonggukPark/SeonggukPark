@@ -1,0 +1,45 @@
+---
+import { site } from "../data/site";
+import { withBase } from "../lib/site";
+
+const nav = [
+  { label: "프로젝트", href: "/projects/" },
+  { label: "기술 글", href: "/posts/" },
+  { label: "학습 노트", href: "/notes/" },
+  { label: "이력서", href: "/resume/" }
+];
+const current = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href={withBase("/")} aria-label="홈으로 이동">
+      <span class="brand-mark">{site.initials}</span>
+      <span class="brand-copy">
+        <strong>{site.name}</strong>
+        <small>Embedded Software</small>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="주요 메뉴">
+      {nav.map((item) => (
+        <a href={withBase(item.href)} aria-current={current.startsWith(withBase(item.href)) ? "page" : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="색상 테마 변경" title="색상 테마 변경">
+        <span aria-hidden="true">◐</span>
+      </button>
+      <details class="mobile-menu">
+        <summary>메뉴</summary>
+        <nav aria-label="모바일 메뉴">
+          {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+

@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { tagSlug, withBase } from "../../lib/site";
+
+const projects = await getCollection("projects", ({ data }) => !data.draft);
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+const notes = await getCollection("notes", ({ data }) => !data.draft);
+const counts = new Map<string, number>();
+for (const entry of [...projects, ...posts, ...notes]) {
+  for (const tag of entry.data.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
+}
+const tags = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+---
+<BaseLayout title="태그" description="프로젝트와 기술 기록을 기술 태그별로 탐색합니다.">
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Tags</p><h1>기술과 주제로<br />기록을 탐색합니다.</h1><p class="lead">프로젝트, 기술 글과 학습 노트를 연결하는 전체 태그입니다.</p></div></header>
+  <section class="page-section"><div class="shell"><div class="tag-cloud">{tags.map(([tag, count]) => <a href={withBase(`/tags/${tagSlug(tag)}/`)}>{tag}<small>{count}</small></a>)}</div></div></section>
+</BaseLayout>
+

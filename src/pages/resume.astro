@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { experience, site, skills } from "../data/site";
+---
+
+<BaseLayout title="이력서" description="임베디드 소프트웨어 엔지니어 박성국의 경력과 기술 이력입니다.">
+  <header class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">Resume</p>
+      <h1>{site.name}</h1>
+      <p class="lead">{site.title} · MCU 펌웨어, 차량용 ECU, Embedded Linux와 Edge AI</p>
+      <div class="button-row">
+        <a class="button primary" href={`mailto:${site.email}`}>이메일</a>
+        <a class="button" href={site.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+      </div>
+    </div>
+  </header>
+  <section class="page-section section-soft">
+    <div class="shell">
+      <section class="resume-section">
+        <div class="resume-heading"><h2>Experience & Education</h2></div>
+        {experience.map((item) => (
+          <article class="resume-item">
+            <time>{item.period}</time>
+            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p><ul>{item.points.map((point) => <li>{point}</li>)}</ul></div>
+          </article>
+        ))}
+      </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>Skills</h2></div>
+        <div class="resume-skills">
+          {skills.map((group) => <article><h3>{group.name}</h3><div class="tag-row">{group.items.map((item) => <span class="tag">{item}</span>)}</div></article>)}
+        </div>
+      </section>
+    </div>
+  </section>
+  <script>document.querySelector("[data-print]")?.addEventListener("click", () => window.print());</script>
+</BaseLayout>
+
