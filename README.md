@@ -10,3 +10,5 @@
 
 - [웹사이트](https://seonggukpark.github.io/SeonggukPark/)
 - [소스 코드](https://github.com/SeonggukPark/SeonggukPark)
+
+[![solved.ac tier](http://mazassumnida.wtf/api/pastel/generate_badge?boj=skook77)](https://solved.ac/skook77)
