@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { withBase } from "../lib/site";
+
+interface Props {
+  topic: CollectionEntry<"topics">;
+  noteCount: number;
+}
+
+const { topic, noteCount } = Astro.props;
+---
+
+<a class="topic-card" href={withBase(`/posts/${topic.id}/`)}>
+  <div class="topic-card-meta">
+    <span>{String(topic.data.order).padStart(2, "0")}</span>
+    <strong data-status={topic.data.status}>{topic.data.status}</strong>
+  </div>
+  <h2>{topic.data.title}</h2>
+  <p>{topic.data.description}</p>
+  <div class="topic-card-footer">
+    <span>{topic.data.period}</span>
+    <span>공개 콘텐츠 {noteCount}개</span>
+  </div>
+  <span class="card-link">주제 페이지 열기 <span aria-hidden="true">→</span></span>
+</a>

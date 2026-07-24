@@ -3,12 +3,16 @@ import { site } from "../data/site";
 import { withBase } from "../lib/site";
 
 const nav = [
+  { label: "홈", href: "/" },
   { label: "프로젝트", href: "/projects/" },
   { label: "기술 글", href: "/posts/" },
   { label: "학습 노트", href: "/notes/" },
   { label: "이력서", href: "/resume/" }
 ];
 const current = Astro.url.pathname;
+const isCurrent = (href: string) => href === "/"
+  ? current === withBase("/")
+  : current.startsWith(withBase(href));
 ---
 
 <header class="site-header">
@@ -23,7 +27,7 @@ const current = Astro.url.pathname;
 
     <nav class="desktop-nav" aria-label="주요 메뉴">
       {nav.map((item) => (
-        <a href={withBase(item.href)} aria-current={current.startsWith(withBase(item.href)) ? "page" : undefined}>
+        <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? "page" : undefined}>
           {item.label}
         </a>
       ))}
@@ -36,10 +40,9 @@ const current = Astro.url.pathname;
       <details class="mobile-menu">
         <summary>메뉴</summary>
         <nav aria-label="모바일 메뉴">
-          {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+          {nav.map((item) => <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>)}
         </nav>
       </details>
     </div>
   </div>
 </header>
-

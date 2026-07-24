@@ -1,0 +1,172 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatDate, withBase } from "../../lib/site";
+
+type DraftEntry = CollectionEntry<"notes">;
+
+export async function getStaticPaths() {
+  if (!import.meta.env.DEV) return [];
+
+  const drafts = (await getCollection("notes", ({ data }) => Boolean(data.draft && data.source)))
+    .sort((a, b) => a.data.title.localeCompare(b.data.title, "ko"));
+
+  return [
+    { params: { id: undefined }, props: { drafts } },
+    ...drafts.map((entry) => ({ params: { id: entry.id }, props: { entry } }))
+  ];
+}
+
+interface Props {
+  drafts?: DraftEntry[];
+  entry?: DraftEntry;
+}
+
+const { drafts = [], entry } = Astro.props;
+const rendered = entry ? await render(entry) : undefined;
+const Content = rendered?.Content;
+const allTags = [...new Set(drafts.flatMap((draft) => draft.data.tags))]
+  .filter((tag) => tag !== "Notion Import")
+  .sort((a, b) => a.localeCompare(b, "ko"));
+
+const getKind = (draft: DraftEntry) =>
+  draft.data.source?.startsWith("algorithms.zip") || draft.data.tags.includes("Algorithm")
+    ? "algorithms"
+    : "studies";
+const getKindLabel = (draft: DraftEntry) => getKind(draft) === "algorithms" ? "Algorithm" : "Study";
+---
+
+{entry && Content ? (
+  <BaseLayout title={`초안 · ${entry.data.title}`} description={entry.data.description} type="article">
+    <header class="page-hero draft-detail-hero">
+      <div class="shell">
+        <a class="back-link" href={withBase("/drafts/")}>← 초안 목록</a>
+        <p class="eyebrow">Local draft preview</p>
+        <div class="draft-title-row">
+          <h1>{entry.data.title}</h1>
+          <span class="draft-status">Draft</span>
+        </div>
+        <p class="lead">{entry.data.description}</p>
+      </div>
+    </header>
+    <section class="page-section section-soft">
+      <div class="shell prose-layout">
+        <article class="prose" data-testid="draft-content"><Content /></article>
+        <aside class="article-aside">
+          <h2>Draft facts</h2>
+          <dl class="fact-list">
+            <div><dt>상태</dt><dd>비공개 초안</dd></div>
+            <div><dt>분류</dt><dd>{getKindLabel(entry)}</dd></div>
+            {entry.data.importedAt && <div><dt>가져온 날짜</dt><dd>{formatDate(entry.data.importedAt)}</dd></div>}
+          </dl>
+          <div class="tag-row">{entry.data.tags.filter((tag) => tag !== "Notion Import").map((tag) => <span class="tag">{tag}</span>)}</div>
+          {entry.data.source && <p class="draft-source"><strong>원본</strong>{entry.data.source}</p>}
+        </aside>
+      </div>
+    </section>
+  </BaseLayout>
+) : (
+  <BaseLayout title="초안 브라우저" description="로컬 개발 환경에서만 사용하는 Notion 가져오기 초안 검토 화면입니다.">
+    <header class="page-hero draft-browser-hero">
+      <div class="shell">
+        <p class="eyebrow">Local only · Draft browser</p>
+        <h1>Notion에서 가져온<br />기록을 검토합니다.</h1>
+        <p class="lead">검색과 필터로 공개할 글을 고르고, 변환된 본문과 원본 경로를 확인할 수 있습니다. 이 경로는 프로덕션 빌드에 생성되지 않습니다.</p>
+        <div class="draft-summary" aria-label="초안 요약">
+          <span><strong>{drafts.length}</strong> 전체 초안</span>
+          <span><strong>{drafts.filter((draft) => getKind(draft) === "studies").length}</strong> 공부 기록</span>
+          <span><strong>{drafts.filter((draft) => getKind(draft) === "algorithms").length}</strong> 알고리즘</span>
+        </div>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="shell">
+        <div class="draft-toolbar" aria-label="초안 검색 및 필터">
+          <label class="draft-control draft-search-control">
+            <span>검색</span>
+            <input data-testid="draft-search" type="search" placeholder="제목, 태그, 원본 경로 검색" autocomplete="off" />
+          </label>
+          <label class="draft-control">
+            <span>종류</span>
+            <select data-testid="draft-kind">
+              <option value="all">전체</option>
+              <option value="studies">공부 기록</option>
+              <option value="algorithms">알고리즘</option>
+            </select>
+          </label>
+          <label class="draft-control">
+            <span>태그</span>
+            <select data-testid="draft-tag">
+              <option value="all">모든 태그</option>
+              {allTags.map((tag) => <option value={tag}>{tag}</option>)}
+            </select>
+          </label>
+        </div>
+
+        <div class="draft-result-bar">
+          <p data-testid="draft-result-count"><strong>{drafts.length}</strong> / {drafts.length}개</p>
+          <p>카드를 선택하면 변환된 본문을 확인할 수 있습니다.</p>
+        </div>
+
+        <div class="draft-grid" data-testid="draft-grid">
+          {drafts.map((draft) => {
+            const kind = getKind(draft);
+            const visibleTags = draft.data.tags.filter((tag) => tag !== "Notion Import");
+            const searchText = [draft.data.title, draft.data.source, ...visibleTags].filter(Boolean).join(" ").toLocaleLowerCase("ko");
+            return (
+              <article
+                class="draft-card"
+                data-draft-card
+                data-kind={kind}
+                data-tags={visibleTags.join("|")}
+                data-search={searchText}
+              >
+                <a href={withBase(`/drafts/${draft.id}/`)}>
+                  <div class="card-meta"><span>{kind === "algorithms" ? "Algorithm" : "Study"}</span><span>Draft</span></div>
+                  <h2>{draft.data.title}</h2>
+                  <p>{draft.data.description}</p>
+                  <div class="tag-row">{visibleTags.slice(0, 4).map((tag) => <span class="tag">{tag}</span>)}</div>
+                  {draft.data.source && <small class="draft-card-source">{draft.data.source}</small>}
+                  <span class="card-link">초안 읽기 →</span>
+                </a>
+              </article>
+            );
+          })}
+        </div>
+        <div class="empty-state draft-empty" data-testid="draft-empty" hidden>검색 조건에 맞는 초안이 없습니다.</div>
+      </div>
+    </section>
+    <script>
+      const searchInput = document.querySelector<HTMLInputElement>("[data-testid='draft-search']");
+      const kindSelect = document.querySelector<HTMLSelectElement>("[data-testid='draft-kind']");
+      const tagSelect = document.querySelector<HTMLSelectElement>("[data-testid='draft-tag']");
+      const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-draft-card]"));
+      const resultCount = document.querySelector<HTMLElement>("[data-testid='draft-result-count']");
+      const emptyState = document.querySelector<HTMLElement>("[data-testid='draft-empty']");
+
+      const applyFilters = () => {
+        const query = searchInput?.value.trim().toLocaleLowerCase("ko") ?? "";
+        const kind = kindSelect?.value ?? "all";
+        const tag = tagSelect?.value ?? "all";
+        let visible = 0;
+
+        cards.forEach((card) => {
+          const matchesQuery = !query || (card.dataset.search ?? "").includes(query);
+          const matchesKind = kind === "all" || card.dataset.kind === kind;
+          const tags = (card.dataset.tags ?? "").split("|");
+          const matchesTag = tag === "all" || tags.includes(tag);
+          const show = matchesQuery && matchesKind && matchesTag;
+          card.hidden = !show;
+          if (show) visible += 1;
+        });
+
+        if (resultCount) resultCount.innerHTML = `<strong>${visible}</strong> / ${cards.length}개`;
+        if (emptyState) emptyState.hidden = visible !== 0;
+      };
+
+      searchInput?.addEventListener("input", applyFilters);
+      kindSelect?.addEventListener("change", applyFilters);
+      tagSelect?.addEventListener("change", applyFilters);
+    </script>
+  </BaseLayout>
+)}

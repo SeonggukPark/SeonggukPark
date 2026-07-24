@@ -6,14 +6,20 @@ import ProjectCard from "../components/ProjectCard.astro";
 import { experience, learning, site, skills } from "../data/site";
 import { withBase } from "../lib/site";
 
-const projects = (await getCollection("projects", ({ data }) => !data.draft))
-  .filter(({ data }) => data.featured)
-  .slice(0, 4);
+const publicProjects = await getCollection("projects", ({ data }) => !data.draft);
+const featuredProjectIds = [
+  "container-crane-automation",
+  "air-conditioner-clustering",
+  "vision-transformer-quantization"
+];
+const projects = featuredProjectIds
+  .map((id) => publicProjects.find((project) => project.id === id))
+  .filter((project): project is NonNullable<typeof project> => Boolean(project));
 const posts = (await getCollection("posts", ({ data }) => !data.draft))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
   .slice(0, 3);
 const notes = (await getCollection("notes", ({ data }) => !data.draft))
-  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf() || a.data.title.localeCompare(b.data.title, "ko"))
   .slice(0, 3);
 ---
 
@@ -138,4 +144,3 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft))
     </div>
   </section>
 </BaseLayout>
-

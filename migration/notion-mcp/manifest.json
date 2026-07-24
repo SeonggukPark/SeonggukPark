@@ -1,0 +1,92 @@
+{
+  "importedAt": "2026-07-24",
+  "source": "Notion MCP",
+  "workspace": "성국 박의 Notion",
+  "resume": {
+    "id": "a724acc4-4480-4319-aedb-75be04e8eb27",
+    "target": "src/data/site.ts"
+  },
+  "projects": [
+    {
+      "id": "9101bbe6-ff8e-4b6d-86eb-652260d0b583",
+      "target": "src/content/projects/container-crane-automation.md"
+    },
+    {
+      "id": "b3abeb01-2907-4896-8d2f-55ab71b16e55",
+      "target": "src/content/projects/vision-transformer-quantization.md"
+    },
+    {
+      "id": "bba14d83-7011-451e-9317-f029232ece52",
+      "target": "src/content/projects/air-conditioner-clustering.md"
+    },
+    {
+      "id": "c90aebae-0db0-4e88-8359-d27eac3d0520",
+      "target": "src/content/projects/pcb-defect-detection.md"
+    }
+  ],
+  "notes": [
+    { "id": "24e6b967-4ad8-80e6-85ab-c32a378a5f9e", "slug": "study-planner" },
+    { "id": "28e6b967-4ad8-80ef-84a1-d6e36be29aae", "slug": "git-github" },
+    { "id": "28e6b967-4ad8-80d0-94a7-e97fb1dd4e5e", "slug": "cpp" },
+    { "id": "33b6b967-4ad8-8016-89fd-fe4782e979b1", "slug": "software-engineering-system-analysis" },
+    { "id": "33a6b967-4ad8-8095-a179-c67dd5f3e76d", "slug": "modern-linux" },
+    { "id": "2a86b967-4ad8-80c4-b432-e31d9253bbf1", "slug": "android-kotlin" },
+    { "id": "3966b967-4ad8-8018-8328-d2bd4041dcff", "slug": "docker-kubernetes" },
+    { "id": "bd0b61c0-4442-4d81-a829-2d3351610ee0", "slug": "algorithm" },
+    { "id": "74027a04-f4b9-40bb-8629-74c0190633df", "slug": "sw-study" }
+  ],
+  "assets": {
+    "directory": "public/images/notion",
+    "publicCount": 15,
+    "localDraftCount": 415,
+    "localDraftSizeMB": 73.3
+  },
+  "drafts": {
+    "directory": "src/content/notes/notion",
+    "count": 47
+  },
+  "publishedNotes": {
+    "directory": "src/content/notes",
+    "count": 5,
+    "targets": [
+      "cpp-solid-design-checklist.md",
+      "cpp-stl-container-selection.md",
+      "modern-cpp-baseline.md",
+      "linux-network-troubleshooting.md",
+      "linux-observability-first-checks.md"
+    ]
+  },
+  "topicHubs": {
+    "directory": "src/content/topics",
+    "sourceParent": "24e6b967-4ad8-80e6-85ab-c32a378a5f9e",
+    "count": 6,
+    "targets": [
+      "git-github.md",
+      "cpp.md",
+      "software-engineering.md",
+      "modern-linux.md",
+      "android-kotlin.md",
+      "docker-kubernetes.md"
+    ]
+  },
+  "modernLinuxChapters": {
+    "directory": "src/content/notes/notion/modern-linux",
+    "count": 9,
+    "blankPageExcluded": "33a6b9674ad880a7afd2f7ab4866ef92"
+  },
+  "cppChapters": {
+    "directory": "src/content/notes/notion/cpp",
+    "sourceParent": "28e6b967-4ad8-80d0-94a7-e97fb1dd4e5e",
+    "count": 16
+  },
+  "softwareEngineeringChapters": {
+    "directory": "src/content/notes/notion/software-engineering",
+    "sourceParent": "33b6b967-4ad8-8016-89fd-fe4782e979b1",
+    "sourcePageCount": 61,
+    "aggregateCount": 13
+  },
+  "zipArchive": {
+    "directory": "migration/zip-export/notes-imported",
+    "count": 151
+  }
+}

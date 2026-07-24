@@ -1,18 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { experience, site, skills } from "../data/site";
+import { activities, awards, experience, publications, site, skills } from "../data/site";
+import { withBase } from "../lib/site";
 ---
 
 <BaseLayout title="이력서" description="임베디드 소프트웨어 엔지니어 박성국의 경력과 기술 이력입니다.">
   <header class="page-hero">
-    <div class="shell">
-      <p class="eyebrow">Resume</p>
-      <h1>{site.name}</h1>
-      <p class="lead">{site.title} · MCU 펌웨어, 차량용 ECU, Embedded Linux와 Edge AI</p>
-      <div class="button-row">
-        <a class="button primary" href={`mailto:${site.email}`}>이메일</a>
-        <a class="button" href={site.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+    <div class="shell resume-hero-grid">
+      <div>
+        <p class="eyebrow">Resume</p>
+        <h1>{site.name}</h1>
+        <p class="lead">{site.title} · MCU 펌웨어, 차량용 ECU, Embedded Linux와 Edge AI</p>
+        <div class="button-row">
+          <a class="button primary" href={`mailto:${site.email}`}>이메일</a>
+          <a class="button" href={site.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+        </div>
       </div>
+      <img class="resume-profile" src={withBase("/images/notion/profile-1.jpg")} alt="박성국 프로필 사진" width="180" height="225" />
     </div>
   </header>
   <section class="page-section section-soft">
@@ -22,7 +26,25 @@ import { experience, site, skills } from "../data/site";
         {experience.map((item) => (
           <article class="resume-item">
             <time>{item.period}</time>
-            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p><ul>{item.points.map((point) => <li>{point}</li>)}</ul></div>
+            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p><ul>{item.points.map((point) => <li>{point}</li>)}</ul>{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
+          </article>
+        ))}
+      </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>Publications & Awards</h2></div>
+        {[...publications, ...awards].map((item) => (
+          <article class="resume-item">
+            <time>{item.period}</time>
+            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
+          </article>
+        ))}
+      </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>Training & Activities</h2></div>
+        {activities.map((item) => (
+          <article class="resume-item">
+            <time>{item.period}</time>
+            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
           </article>
         ))}
       </section>
@@ -36,4 +58,3 @@ import { experience, site, skills } from "../data/site";
   </section>
   <script>document.querySelector("[data-print]")?.addEventListener("click", () => window.print());</script>
 </BaseLayout>
-

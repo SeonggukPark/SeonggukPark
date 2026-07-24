@@ -11,6 +11,10 @@ export async function getStaticPaths() {
 interface Props { project: CollectionEntry<"projects">; }
 const { project } = Astro.props;
 const { Content } = await render(project);
+const notes = await getCollection("notes", ({ data }) => !data.draft);
+const relatedNotes = project.data.relatedNotes
+  .map((id) => notes.find((note) => note.id === id))
+  .filter((note): note is CollectionEntry<"notes"> => Boolean(note));
 ---
 
 <BaseLayout title={project.data.title} description={project.data.description} type="article">
@@ -21,6 +25,11 @@ const { Content } = await render(project);
       <h1>{project.data.title}</h1>
       <p class="lead">{project.data.description}</p>
       {project.data.outcomes.length > 0 && <ul class="outcome-list">{project.data.outcomes.map((outcome) => <li>{outcome}</li>)}</ul>}
+      {(project.data.repository || project.data.demo || relatedNotes.length > 0) && <div class="button-row project-hero-actions">
+        {project.data.repository && <a class="button primary" href={project.data.repository} target="_blank" rel="noreferrer">GitHub ↗</a>}
+        {project.data.demo && <a class="button primary" href={project.data.demo} target="_blank" rel="noreferrer">Demo ↗</a>}
+        {relatedNotes[0] && <a class="button" href={withBase(`/notes/${relatedNotes[0].id}/`)}>관련 학습 노트 →</a>}
+      </div>}
     </div>
   </header>
   <section class="page-section section-soft">
@@ -37,6 +46,10 @@ const { Content } = await render(project);
         {(project.data.repository || project.data.demo) && <div class="aside-links">
           {project.data.repository && <a class="text-link" href={project.data.repository} target="_blank" rel="noreferrer">GitHub ↗</a>}
           {project.data.demo && <a class="text-link" href={project.data.demo} target="_blank" rel="noreferrer">Demo ↗</a>}
+        </div>}
+        {relatedNotes.length > 0 && <div class="aside-links related-links">
+          <h2>관련 학습 노트</h2>
+          {relatedNotes.map((note) => <a href={withBase(`/notes/${note.id}/`)}><strong>{note.data.title}</strong><small>{note.data.description}</small></a>)}
         </div>}
       </aside>
     </div>

@@ -2,4 +2,7 @@ node_modules/
 dist/
 .astro/
 .playwright-cli/
+output/playwright/
+public/images/notion/notes/
+migration/zip-export/notes-imported/
 .DS_Store
