@@ -3,6 +3,6 @@ dist/
 .astro/
 .playwright-cli/
 output/playwright/
-public/images/notion/notes/
+tmp/
 migration/zip-export/notes-imported/
 .DS_Store

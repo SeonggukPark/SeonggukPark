@@ -4,7 +4,7 @@ description: "MobileNet 기반 모델에 양자화를 적용해 제한된 MCU �
 period: "2024.07 — 2024.08"
 category: "Edge AI"
 role: "모델 선정·학습·최적화·MCU 배포"
-tags: ["Python", "TensorFlow", "MobileNet", "MCU", "Quantization"]
+tags: ["Python", "TensorFlow"]
 featured: false
 outcomes:
   - "약 75% 사람 검출 정확도"
@@ -26,4 +26,3 @@ outcomes:
 - MCU 환경에서 실제 모델 동작을 검증했습니다.
 - 약 75% 정확도로 사람을 검출할 수 있는 성능을 확보했습니다.
 - 학습 모델을 제한된 하드웨어에 배포하는 Edge AI 적용 가능성을 확인했습니다.
-

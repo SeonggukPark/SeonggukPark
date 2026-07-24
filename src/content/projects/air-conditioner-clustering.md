@@ -4,11 +4,12 @@ description: "시계열 센서 데이터로 동일 공간의 실내기를 군집
 period: "2024.07 — 2024.12"
 category: "AI"
 role: "클러스터링 모델 개발·C++ 전환·AI 엔진 이식"
-tags: ["C++", "Python", "Time Series", "K-Means", "DTW", "Embedded Linux"]
+tags: ["C++", "Python", "Linux"]
 featured: true
 source: "https://app.notion.com/p/bba14d837011451e9317f029232ece52"
 importedAt: 2026-07-24
 outcomes:
+  - "실제 현장 기준 약 90% 분류 정확도"
   - "동일 공간 실내기 그룹화 시뮬레이션 검증"
   - "Python 모델의 C++ 전환 및 AI 엔진 환경 이식"
 relatedNotes:
@@ -38,5 +39,6 @@ LG전자 산학과제로 수행한 시스템 에어컨 협조 제어용 실내�
 
 ## 결과
 
+- 실제 현장 데이터 기준 약 90% 수준의 실내기 분류 정확도를 확보했습니다.
 - 시뮬레이션에서 같은 공간의 실내기가 함께 그룹화되는 것을 확인했습니다.
 - 개발 모델의 C++ 전환과 AI 엔진 환경 이식을 완료했습니다.

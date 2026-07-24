@@ -4,7 +4,7 @@ description: "Post-Training Quantization으로 정확도 저하를 억제하면�
 period: "2024.05 — 2024.07"
 category: "Edge AI"
 role: "자원 분석·INT8 양자화·성능 검증"
-tags: ["Python", "PyTorch", "Vision Transformer", "INT8", "PTQ"]
+tags: ["Python", "PyTorch"]
 featured: true
 outcomes:
   - "추론 속도 약 43% 개선"

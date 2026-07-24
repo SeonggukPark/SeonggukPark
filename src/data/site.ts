@@ -1,21 +1,51 @@
 export const site = {
-  name: "Seongguk Park",
+  name: "박성국",
   initials: "SP",
   title: "Embedded Software Engineer",
   email: "psk2013@naver.com",
-  description:
-    "MCU 펌웨어, 차량용 ECU, Embedded Linux와 Edge AI를 다루는 박성국의 포트폴리오와 기술 기록입니다.",
+  description: "차량용 ECU, Embedded Linux, 개발 자동화와 Edge AI를 다루는 박성국의 포트폴리오와 기술 기록입니다.",
   links: {
     github: "https://github.com/SeonggukPark",
     velog: "https://velog.io/@seonggukpark/series"
   }
 } as const;
 
+export const personalInfo = {
+  phone: "010-2013-5456",
+  birthDate: "1999.07.17",
+  email: site.email
+} as const;
+
 export const skills = [
   { name: "Languages", items: ["C", "C++", "Python"] },
-  { name: "Embedded", items: ["MCU", "Embedded Linux", "CAN-FD", "OTA", "BLE"] },
-  { name: "AI", items: ["PyTorch", "TensorFlow", "Computer Vision", "Model Quantization"] },
-  { name: "Tools", items: ["Git", "Bitbucket", "Jira", "Jupyter", "VS Code"] }
+  { name: "Automotive", items: ["AUTOSAR Classic", "CAN(FD)", "UDS", "XCP", "OTA"] },
+  { name: "Tools", items: ["Git", "Jira", "VS Code", "Jupyter Notebook", "Windows Batch"] },
+  { name: "AI/ML", items: ["PyTorch", "TensorFlow", "TensorFlow Lite"] },
+  { name: "ETC", items: ["Linux"] }
+] as const;
+
+export const coursework = [
+  { period: "2021.2", name: "C프로그래밍과실습", grade: "A+" },
+  { period: "2022.1", name: "파이썬프로그래밍", grade: "A+" },
+  { period: "2022.여름", name: "신호및시스템", grade: "A-" },
+  { period: "2022.2", name: "자료구조", grade: "B+" },
+  { period: "2022.겨울", name: "마이크로프로세서", grade: "B+" },
+  { period: "2023.1", name: "운영체제", grade: "A+" },
+  { period: "2023.1", name: "자동제어", grade: "A0" },
+  { period: "2023.여름", name: "인공지능의 이해", grade: "A+" },
+  { period: "2023.2", name: "논리회로설계", grade: "B+" },
+  { period: "2023.2", name: "데이터통신", grade: "A0" },
+  { period: "2023.2", name: "컴퓨터구조", grade: "A+" },
+  { period: "2023.2", name: "마이크로프로세서설계실험", grade: "B+" },
+  { period: "2023.2", name: "임베디드시스템프로그래밍", grade: "A-" },
+  { period: "2023.겨울", name: "컴퓨터망", grade: "A0" },
+  { period: "2024.1", name: "알고리즘1", grade: "A+" },
+  { period: "2024.1", name: "기계학습시스템설계", grade: "B+" },
+  { period: "2024.1", name: "컴퓨터그래픽개론", grade: "A+" },
+  { period: "2024.1", name: "고급문제해결", grade: "A+" },
+  { period: "2024.1", name: "딥러닝", grade: "A0" },
+  { period: "2024.2", name: "알고리즘2", grade: "A+" },
+  { period: "2024.2", name: "소프트웨어 특강", grade: "Pass" }
 ] as const;
 
 type ResumeProjectLink = {
@@ -26,9 +56,18 @@ type ResumeProjectLink = {
 type ResumeItem = {
   period: string;
   organization: string;
+  logo?: {
+    readonly src: string;
+    readonly alt: string;
+    readonly variant: "wordmark" | "emblem";
+  };
   role: string;
   description: string;
   points: readonly string[];
+  highlightGroups?: readonly {
+    title: string;
+    items: readonly string[];
+  }[];
   projectLinks: readonly ResumeProjectLink[];
 };
 
@@ -36,12 +75,36 @@ export const experience: readonly ResumeItem[] = [
   {
     period: "2025.01 — 현재",
     organization: "현대모비스",
+    logo: {
+      src: "/images/organizations/hyundai-mobis.svg",
+      alt: "현대모비스 로고",
+      variant: "wordmark"
+    },
     role: "조향SW설계팀 · 연구원",
-    description: "차량 조향 장치(EPS)에 탑재되는 C 기반 ECU 펌웨어를 설계하고 유지보수했습니다.",
-    points: [
-      "고객사 요구사항에 따른 ECU OTA 소프트웨어 설계 및 구현",
-      "차량용 제어기 인터페이스 설계",
-      "Python과 배치 스크립트를 활용한 빌드·배포 업무 자동화"
+    description: "차량 조향 ECU 펌웨어와 OTA 기능을 개발하고, 개발 자동화와 생성형 AI 활용 확산을 함께 추진하고 있습니다.",
+    points: [],
+    highlightGroups: [
+      {
+        title: "제어기 펌웨어 설계 및 유지보수",
+        items: [
+          "C/C++을 활용한 EPS 제어기 MCU 펌웨어 개발 및 유지보수",
+          "고객사 요구 사양을 바탕으로 차량 무선 업데이트 과정(OTA)에 필요한 서비스 구현"
+        ]
+      },
+      {
+        title: "SW 개발 환경 자동화",
+        items: [
+          "Python 및 Batch Script를 활용하여 SW 개발 과정에서 발생하는 반복 작업 자동화",
+          "빌드, 배포, 검증 과정에 필요한 유틸리티 프로그램 개발 및 개발 환경 안정화"
+        ]
+      },
+      {
+        title: "생성형 AI Key Man",
+        items: [
+          "코드 리뷰, 문서화, 데이터 처리 등에 필요한 AI 응용 프로그램 개발",
+          "AI 공유회, PoC, Pilot 활동 등 조직 내 생성형 AI 도구 확산을 위한 KeyMan 업무 수행"
+        ]
+      }
     ],
     projectLinks: []
   },
@@ -57,14 +120,19 @@ export const experience: readonly ResumeItem[] = [
     ],
     projectLinks: [
       { label: "시스템 에어컨 분류 모델", id: "air-conditioner-clustering" },
-      { label: "PCB 코팅 상태 인지", id: "pcb-defect-detection" },
+      { label: "PCB 코팅 불량 탐지", id: "pcb-defect-detection" },
       { label: "ViT 양자화", id: "vision-transformer-quantization" }
     ]
   },
   {
     period: "2021.03 — 2025.02",
     organization: "경북대학교",
-    role: "전자공학부 주전공 · 컴퓨터학부 부전공",
+    logo: {
+      src: "/images/organizations/kyungpook-national-university.jpg",
+      alt: "경북대학교 엠블럼",
+      variant: "emblem"
+    },
+    role: "전자공학부(주) · 컴퓨터학부(부)",
     description: "하드웨어와 소프트웨어의 기반을 함께 쌓았습니다.",
     points: [
       "학점 4.13 / 4.5",
@@ -90,6 +158,14 @@ export const publications: readonly ResumeItem[] = [
 ];
 
 export const awards: readonly ResumeItem[] = [
+  {
+    period: "2025.11",
+    organization: "현대모비스 사내 아이디어 공모전",
+    role: "은상",
+    description: "AI 기반 교통 법규 안내 시스템 아이디어를 제안했습니다.",
+    points: ["현장 문제를 AI 서비스 아이디어로 구체화"],
+    projectLinks: []
+  },
   {
     period: "2023.11",
     organization: "스마트 해상물류 경진대회",
@@ -130,6 +206,25 @@ export const activities: readonly ResumeItem[] = [
     organization: "알고리즘 동아리 Gori",
     role: "동아리원",
     description: "C++ 기반 알고리즘 문제 풀이와 코드 리뷰 활동에 참여했습니다.",
+    points: [],
+    projectLinks: []
+  },
+  {
+    period: "2023.11",
+    organization: "대한민국 소프트웨어 대전",
+    role: "프로젝트 부스 운영",
+    description: "항만 컨테이너 크레인 자동화 프로젝트를 전시하고 IoT 기술 도입에 관해 참관객과 소통했습니다.",
+    points: [],
+    projectLinks: [{ label: "전시 프로젝트 상세", id: "container-crane-automation" }]
+  }
+];
+
+export const certifications: readonly ResumeItem[] = [
+  {
+    period: "2024.08",
+    organization: "OPIc (영어)",
+    role: "ACTFL · Intermediate Mid 2 (IM2)",
+    description: "영어 말하기 능력 인증",
     points: [],
     projectLinks: []
   }

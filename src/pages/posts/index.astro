@@ -3,20 +3,28 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import EntryCard from "../../components/EntryCard.astro";
 import TopicCard from "../../components/TopicCard.astro";
+import { topicContent } from "../../data/topicContent";
 
 const posts = (await getCollection("posts", ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 const topics = (await getCollection("topics", ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
-const notes = await getCollection("notes", ({ data }) => !data.draft);
+const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const records = [
+  ...posts.map((entry) => ({ kind: "posts" as const, entry })),
+  ...notes.map((entry) => ({ kind: "notes" as const, entry })),
+].sort((a, b) => b.entry.data.publishedAt.valueOf() - a.entry.data.publishedAt.valueOf());
+const topicRecordCount = (topic: (typeof topics)[number]) =>
+  (topicContent[topic.id] ?? []).reduce((count, section) => count + section.items.length, 0)
+  + topic.data.noteIds.filter((id) => notes.some((note) => note.id === id)).length;
 ---
 
-<BaseLayout title="기술 글" description="Notion 스터디 플래너에서 시작한 기술 주제와 발행 콘텐츠를 주제별로 정리합니다.">
-  <header class="page-hero"><div class="shell"><p class="eyebrow">Study Topics</p><h1>주제별로 배우고<br />연결해서 기록합니다.</h1><p class="lead">Notion 스터디 플래너의 학습 페이지를 기준으로 목차를 만들고, 다듬은 글과 노트를 각 주제 안에 모읍니다.</p></div></header>
+<BaseLayout title="기록" description="Notion에서 이어 온 학습 과정과 기술 글, 문제 해결 노트를 주제별로 정리합니다.">
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Knowledge Archive</p><h1>학습 기록</h1><p class="lead">SW와 관련하여 학습한 내용들을 정리한 곳입니다. <br/> 모든 내용은 수기로 작성하였으며, MCP를 활용하여 Notion의 기록을 불러오고 있습니다.</p></div></header>
   <section class="page-section"><div class="shell">
-    <div class="section-heading"><div><p class="eyebrow">Topic Archive</p><h2>기술 주제</h2></div><p>완료·진행·예정 상태와 공개된 콘텐츠를 함께 확인할 수 있습니다.</p></div>
-    <div class="topic-grid">{topics.map((topic) => <TopicCard topic={topic} noteCount={topic.data.noteIds.filter((id) => notes.some((note) => note.id === id)).length} />)}</div>
+    <div class="section-heading"><div><p class="eyebrow">Topic Archive</p><h2>주제별 기록</h2></div><p>기존 학습 계획의 계층과 순서를 유지한 채 관련 내용을 탐색할 수 있습니다.</p></div>
+    <div class="topic-grid">{topics.map((topic) => <TopicCard topic={topic} noteCount={topicRecordCount(topic)} />)}</div>
   </div></section>
-  {posts.length > 0 && <section class="page-section section-soft"><div class="shell">
-    <div class="section-heading"><div><p class="eyebrow">Articles</p><h2>최근 기술 글</h2></div></div>
-    <div class="entry-list">{posts.map((post) => <EntryCard kind="posts" id={post.id} title={post.data.title} description={post.data.description} publishedAt={post.data.publishedAt} tags={post.data.tags} eyebrow={post.data.series} />)}</div>
-  </div></section>}
+  <section class="page-section section-soft"><div class="shell">
+    <div class="section-heading"><div><p class="eyebrow">Recent Records</p><h2>최근 기록</h2></div><p>정리한 기술 글과 다시 활용할 수 있는 학습 노트를 시간순으로 모았습니다.</p></div>
+    {records.length > 0 ? <div class="entry-list">{records.map(({ kind, entry }) => <EntryCard kind={kind} id={entry.id} title={entry.data.title} description={entry.data.description} publishedAt={entry.data.publishedAt} tags={entry.data.tags} eyebrow={kind === "posts" ? entry.data.series : "NOTE"} />)}</div> : <div class="empty-state">아직 공개된 기록이 없습니다.</div>}
+  </div></section>
 </BaseLayout>

@@ -13,7 +13,6 @@ for (const entry of [...projects, ...posts, ...notes]) {
 const tags = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 ---
 <BaseLayout title="태그" description="프로젝트와 기술 기록을 기술 태그별로 탐색합니다.">
-  <header class="page-hero"><div class="shell"><p class="eyebrow">Tags</p><h1>기술과 주제로<br />기록을 탐색합니다.</h1><p class="lead">프로젝트, 기술 글과 학습 노트를 연결하는 전체 태그입니다.</p></div></header>
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Tags</p><h1>기술과 주제로<br />기록을 탐색합니다.</h1><p class="lead">프로젝트와 기술 기록을 연결하는 전체 태그입니다.</p></div></header>
   <section class="page-section"><div class="shell"><div class="tag-cloud">{tags.map(([tag, count]) => <a href={withBase(`/tags/${tagSlug(tag)}/`)}>{tag}<small>{count}</small></a>)}</div></div></section>
 </BaseLayout>
-

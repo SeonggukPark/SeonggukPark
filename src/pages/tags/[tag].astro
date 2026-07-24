@@ -32,11 +32,10 @@ export async function getStaticPaths() {
 const { label, projects, posts, notes } = Astro.props;
 ---
 <BaseLayout title={`${label} 태그`} description={`${label} 태그가 포함된 프로젝트와 기술 기록입니다.`}>
-  <header class="page-hero"><div class="shell"><a class="back-link" href={withBase("/tags/")}>← 전체 태그</a><p class="eyebrow">Tag</p><h1>#{label}</h1><p class="lead">프로젝트 {projects.length}개 · 기술 글 {posts.length}개 · 학습 노트 {notes.length}개</p></div></header>
+  <header class="page-hero"><div class="shell"><a class="back-link" href={withBase("/tags/")}>← 전체 태그</a><p class="eyebrow">Tag</p><h1>#{label}</h1><p class="lead">프로젝트 {projects.length}개 · 기록 {posts.length + notes.length}개</p></div></header>
   <section class="page-section"><div class="shell">
     {projects.length > 0 && <section class="tag-results"><h2>Projects</h2><div class="card-grid">{projects.map((project) => <ProjectCard project={project} />)}</div></section>}
     {posts.length > 0 && <section class="tag-results"><h2>Articles</h2><div class="entry-list">{posts.map((post) => <EntryCard kind="posts" id={post.id} title={post.data.title} description={post.data.description} publishedAt={post.data.publishedAt} tags={post.data.tags} />)}</div></section>}
     {notes.length > 0 && <section class="tag-results"><h2>Notes</h2><div class="entry-list">{notes.map((note) => <EntryCard kind="notes" id={note.id} title={note.data.title} description={note.data.description} publishedAt={note.data.publishedAt} tags={note.data.tags} />)}</div></section>}
   </div></section>
 </BaseLayout>
-

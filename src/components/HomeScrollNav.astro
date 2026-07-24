@@ -1,0 +1,72 @@
+---
+const sections = [
+  { id: "home-top", label: "홈" },
+  { id: "resume-preview", label: "이력서" },
+  { id: "projects-preview", label: "프로젝트" },
+  { id: "records-preview", label: "기록" },
+  { id: "contact", label: "연락" },
+] as const;
+---
+
+<nav class="home-scroll-nav" aria-label="홈 화면 영역 바로가기" data-home-scroll-nav>
+  {sections.map((section, index) => (
+    <a
+      href={`#${section.id}`}
+      data-section-link={section.id}
+      aria-current={index === 0 ? "location" : undefined}
+    >
+      <span class="home-scroll-label">{section.label}</span>
+      <span class="home-scroll-marker" aria-hidden="true"></span>
+    </a>
+  ))}
+</nav>
+
+<script>
+  const scrollNav = document.querySelector<HTMLElement>("[data-home-scroll-nav]");
+
+  if (scrollNav) {
+    const links = Array.from(scrollNav.querySelectorAll<HTMLAnchorElement>("[data-section-link]"));
+    const sections = links
+      .map((link) => {
+        const id = link.dataset.sectionLink;
+        const section = id ? document.getElementById(id) : null;
+        return section ? { link, section } : null;
+      })
+      .filter((item): item is { link: HTMLAnchorElement; section: HTMLElement } => item !== null);
+
+    let updateQueued = false;
+
+    const updateScrollNav = () => {
+      updateQueued = false;
+      const markerPosition = window.scrollY + window.innerHeight * 0.4;
+      const pageScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = pageScrollableHeight > 0 ? Math.min(100, Math.max(0, window.scrollY / pageScrollableHeight * 100)) : 0;
+      const isPageBottom = window.scrollY >= pageScrollableHeight - 4;
+      let activeSection = sections[0];
+
+      for (const item of sections) {
+        if (item.section.offsetTop <= markerPosition) activeSection = item;
+      }
+
+      const lastSection = sections.at(-1);
+      if (isPageBottom && lastSection) activeSection = lastSection;
+
+      for (const item of sections) {
+        if (item === activeSection) item.link.setAttribute("aria-current", "location");
+        else item.link.removeAttribute("aria-current");
+      }
+
+      scrollNav.style.setProperty("--home-scroll-progress", `${progress}%`);
+    };
+
+    const queueScrollNavUpdate = () => {
+      if (updateQueued) return;
+      updateQueued = true;
+      window.requestAnimationFrame(updateScrollNav);
+    };
+
+    updateScrollNav();
+    window.addEventListener("scroll", queueScrollNavUpdate, { passive: true });
+    window.addEventListener("resize", queueScrollNavUpdate);
+  }
+</script>

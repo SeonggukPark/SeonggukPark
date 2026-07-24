@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import EntryCard from "../../components/EntryCard.astro";
+import { topicContent } from "../../data/topicContent";
 import { formatDate, tagSlug, withBase } from "../../lib/site";
 
 type ArticleProps = { kind: "article"; entry: CollectionEntry<"posts"> };
@@ -25,11 +26,21 @@ const linkedNotes = props.kind === "topic"
       .map((id) => notes.find((note) => note.id === id))
       .filter((note): note is CollectionEntry<"notes"> => Boolean(note))
   : [];
+const sourceNotes = props.kind === "topic" ? await getCollection("notes") : [];
+const contentSections = props.kind === "topic"
+  ? (topicContent[props.entry.id] ?? [])
+      .map((section) => ({
+        ...section,
+        items: section.items
+          .map((item) => ({ ...item, entry: sourceNotes.find((note) => note.id === item.id) }))
+          .filter((item): item is typeof item & { entry: CollectionEntry<"notes"> } => Boolean(item.entry))
+      }))
+  : [];
 ---
 
 {props.kind === "article" ? (
   <BaseLayout title={props.entry.data.title} description={props.entry.data.description} type="article">
-    <header class="page-hero"><div class="shell"><a class="back-link" href={withBase("/posts/")}>← 기술 글 목록</a><p class="eyebrow">{props.entry.data.series ?? "Article"} · {formatDate(props.entry.data.publishedAt)}</p><h1>{props.entry.data.title}</h1><p class="lead">{props.entry.data.description}</p><div class="tag-row">{props.entry.data.tags.map((tag) => <a class="tag" href={withBase(`/tags/${tagSlug(tag)}/`)}>{tag}</a>)}</div></div></header>
+    <header class="page-hero"><div class="shell"><a class="back-link" href={withBase("/posts/")}>← 기록 목록</a><p class="eyebrow">{props.entry.data.series ?? "Article"} · {formatDate(props.entry.data.publishedAt)}</p><h1>{props.entry.data.title}</h1><p class="lead">{props.entry.data.description}</p><div class="tag-row">{props.entry.data.tags.map((tag) => <a class="tag" href={withBase(`/tags/${tagSlug(tag)}/`)}>{tag}</a>)}</div></div></header>
     <section class="page-section section-soft"><article class="shell prose article-prose"><Content /></article></section>
   </BaseLayout>
 ) : (
@@ -42,10 +53,26 @@ const linkedNotes = props.kind === "topic"
       <div class="tag-row">{props.entry.data.tags.map((tag) => <a class="tag" href={withBase(`/tags/${tagSlug(tag)}/`)}>{tag}</a>)}</div>
       {props.entry.data.repository && <div class="button-row topic-actions"><a class="button" href={props.entry.data.repository} target="_blank" rel="noreferrer">학습 저장소 ↗</a></div>}
     </div></header>
+    {contentSections.length > 0 && <section class="page-section section-soft"><div class="shell">
+      <div class="section-heading"><div><p class="eyebrow">Original Study Records</p><h2>학습 콘텐츠</h2></div><p>Notion에서 기록한 장·절 구조와 순서를 유지해 본문을 연결했습니다.</p></div>
+      <div class="topic-content-tree">
+        {contentSections.map((section, sectionIndex) => <section class="topic-content-section">
+          <div class="topic-content-section-heading"><span>{String(sectionIndex + 1).padStart(2, "0")}</span><h3>{section.title}</h3></div>
+          {section.items.length > 0 ? <ol class="topic-content-list">
+            {section.items.map((item, itemIndex) => <li>
+              <a href={withBase(`/posts/${props.entry.id}/${item.slug}/`)}>
+                <span>{String(itemIndex + 1).padStart(2, "0")}</span>
+                <div><strong>{item.label ?? item.entry.data.title}</strong><small>{item.entry.data.description}</small></div>
+                <b aria-hidden="true">→</b>
+              </a>
+            </li>)}
+          </ol> : <p class="topic-content-pending">아직 기록된 하위 콘텐츠가 없습니다.</p>}
+        </section>)}
+      </div>
+    </div></section>}
     <section class="page-section"><div class="shell">
-      <div class="section-heading"><div><p class="eyebrow">Published</p><h2>정리한 콘텐츠</h2></div><p>초안 검토를 마친 글과 학습 노트만 공개합니다.</p></div>
-      {linkedNotes.length > 0 ? <div class="entry-list">{linkedNotes.map((note) => <EntryCard kind="notes" id={note.id} title={note.data.title} description={note.data.description} publishedAt={note.data.publishedAt} tags={note.data.tags} />)}</div> : <div class="empty-state">이 주제의 공개 콘텐츠를 준비하고 있습니다.<br />학습 목차와 원본 초안은 아래에서 관리합니다.</div>}
+      <div class="section-heading"><div><p class="eyebrow">Published</p><h2>정리한 콘텐츠</h2></div><p>초안 검토를 마친 기록만 별도로 모아 공개합니다.</p></div>
+      {linkedNotes.length > 0 ? <div class="entry-list">{linkedNotes.map((note) => <EntryCard kind="notes" id={note.id} title={note.data.title} description={note.data.description} publishedAt={note.data.publishedAt} tags={note.data.tags} />)}</div> : <div class="empty-state">별도로 다듬은 공개 노트는 준비 중입니다.<br />Notion 원문은 위 학습 콘텐츠에서 확인할 수 있습니다.</div>}
     </div></section>
-    <section class="page-section section-soft"><article class="shell prose article-prose topic-prose"><Content /></article></section>
   </BaseLayout>
 )}

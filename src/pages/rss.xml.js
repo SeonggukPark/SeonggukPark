@@ -7,7 +7,7 @@ export async function GET(context) {
     .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 
   return rss({
-    title: `${siteData.name} 기술 글`,
+    title: `${siteData.name} 기술 기록`,
     description: siteData.description,
     site: context.site,
     items: posts.map((post) => ({
@@ -18,4 +18,3 @@ export async function GET(context) {
     }))
   });
 }
-

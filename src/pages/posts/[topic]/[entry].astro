@@ -1,0 +1,101 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { topicContent, type TopicContentItem, type TopicContentSection } from "../../../data/topicContent";
+import { withBase } from "../../../lib/site";
+
+interface Props {
+  topic: CollectionEntry<"topics">;
+  note: CollectionEntry<"notes">;
+  section: TopicContentSection;
+  item: TopicContentItem;
+  sectionIndex: number;
+  itemIndex: number;
+  siblings: Array<TopicContentItem & { title: string }>;
+  previous?: { slug: string; title: string };
+  next?: { slug: string; title: string };
+}
+
+export async function getStaticPaths() {
+  const topics = await getCollection("topics", ({ data }) => !data.draft);
+  const notes = await getCollection("notes");
+
+  return topics.flatMap((topic) => {
+    const sections = topicContent[topic.id] ?? [];
+    const ordered = sections.flatMap((section) => section.items);
+
+    return sections.flatMap((section, sectionIndex) => {
+      const availableItems = section.items
+        .map((item) => ({ ...item, note: notes.find((note) => note.id === item.id) }))
+        .filter((item): item is typeof item & { note: CollectionEntry<"notes"> } => Boolean(item.note));
+
+      return availableItems.map((item, itemIndex) => {
+        const absoluteIndex = ordered.findIndex((candidate) => candidate.id === item.id);
+        const adjacent = (offset: number) => {
+          const candidate = ordered[absoluteIndex + offset];
+          if (!candidate) return undefined;
+          const note = notes.find((entry) => entry.id === candidate.id);
+          return note ? { slug: candidate.slug, title: candidate.label ?? note.data.title } : undefined;
+        };
+
+        return {
+          params: { topic: topic.id, entry: item.slug },
+          props: {
+            topic,
+            note: item.note,
+            section,
+            item,
+            sectionIndex,
+            itemIndex,
+            siblings: availableItems.map((sibling) => ({
+              id: sibling.id,
+              slug: sibling.slug,
+              label: sibling.label,
+              title: sibling.label ?? sibling.note.data.title
+            })),
+            previous: adjacent(-1),
+            next: adjacent(1)
+          }
+        };
+      });
+    });
+  });
+}
+
+const { topic, note, section, item, sectionIndex, itemIndex, siblings, previous, next } = Astro.props as Props;
+const { Content } = await render(note);
+---
+
+<BaseLayout title={note.data.title} description={note.data.description} type="article">
+  <header class="page-hero topic-entry-hero"><div class="shell">
+    <a class="back-link" href={withBase(`/posts/${topic.id}/`)}>← {topic.data.title}</a>
+    <p class="eyebrow">{topic.data.title} · {section.title}</p>
+    <h1>{item.label ?? note.data.title}</h1>
+    <p class="lead">{note.data.description}</p>
+    <div class="topic-entry-path" aria-label="학습 기록 계층">
+      <span>스터디 플래너</span><b>›</b><span>{topic.data.title}</span><b>›</b><span>{section.title}</span><b>›</b><strong>{String(itemIndex + 1).padStart(2, "0")}</strong>
+    </div>
+  </div></header>
+
+  <section class="page-section section-soft">
+    <div class="shell prose-layout topic-entry-layout">
+      <article class="prose article-prose topic-content-prose"><Content /></article>
+      <aside class="article-aside topic-entry-aside">
+        <p class="eyebrow">Section {String(sectionIndex + 1).padStart(2, "0")}</p>
+        <h2>{section.title}</h2>
+        <ol>
+          {siblings.map((sibling, index) => <li>
+            <a class:list={{ current: sibling.id === item.id }} href={withBase(`/posts/${topic.id}/${sibling.slug}/`)} aria-current={sibling.id === item.id ? "page" : undefined}>
+              <span>{String(index + 1).padStart(2, "0")}</span>{sibling.title}
+            </a>
+          </li>)}
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  {(previous || next) && <nav class="topic-entry-pagination shell" aria-label="이전 및 다음 학습 콘텐츠">
+    {previous ? <a href={withBase(`/posts/${topic.id}/${previous.slug}/`)}><small>이전</small><strong>← {previous.title}</strong></a> : <span />}
+    {next ? <a href={withBase(`/posts/${topic.id}/${next.slug}/`)}><small>다음</small><strong>{next.title} →</strong></a> : <span />}
+  </nav>}
+</BaseLayout>

@@ -3,16 +3,15 @@ import { site } from "../data/site";
 import { withBase } from "../lib/site";
 
 const nav = [
-  { label: "홈", href: "/" },
-  { label: "프로젝트", href: "/projects/" },
-  { label: "기술 글", href: "/posts/" },
-  { label: "학습 노트", href: "/notes/" },
-  { label: "이력서", href: "/resume/" }
+  { label: "홈", href: "/", matches: ["/"] },
+  { label: "이력서", href: "/resume/", matches: ["/resume/"] },
+  { label: "프로젝트", href: "/projects/", matches: ["/projects/"] },
+  { label: "기록", href: "/posts/", matches: ["/posts/", "/notes/"] },
 ];
 const current = Astro.url.pathname;
-const isCurrent = (href: string) => href === "/"
+const isCurrent = (item: (typeof nav)[number]) => item.href === "/"
   ? current === withBase("/")
-  : current.startsWith(withBase(href));
+  : item.matches.some((path) => current.startsWith(withBase(path)));
 ---
 
 <header class="site-header">
@@ -27,7 +26,7 @@ const isCurrent = (href: string) => href === "/"
 
     <nav class="desktop-nav" aria-label="주요 메뉴">
       {nav.map((item) => (
-        <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? "page" : undefined}>
+        <a href={withBase(item.href)} aria-current={isCurrent(item) ? "page" : undefined}>
           {item.label}
         </a>
       ))}
@@ -40,7 +39,7 @@ const isCurrent = (href: string) => href === "/"
       <details class="mobile-menu">
         <summary>메뉴</summary>
         <nav aria-label="모바일 메뉴">
-          {nav.map((item) => <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>)}
+          {nav.map((item) => <a href={withBase(item.href)} aria-current={isCurrent(item) ? "page" : undefined}>{item.label}</a>)}
         </nav>
       </details>
     </div>

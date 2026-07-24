@@ -28,7 +28,7 @@ const relatedNotes = project.data.relatedNotes
       {(project.data.repository || project.data.demo || relatedNotes.length > 0) && <div class="button-row project-hero-actions">
         {project.data.repository && <a class="button primary" href={project.data.repository} target="_blank" rel="noreferrer">GitHub ↗</a>}
         {project.data.demo && <a class="button primary" href={project.data.demo} target="_blank" rel="noreferrer">Demo ↗</a>}
-        {relatedNotes[0] && <a class="button" href={withBase(`/notes/${relatedNotes[0].id}/`)}>관련 학습 노트 →</a>}
+        {relatedNotes[0] && <a class="button" href={withBase(`/notes/${relatedNotes[0].id}/`)}>관련 기록 →</a>}
       </div>}
     </div>
   </header>
@@ -48,7 +48,7 @@ const relatedNotes = project.data.relatedNotes
           {project.data.demo && <a class="text-link" href={project.data.demo} target="_blank" rel="noreferrer">Demo ↗</a>}
         </div>}
         {relatedNotes.length > 0 && <div class="aside-links related-links">
-          <h2>관련 학습 노트</h2>
+          <h2>관련 기록</h2>
           {relatedNotes.map((note) => <a href={withBase(`/notes/${note.id}/`)}><strong>{note.data.title}</strong><small>{note.data.description}</small></a>)}
         </div>}
       </aside>

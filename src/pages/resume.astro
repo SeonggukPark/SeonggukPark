@@ -1,7 +1,31 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { activities, awards, experience, publications, site, skills } from "../data/site";
+import OrganizationHeading from "../components/OrganizationHeading.astro";
+import ResumeHighlights from "../components/ResumeHighlights.astro";
+import { activities, awards, certifications, coursework, experience, personalInfo, publications, site, skills } from "../data/site";
 import { withBase } from "../lib/site";
+
+const workExperience = experience.filter((item) => item.organization === "현대모비스");
+const education = experience.filter((item) => item.organization === "경북대학교");
+const researchExperience = experience.filter((item) => item.organization.includes("Brain AI Lab"));
+const trainingOrganizations = new Set(["삼성전자 알고리즘 역량강화 교육", "LG Aimers", "CJ Remote Internship"]);
+const training = activities.filter((item) => trainingOrganizations.has(item.organization));
+const otherActivities = activities.filter((item) => !trainingOrganizations.has(item.organization));
+const languageItems = [...certifications].sort((a, b) => b.period.localeCompare(a.period, "ko"));
+const otherItems = [...publications, ...researchExperience, ...otherActivities]
+  .sort((a, b) => b.period.localeCompare(a.period, "ko"));
+const publicProjects = await getCollection("projects", ({ data }) => !data.draft);
+const resumeProjectIds = [
+  "container-crane-automation",
+  "pcb-defect-detection",
+  "air-conditioner-clustering",
+  "mcu-human-detection",
+  "vision-transformer-quantization"
+];
+const resumeProjects = resumeProjectIds
+  .map((id) => publicProjects.find((project) => project.id === id))
+  .filter((project): project is NonNullable<typeof project> => Boolean(project));
 ---
 
 <BaseLayout title="이력서" description="임베디드 소프트웨어 엔지니어 박성국의 경력과 기술 이력입니다.">
@@ -10,9 +34,12 @@ import { withBase } from "../lib/site";
       <div>
         <p class="eyebrow">Resume</p>
         <h1>{site.name}</h1>
-        <p class="lead">{site.title} · MCU 펌웨어, 차량용 ECU, Embedded Linux와 Edge AI</p>
+        <dl class="resume-hero-personal">
+          <div><dt>전화번호</dt><dd><a href={`tel:${personalInfo.phone.replaceAll("-", "")}`}>{personalInfo.phone}</a></dd></div>
+          <div><dt>생년월일</dt><dd>{personalInfo.birthDate || "—"}</dd></div>
+          <div><dt>이메일</dt><dd><a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a></dd></div>
+        </dl>
         <div class="button-row">
-          <a class="button primary" href={`mailto:${site.email}`}>이메일</a>
           <a class="button" href={site.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         </div>
       </div>
@@ -22,39 +49,100 @@ import { withBase } from "../lib/site";
   <section class="page-section section-soft">
     <div class="shell">
       <section class="resume-section">
-        <div class="resume-heading"><h2>Experience & Education</h2></div>
-        {experience.map((item) => (
-          <article class="resume-item">
-            <time>{item.period}</time>
-            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p><ul>{item.points.map((point) => <li>{point}</li>)}</ul>{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
-          </article>
-        ))}
-      </section>
-      <section class="resume-section">
-        <div class="resume-heading"><h2>Publications & Awards</h2></div>
-        {[...publications, ...awards].map((item) => (
-          <article class="resume-item">
-            <time>{item.period}</time>
-            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
-          </article>
-        ))}
-      </section>
-      <section class="resume-section">
-        <div class="resume-heading"><h2>Training & Activities</h2></div>
-        {activities.map((item) => (
-          <article class="resume-item">
-            <time>{item.period}</time>
-            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
-          </article>
-        ))}
-      </section>
-      <section class="resume-section">
-        <div class="resume-heading"><h2>Skills</h2></div>
-        <div class="resume-skills">
+        <div class="resume-heading"><h2>기술 스택</h2></div>
+        <div class="resume-skills resume-skills-top">
           {skills.map((group) => <article><h3>{group.name}</h3><div class="tag-row">{group.items.map((item) => <span class="tag">{item}</span>)}</div></article>)}
         </div>
       </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>학력</h2></div>
+        {education.map((item) => (
+          <article class="resume-item">
+            <time>{item.period}</time>
+            <div>
+              <OrganizationHeading organization={item.organization} logo={item.logo} />
+              <strong>{item.role}</strong>
+              <p>{item.description}</p>
+              <ResumeHighlights items={item.points} />
+              {item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}
+              <details class="resume-coursework">
+                <summary>주요 이수 과목 <span aria-hidden="true"></span></summary>
+                <div class="resume-coursework-table-wrap">
+                  <table>
+                    <thead><tr><th>이수 시기</th><th>과목명</th><th>성적</th></tr></thead>
+                    <tbody>
+                      {coursework.map((course) => (
+                        <tr><td>{course.period}</td><td>{course.name}</td><td>{course.grade}</td></tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+            </div>
+          </article>
+        ))}
+      </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>경력</h2></div>
+        {workExperience.map((item) => (
+          <article class="resume-item">
+            <time>{item.period}</time>
+            <div><OrganizationHeading organization={item.organization} logo={item.logo} /><strong>{item.role}</strong><p>{item.description}</p><ResumeHighlights items={item.points} groups={item.highlightGroups} /></div>
+          </article>
+        ))}
+      </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>프로젝트</h2></div>
+        {resumeProjects.map((project) => (
+          <article class="resume-item">
+            <time>{project.data.period}</time>
+            <div>
+              <h3>{project.data.title}</h3>
+              <strong>{project.data.category} · {project.data.role}</strong>
+              <p>{project.data.description}</p>
+              <ResumeHighlights items={project.data.outcomes} />
+              <div class="tag-row resume-project-tags">{project.data.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
+              <div class="resume-item-links"><a href={withBase(`/projects/${project.id}/`)}>프로젝트 상세 →</a></div>
+            </div>
+          </article>
+        ))}
+      </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>교육</h2></div>
+        {training.map((item) => (
+          <article class="resume-item">
+            <time>{item.period}</time>
+            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}</div>
+          </article>
+        ))}
+      </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>수상</h2></div>
+        {awards.map((item) => (
+          <article class="resume-item">
+            <time>{item.period}</time>
+            <div><OrganizationHeading organization={item.organization} logo={item.logo} /><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
+          </article>
+        ))}
+      </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>어학</h2></div>
+        {languageItems.map((item) => (
+          <article class="resume-item">
+            <time>{item.period}</time>
+            <div><OrganizationHeading organization={item.organization} logo={item.logo} /><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}</div>
+          </article>
+        ))}
+      </section>
+      <section class="resume-section">
+        <div class="resume-heading"><h2>기타</h2></div>
+        {otherItems.map((item) => (
+          <article class="resume-item">
+            <time>{item.period}</time>
+            <div><OrganizationHeading organization={item.organization} logo={item.logo} /><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
+          </article>
+        ))}
+      </section>
     </div>
   </section>
-  <script>document.querySelector("[data-print]")?.addEventListener("click", () => window.print());</script>
 </BaseLayout>

@@ -1,0 +1,30 @@
+---
+import { withBase } from "../lib/site";
+
+interface Props {
+  organization: string;
+  logo?: {
+    readonly src: string;
+    readonly alt: string;
+    readonly variant: "wordmark" | "emblem";
+  };
+}
+
+const { organization, logo } = Astro.props;
+---
+
+<div class="organization-heading">
+  {logo && (
+    <span class:list={["organization-logo", logo.variant === "wordmark" && "organization-logo-wordmark"]}>
+      <img
+        src={withBase(logo.src)}
+        alt={logo.alt}
+        width={logo.variant === "wordmark" ? 238 : 236}
+        height={logo.variant === "wordmark" ? 82 : 236}
+        loading="lazy"
+        decoding="async"
+      />
+    </span>
+  )}
+  <h3>{organization}</h3>
+</div>
