@@ -2,9 +2,10 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import EntryCard from "../../components/EntryCard.astro";
+import { byNewest, isPublished } from "../../lib/collections";
 import { withBase } from "../../lib/site";
 
-const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const notes = (await getCollection("notes", isPublished)).sort(byNewest);
 ---
 <BaseLayout title="공개 노트" description="실습, 문제 해결과 학습 과정에서 얻은 짧고 구체적인 기록입니다.">
   <header class="page-hero"><div class="shell"><a class="back-link" href={withBase("/posts/")}>← 전체 기록</a><p class="eyebrow">Engineering Notes</p><h1>시도하고 실패하며<br />배운 것을 남깁니다.</h1><p class="lead">전체 기록 중 명령어, 오류 원인, 실험 결과처럼 다시 활용할 수 있는 지식을 모아 둔 공개 노트입니다.</p></div></header>

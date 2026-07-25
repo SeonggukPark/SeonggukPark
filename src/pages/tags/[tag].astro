@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import EntryCard from "../../components/EntryCard.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
+import { isPublished } from "../../lib/collections";
 import { tagSlug, withBase } from "../../lib/site";
 
 type Props = {
@@ -13,9 +14,9 @@ type Props = {
 };
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects", ({ data }) => !data.draft);
-  const posts = await getCollection("posts", ({ data }) => !data.draft);
-  const notes = await getCollection("notes", ({ data }) => !data.draft);
+  const projects = await getCollection("projects", isPublished);
+  const posts = await getCollection("posts", isPublished);
+  const notes = await getCollection("notes", isPublished);
   const tags = [...new Set([...projects, ...posts, ...notes].flatMap((entry) => entry.data.tags))];
 
   return tags.map((label) => ({

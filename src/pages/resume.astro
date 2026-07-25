@@ -1,9 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import OrganizationHeading from "../components/OrganizationHeading.astro";
 import ResumeHighlights from "../components/ResumeHighlights.astro";
+import ResumeTimelineItem from "../components/ResumeTimelineItem.astro";
 import { activities, awards, certifications, coursework, experience, personalInfo, publications, site, skills } from "../data/site";
+import { isPublished, selectByIds } from "../lib/collections";
 import { withBase } from "../lib/site";
 
 const workExperience = experience.filter((item) => item.organization === "현대모비스");
@@ -15,7 +16,7 @@ const otherActivities = activities.filter((item) => !trainingOrganizations.has(i
 const languageItems = [...certifications].sort((a, b) => b.period.localeCompare(a.period, "ko"));
 const otherItems = [...publications, ...researchExperience, ...otherActivities]
   .sort((a, b) => b.period.localeCompare(a.period, "ko"));
-const publicProjects = await getCollection("projects", ({ data }) => !data.draft);
+const publicProjects = await getCollection("projects", isPublished);
 const resumeProjectIds = [
   "container-crane-automation",
   "pcb-defect-detection",
@@ -23,9 +24,7 @@ const resumeProjectIds = [
   "mcu-human-detection",
   "vision-transformer-quantization"
 ];
-const resumeProjects = resumeProjectIds
-  .map((id) => publicProjects.find((project) => project.id === id))
-  .filter((project): project is NonNullable<typeof project> => Boolean(project));
+const resumeProjects = selectByIds(publicProjects, resumeProjectIds);
 ---
 
 <BaseLayout title="이력서" description="임베디드 소프트웨어 엔지니어 박성국의 경력과 기술 이력입니다.">
@@ -57,39 +56,26 @@ const resumeProjects = resumeProjectIds
       <section class="resume-section">
         <div class="resume-heading"><h2>학력</h2></div>
         {education.map((item) => (
-          <article class="resume-item">
-            <time>{item.period}</time>
-            <div>
-              <OrganizationHeading organization={item.organization} logo={item.logo} />
-              <strong>{item.role}</strong>
-              <p>{item.description}</p>
-              <ResumeHighlights items={item.points} />
-              {item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}
-              <details class="resume-coursework">
-                <summary>주요 이수 과목 <span aria-hidden="true"></span></summary>
-                <div class="resume-coursework-table-wrap">
-                  <table>
-                    <thead><tr><th>이수 시기</th><th>과목명</th><th>성적</th></tr></thead>
-                    <tbody>
-                      {coursework.map((course) => (
-                        <tr><td>{course.period}</td><td>{course.name}</td><td>{course.grade}</td></tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </details>
-            </div>
-          </article>
+          <ResumeTimelineItem item={item} emphasizePoints>
+            <details class="resume-coursework">
+              <summary>주요 이수 과목 <span aria-hidden="true"></span></summary>
+              <div class="resume-coursework-table-wrap">
+                <table>
+                  <thead><tr><th>이수 시기</th><th>과목명</th><th>성적</th></tr></thead>
+                  <tbody>
+                    {coursework.map((course) => (
+                      <tr><td>{course.period}</td><td>{course.name}</td><td>{course.grade}</td></tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          </ResumeTimelineItem>
         ))}
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>경력</h2></div>
-        {workExperience.map((item) => (
-          <article class="resume-item">
-            <time>{item.period}</time>
-            <div><OrganizationHeading organization={item.organization} logo={item.logo} /><strong>{item.role}</strong><p>{item.description}</p><ResumeHighlights items={item.points} groups={item.highlightGroups} /></div>
-          </article>
-        ))}
+        {workExperience.map((item) => <ResumeTimelineItem item={item} emphasizePoints />)}
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>프로젝트</h2></div>
@@ -109,39 +95,19 @@ const resumeProjects = resumeProjectIds
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>교육</h2></div>
-        {training.map((item) => (
-          <article class="resume-item">
-            <time>{item.period}</time>
-            <div><h3>{item.organization}</h3><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}</div>
-          </article>
-        ))}
+        {training.map((item) => <ResumeTimelineItem item={item} plainOrganization />)}
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>수상</h2></div>
-        {awards.map((item) => (
-          <article class="resume-item">
-            <time>{item.period}</time>
-            <div><OrganizationHeading organization={item.organization} logo={item.logo} /><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
-          </article>
-        ))}
+        {awards.map((item) => <ResumeTimelineItem item={item} />)}
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>어학</h2></div>
-        {languageItems.map((item) => (
-          <article class="resume-item">
-            <time>{item.period}</time>
-            <div><OrganizationHeading organization={item.organization} logo={item.logo} /><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}</div>
-          </article>
-        ))}
+        {languageItems.map((item) => <ResumeTimelineItem item={item} />)}
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>기타</h2></div>
-        {otherItems.map((item) => (
-          <article class="resume-item">
-            <time>{item.period}</time>
-            <div><OrganizationHeading organization={item.organization} logo={item.logo} /><strong>{item.role}</strong><p>{item.description}</p>{item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}{item.projectLinks.length > 0 && <div class="resume-item-links">{item.projectLinks.map((link) => <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>)}</div>}</div>
-          </article>
-        ))}
+        {otherItems.map((item) => <ResumeTimelineItem item={item} />)}
       </section>
     </div>
   </section>

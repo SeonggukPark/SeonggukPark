@@ -1,20 +1,19 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { isPublished, selectByIds } from "../../lib/collections";
 import { tagSlug, withBase } from "../../lib/site";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects", ({ data }) => !data.draft);
+  const projects = await getCollection("projects", isPublished);
   return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
 }
 
 interface Props { project: CollectionEntry<"projects">; }
 const { project } = Astro.props;
 const { Content } = await render(project);
-const notes = await getCollection("notes", ({ data }) => !data.draft);
-const relatedNotes = project.data.relatedNotes
-  .map((id) => notes.find((note) => note.id === id))
-  .filter((note): note is CollectionEntry<"notes"> => Boolean(note));
+const notes = await getCollection("notes", isPublished);
+const relatedNotes = selectByIds(notes, project.data.relatedNotes);
 ---
 
 <BaseLayout title={project.data.title} description={project.data.description} type="article">

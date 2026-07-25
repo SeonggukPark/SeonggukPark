@@ -3,6 +3,7 @@ import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import EntryCard from "../../components/EntryCard.astro";
 import { topicContent } from "../../data/topicContent";
+import { isPublished, selectByIds } from "../../lib/collections";
 import { formatDate, tagSlug, withBase } from "../../lib/site";
 
 type ArticleProps = { kind: "article"; entry: CollectionEntry<"posts"> };
@@ -10,8 +11,8 @@ type TopicProps = { kind: "topic"; entry: CollectionEntry<"topics"> };
 type Props = ArticleProps | TopicProps;
 
 export async function getStaticPaths() {
-  const articles = await getCollection("posts", ({ data }) => !data.draft);
-  const topics = await getCollection("topics", ({ data }) => !data.draft);
+  const articles = await getCollection("posts", isPublished);
+  const topics = await getCollection("topics", isPublished);
   return [
     ...articles.map((entry) => ({ params: { id: entry.id }, props: { kind: "article" as const, entry } })),
     ...topics.map((entry) => ({ params: { id: entry.id }, props: { kind: "topic" as const, entry } }))
@@ -20,11 +21,9 @@ export async function getStaticPaths() {
 
 const props = Astro.props as Props;
 const { Content } = await render(props.entry);
-const notes = props.kind === "topic" ? await getCollection("notes", ({ data }) => !data.draft) : [];
+const notes = props.kind === "topic" ? await getCollection("notes", isPublished) : [];
 const linkedNotes = props.kind === "topic"
-  ? props.entry.data.noteIds
-      .map((id) => notes.find((note) => note.id === id))
-      .filter((note): note is CollectionEntry<"notes"> => Boolean(note))
+  ? selectByIds(notes, props.entry.data.noteIds)
   : [];
 const sourceNotes = props.kind === "topic" ? await getCollection("notes") : [];
 const contentSections = props.kind === "topic"

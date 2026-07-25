@@ -1,11 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { isPublished } from "../../lib/collections";
 import { tagSlug, withBase } from "../../lib/site";
 
-const projects = await getCollection("projects", ({ data }) => !data.draft);
-const posts = await getCollection("posts", ({ data }) => !data.draft);
-const notes = await getCollection("notes", ({ data }) => !data.draft);
+const projects = await getCollection("projects", isPublished);
+const posts = await getCollection("posts", isPublished);
+const notes = await getCollection("notes", isPublished);
 const counts = new Map<string, number>();
 for (const entry of [...projects, ...posts, ...notes]) {
   for (const tag of entry.data.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);

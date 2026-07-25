@@ -4,5 +4,4 @@ dist/
 .playwright-cli/
 output/playwright/
 tmp/
-migration/zip-export/notes-imported/
 .DS_Store

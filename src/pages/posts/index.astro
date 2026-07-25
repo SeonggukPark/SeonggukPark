@@ -4,14 +4,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import EntryCard from "../../components/EntryCard.astro";
 import TopicCard from "../../components/TopicCard.astro";
 import { topicContent } from "../../data/topicContent";
+import { byNewest, isPublished } from "../../lib/collections";
 
-const posts = (await getCollection("posts", ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
-const topics = (await getCollection("topics", ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
-const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const posts = (await getCollection("posts", isPublished)).sort(byNewest);
+const topics = (await getCollection("topics", isPublished)).sort((a, b) => a.data.order - b.data.order);
+const notes = (await getCollection("notes", isPublished)).sort(byNewest);
 const records = [
   ...posts.map((entry) => ({ kind: "posts" as const, entry })),
   ...notes.map((entry) => ({ kind: "notes" as const, entry })),
-].sort((a, b) => b.entry.data.publishedAt.valueOf() - a.entry.data.publishedAt.valueOf());
+].sort((a, b) => byNewest(a.entry, b.entry));
 const topicRecordCount = (topic: (typeof topics)[number]) =>
   (topicContent[topic.id] ?? []).reduce((count, section) => count + section.items.length, 0)
   + topic.data.noteIds.filter((id) => notes.some((note) => note.id === id)).length;

@@ -21,7 +21,7 @@ export const skills = [
   { name: "Automotive", items: ["AUTOSAR Classic", "CAN(FD)", "UDS", "XCP", "OTA"] },
   { name: "Tools", items: ["Git", "Jira", "VS Code", "Jupyter Notebook", "Windows Batch"] },
   { name: "AI/ML", items: ["PyTorch", "TensorFlow", "TensorFlow Lite"] },
-  { name: "ETC", items: ["Linux"] }
+  { name: "Etc", items: ["Linux"] }
 ] as const;
 
 export const coursework = [
@@ -53,7 +53,7 @@ type ResumeProjectLink = {
   id: string;
 };
 
-type ResumeItem = {
+export type ResumeItem = {
   period: string;
   organization: string;
   logo?: {
@@ -64,10 +64,6 @@ type ResumeItem = {
   role: string;
   description: string;
   points: readonly string[];
-  highlightGroups?: readonly {
-    title: string;
-    items: readonly string[];
-  }[];
   projectLinks: readonly ResumeProjectLink[];
 };
 
@@ -82,29 +78,12 @@ export const experience: readonly ResumeItem[] = [
     },
     role: "조향SW설계팀 · 연구원",
     description: "차량 조향 ECU 펌웨어와 OTA 기능을 개발하고, 개발 자동화와 생성형 AI 활용 확산을 함께 추진하고 있습니다.",
-    points: [],
-    highlightGroups: [
-      {
-        title: "제어기 펌웨어 설계 및 유지보수",
-        items: [
-          "C/C++을 활용한 EPS 제어기 MCU 펌웨어 개발 및 유지보수",
-          "고객사 요구 사양을 바탕으로 차량 무선 업데이트 과정(OTA)에 필요한 서비스 구현"
-        ]
-      },
-      {
-        title: "SW 개발 환경 자동화",
-        items: [
-          "Python 및 Batch Script를 활용하여 SW 개발 과정에서 발생하는 반복 작업 자동화",
-          "빌드, 배포, 검증 과정에 필요한 유틸리티 프로그램 개발 및 개발 환경 안정화"
-        ]
-      },
-      {
-        title: "생성형 AI Key Man",
-        items: [
-          "코드 리뷰, 문서화, 데이터 처리 등에 필요한 AI 응용 프로그램 개발",
-          "AI 공유회, PoC, Pilot 활동 등 조직 내 생성형 AI 도구 확산을 위한 KeyMan 업무 수행"
-        ]
-      }
+    points: [
+      "C/C++ 기반 EPS 제어기 MCU 펌웨어 설계 및 유지보수",
+      "고객사 요구사항을 분석해 차량 무선 업데이트 과정에 필요한 OTA 서비스를 제어 펌웨어 내부에 구현",
+      "H/W 인터페이스와 영향성을 분석하고 설계·구현·리뷰·검증으로 이어지는 제품 SW 개발 프로세스 수행",
+      "Python·Batch·YAML 기반으로 빌드·배포와 검증 산출물 생성 업무를 자동화하고 유틸리티 프로그램 개발",
+      "코드 리뷰·문서화용 생성형 AI 응용 도구 개발과 사내 활용 사례 확산"
     ],
     projectLinks: []
   },
@@ -221,11 +200,11 @@ export const activities: readonly ResumeItem[] = [
 
 export const certifications: readonly ResumeItem[] = [
   {
-    period: "2024.08",
+    period: "2026.07.20",
     organization: "OPIc (영어)",
-    role: "ACTFL · Intermediate Mid 2 (IM2)",
+    role: "ACTFL · Intermediate High (IH)",
     description: "영어 말하기 능력 인증",
-    points: [],
+    points: ["유효기간 2028.07.19"],
     projectLinks: []
   }
 ];

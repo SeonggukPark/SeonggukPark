@@ -1,19 +1,18 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { isPublished, selectByIds } from "../../lib/collections";
 import { formatDate, tagSlug, withBase } from "../../lib/site";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("notes", ({ data }) => !data.draft);
+  const entries = await getCollection("notes", isPublished);
   return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
 }
 interface Props { entry: CollectionEntry<"notes">; }
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const projects = await getCollection("projects", ({ data }) => !data.draft);
-const relatedProjects = entry.data.relatedProjects
-  .map((id) => projects.find((project) => project.id === id))
-  .filter((project): project is CollectionEntry<"projects"> => Boolean(project));
+const projects = await getCollection("projects", isPublished);
+const relatedProjects = selectByIds(projects, entry.data.relatedProjects);
 ---
 <BaseLayout title={entry.data.title} description={entry.data.description} type="article">
   <header class="page-hero"><div class="shell"><a class="back-link" href={withBase("/posts/")}>← 기록 목록</a><p class="eyebrow">Note · {formatDate(entry.data.publishedAt)}</p><h1>{entry.data.title}</h1><p class="lead">{entry.data.description}</p><div class="tag-row">{entry.data.tags.map((tag) => <a class="tag" href={withBase(`/tags/${tagSlug(tag)}/`)}>{tag}</a>)}</div></div></header>

@@ -1,10 +1,10 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { site as siteData } from "../data/site";
+import { byNewest, isPublished } from "../lib/collections";
 
 export async function GET(context) {
-  const posts = (await getCollection("posts", ({ data }) => !data.draft))
-    .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+  const posts = (await getCollection("posts", isPublished)).sort(byNewest);
 
   return rss({
     title: `${siteData.name} 기술 기록`,

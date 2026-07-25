@@ -2,8 +2,9 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
+import { isPublished } from "../../lib/collections";
 
-const projects = (await getCollection("projects", ({ data }) => !data.draft))
+const projects = (await getCollection("projects", isPublished))
   .sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
 const categories = [...new Set(projects.map(({ data }) => data.category))];
 ---
@@ -22,4 +23,3 @@ const categories = [...new Set(projects.map(({ data }) => data.category))];
     </div>
   </section>
 </BaseLayout>
-

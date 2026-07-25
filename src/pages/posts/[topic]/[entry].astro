@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { topicContent, type TopicContentItem, type TopicContentSection } from "../../../data/topicContent";
+import { isPublished } from "../../../lib/collections";
 import { withBase } from "../../../lib/site";
 
 interface Props {
@@ -17,7 +18,7 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const topics = await getCollection("topics", ({ data }) => !data.draft);
+  const topics = await getCollection("topics", isPublished);
   const notes = await getCollection("notes");
 
   return topics.flatMap((topic) => {

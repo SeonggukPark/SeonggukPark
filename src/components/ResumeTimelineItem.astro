@@ -1,0 +1,40 @@
+---
+import type { ResumeItem } from "../data/site";
+import { withBase } from "../lib/site";
+import OrganizationHeading from "./OrganizationHeading.astro";
+import ResumeHighlights from "./ResumeHighlights.astro";
+
+interface Props {
+  item: ResumeItem;
+  emphasizePoints?: boolean;
+  plainOrganization?: boolean;
+}
+
+const {
+  item,
+  emphasizePoints = false,
+  plainOrganization = false
+} = Astro.props;
+---
+
+<article class="resume-item">
+  <time>{item.period}</time>
+  <div>
+    {plainOrganization
+      ? <h3>{item.organization}</h3>
+      : <OrganizationHeading organization={item.organization} logo={item.logo} />}
+    <strong>{item.role}</strong>
+    <p>{item.description}</p>
+    {emphasizePoints
+      ? <ResumeHighlights items={item.points} />
+      : item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}
+    {item.projectLinks.length > 0 && (
+      <div class="resume-item-links">
+        {item.projectLinks.map((link) => (
+          <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>
+        ))}
+      </div>
+    )}
+    <slot />
+  </div>
+</article>
