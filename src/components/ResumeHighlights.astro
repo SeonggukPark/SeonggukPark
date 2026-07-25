@@ -1,14 +1,30 @@
 ---
 interface Props {
   items?: readonly string[];
+  groups?: readonly {
+    title: string;
+    items: readonly string[];
+  }[];
 }
 
-const { items = [] } = Astro.props;
+const { items = [], groups = [] } = Astro.props;
+const hasContent = items.length > 0 || groups.length > 0;
 ---
 
-{items.length > 0 && (
+{hasContent && (
   <section class="resume-highlights" aria-label="주요 성과 및 활동">
     <h4><span aria-hidden="true">↗</span>주요 성과 및 활동</h4>
-    <ul>{items.map((item) => <li>{item}</li>)}</ul>
+    {groups.length > 0 ? (
+      <div class="resume-highlight-groups">
+        {groups.map((group) => (
+          <div class="resume-highlight-group">
+            <h5>{group.title}</h5>
+            <ul>{group.items.map((item) => <li>{item}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <ul>{items.map((item) => <li>{item}</li>)}</ul>
+    )}
   </section>
 )}

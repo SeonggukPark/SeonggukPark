@@ -1,0 +1,350 @@
+<dialog class="image-lightbox" data-image-lightbox aria-label="이미지 확대 보기" aria-keyshortcuts="Escape">
+  <div class="image-lightbox-panel">
+    <div class="image-lightbox-toolbar">
+      <span class="image-lightbox-size" data-lightbox-size aria-live="polite"></span>
+      <button class="image-lightbox-close" type="button" data-lightbox-close aria-label="확대 이미지 닫기">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="image-lightbox-stage" data-lightbox-stage>
+      <img data-lightbox-image alt="" />
+    </div>
+
+    <div class="image-lightbox-footer">
+      <p data-lightbox-caption></p>
+      <div class="image-lightbox-actions">
+        <button type="button" data-lightbox-zoom>1:1로 보기</button>
+        <a data-lightbox-original target="_blank" rel="noreferrer">원본 열기 <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("[data-image-lightbox]");
+
+  if (dialog) {
+    const lightboxImage = dialog.querySelector<HTMLImageElement>("[data-lightbox-image]");
+    const caption = dialog.querySelector<HTMLElement>("[data-lightbox-caption]");
+    const size = dialog.querySelector<HTMLElement>("[data-lightbox-size]");
+    const originalLink = dialog.querySelector<HTMLAnchorElement>("[data-lightbox-original]");
+    const zoomButton = dialog.querySelector<HTMLButtonElement>("[data-lightbox-zoom]");
+    const stage = dialog.querySelector<HTMLElement>("[data-lightbox-stage]");
+    let sourceImage: HTMLImageElement | null = null;
+    let previousOverflow = "";
+
+    const isEligibleImage = (image: HTMLImageElement) =>
+      Boolean(image.getAttribute("src")) &&
+      !image.closest("[data-image-lightbox]") &&
+      !image.closest("[data-no-lightbox]");
+
+    const prepareImage = (image: HTMLImageElement) => {
+      if (!isEligibleImage(image) || image.dataset.lightboxReady) return;
+
+      image.dataset.lightboxReady = "true";
+      image.title ||= "클릭하여 원본 이미지 보기";
+
+      if (!image.closest("a, button") && !image.hasAttribute("tabindex")) {
+        image.tabIndex = 0;
+        image.setAttribute("role", "button");
+        image.setAttribute("aria-haspopup", "dialog");
+        image.setAttribute("aria-label", image.alt ? `${image.alt} 확대해서 보기` : "이미지 확대해서 보기");
+      }
+    };
+
+    const prepareImages = (root: ParentNode = document) => {
+      root.querySelectorAll<HTMLImageElement>("img").forEach(prepareImage);
+    };
+
+    const setActualSize = (actual: boolean) => {
+      dialog.classList.toggle("is-actual-size", actual);
+      if (zoomButton) {
+        zoomButton.textContent = actual ? "화면에 맞추기" : "1:1로 보기";
+        zoomButton.setAttribute("aria-pressed", String(actual));
+      }
+      if (stage) stage.scrollTo({ top: 0, left: 0 });
+    };
+
+    const openLightbox = (image: HTMLImageElement) => {
+      if (!lightboxImage || !originalLink || !caption || !size) return;
+
+      const rawSource = image.getAttribute("src") || image.currentSrc;
+      const source = new URL(rawSource, document.baseURI).href;
+      sourceImage = image;
+      setActualSize(false);
+      lightboxImage.src = source;
+      lightboxImage.alt = image.alt;
+      caption.textContent = image.alt;
+      caption.hidden = !image.alt;
+      size.textContent = "이미지 불러오는 중…";
+      originalLink.href = source;
+      previousOverflow = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = "hidden";
+      dialog.showModal();
+
+      lightboxImage.decode().catch(() => undefined).finally(() => {
+        if (!dialog.open || lightboxImage.src !== source) return;
+        size.textContent = lightboxImage.naturalWidth && lightboxImage.naturalHeight
+          ? `${lightboxImage.naturalWidth.toLocaleString()} × ${lightboxImage.naturalHeight.toLocaleString()} px`
+          : "원본 이미지";
+      });
+    };
+
+    prepareImages();
+
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof HTMLImageElement) || !isEligibleImage(event.target)) return;
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      openLightbox(event.target);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!(event.target instanceof HTMLImageElement) || !isEligibleImage(event.target)) return;
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openLightbox(event.target);
+    });
+
+    dialog.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target === dialog || (target instanceof Element && target.closest("[data-lightbox-close]"))) {
+        dialog.close();
+      }
+    });
+
+    dialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      dialog.close();
+    });
+
+    zoomButton?.addEventListener("click", () => {
+      setActualSize(!dialog.classList.contains("is-actual-size"));
+    });
+
+    dialog.addEventListener("close", () => {
+      document.documentElement.style.overflow = previousOverflow;
+      lightboxImage?.removeAttribute("src");
+      sourceImage?.focus({ preventScroll: true });
+      sourceImage = null;
+    });
+
+    new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof HTMLImageElement) prepareImage(node);
+          else if (node instanceof Element) prepareImages(node);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+</script>
+
+<style>
+  :global(img[data-lightbox-ready]) {
+    cursor: zoom-in;
+  }
+
+  :global(img[data-lightbox-ready]:focus-visible) {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  .image-lightbox {
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: clamp(12px, 2vw, 28px);
+    border: 0;
+    background: transparent;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .image-lightbox::backdrop {
+    background: rgba(5, 7, 12, 0.9);
+    backdrop-filter: blur(12px);
+  }
+
+  .image-lightbox[open] {
+    display: grid;
+    place-items: center;
+  }
+
+  .image-lightbox-panel {
+    width: min(100%, 1600px);
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    overflow: hidden;
+  }
+
+  .image-lightbox-toolbar,
+  .image-lightbox-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .image-lightbox-toolbar {
+    min-height: 48px;
+  }
+
+  .image-lightbox-size {
+    color: rgba(255, 255, 255, 0.68);
+    font: 600 12px/1.4 "Manrope", sans-serif;
+    letter-spacing: 0.04em;
+  }
+
+  .image-lightbox-close,
+  .image-lightbox-actions button,
+  .image-lightbox-actions a {
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+    transition: border-color 0.16s ease, background 0.16s ease;
+  }
+
+  .image-lightbox-close:hover,
+  .image-lightbox-actions button:hover,
+  .image-lightbox-actions a:hover {
+    border-color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .image-lightbox-close {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    flex: none;
+    place-items: center;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .image-lightbox-close svg {
+    width: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.8;
+  }
+
+  .image-lightbox-stage {
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    place-items: center;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .image-lightbox-stage img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100dvh - 166px);
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  }
+
+  .image-lightbox.is-actual-size .image-lightbox-stage {
+    place-items: start;
+  }
+
+  .image-lightbox.is-actual-size .image-lightbox-stage img {
+    max-width: none;
+    max-height: none;
+    margin: 0;
+  }
+
+  .image-lightbox-footer {
+    min-height: 62px;
+    padding-top: 10px;
+  }
+
+  .image-lightbox-footer p {
+    max-width: 70ch;
+    margin: 0;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .image-lightbox-actions {
+    display: flex;
+    flex: none;
+    gap: 8px;
+  }
+
+  .image-lightbox-actions button,
+  .image-lightbox-actions a {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 13px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  @media (max-width: 620px) {
+    .image-lightbox {
+      padding: 8px 12px;
+    }
+
+    .image-lightbox-footer {
+      align-items: flex-end;
+    }
+
+    .image-lightbox-footer p {
+      max-width: 42vw;
+      white-space: normal;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .image-lightbox-stage img {
+      max-height: calc(100dvh - 146px);
+    }
+
+    .image-lightbox-actions button,
+    .image-lightbox-actions a {
+      padding-inline: 10px;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .image-lightbox[open] .image-lightbox-stage img {
+      animation: lightbox-reveal 0.18s ease-out;
+    }
+
+    @keyframes lightbox-reveal {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  }
+
+  @media print {
+    .image-lightbox {
+      display: none !important;
+    }
+  }
+</style>

@@ -4,39 +4,39 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import EntryCard from "../../components/EntryCard.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import { isPublished } from "../../lib/collections";
+import { getProjectSkillTags } from "../../lib/projectTags";
 import { tagSlug, withBase } from "../../lib/site";
 
 type Props = {
   label: string;
   projects: CollectionEntry<"projects">[];
   posts: CollectionEntry<"posts">[];
-  notes: CollectionEntry<"notes">[];
 };
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects", isPublished);
   const posts = await getCollection("posts", isPublished);
-  const notes = await getCollection("notes", isPublished);
-  const tags = [...new Set([...projects, ...posts, ...notes].flatMap((entry) => entry.data.tags))];
+  const tags = [...new Set([
+    ...projects.flatMap((entry) => getProjectSkillTags(entry.data.tags)),
+    ...posts.flatMap((entry) => entry.data.tags)
+  ])];
 
   return tags.map((label) => ({
     params: { tag: tagSlug(label) },
     props: {
       label,
-      projects: projects.filter((entry) => entry.data.tags.includes(label)),
-      posts: posts.filter((entry) => entry.data.tags.includes(label)),
-      notes: notes.filter((entry) => entry.data.tags.includes(label))
+      projects: projects.filter((entry) => getProjectSkillTags(entry.data.tags).includes(label)),
+      posts: posts.filter((entry) => entry.data.tags.includes(label))
     }
   }));
 }
 
-const { label, projects, posts, notes } = Astro.props;
+const { label, projects, posts } = Astro.props;
 ---
 <BaseLayout title={`${label} 태그`} description={`${label} 태그가 포함된 프로젝트와 기술 기록입니다.`}>
-  <header class="page-hero"><div class="shell"><a class="back-link" href={withBase("/tags/")}>← 전체 태그</a><p class="eyebrow">Tag</p><h1>#{label}</h1><p class="lead">프로젝트 {projects.length}개 · 기록 {posts.length + notes.length}개</p></div></header>
+  <header class="page-hero"><div class="shell"><a class="back-link" href={withBase("/tags/")}>← 전체 태그</a><p class="eyebrow">Tag</p><h1>#{label}</h1><p class="lead">프로젝트 {projects.length}개 · 기록 {posts.length}개</p></div></header>
   <section class="page-section"><div class="shell">
     {projects.length > 0 && <section class="tag-results"><h2>Projects</h2><div class="card-grid">{projects.map((project) => <ProjectCard project={project} />)}</div></section>}
     {posts.length > 0 && <section class="tag-results"><h2>Articles</h2><div class="entry-list">{posts.map((post) => <EntryCard kind="posts" id={post.id} title={post.data.title} description={post.data.description} publishedAt={post.data.publishedAt} tags={post.data.tags} />)}</div></section>}
-    {notes.length > 0 && <section class="tag-results"><h2>Notes</h2><div class="entry-list">{notes.map((note) => <EntryCard kind="notes" id={note.id} title={note.data.title} description={note.data.description} publishedAt={note.data.publishedAt} tags={note.data.tags} />)}</div></section>}
   </div></section>
 </BaseLayout>

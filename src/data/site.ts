@@ -53,6 +53,11 @@ type ResumeProjectLink = {
   id: string;
 };
 
+type ResumeDocumentLink = {
+  label: string;
+  id: string;
+};
+
 export type ResumeItem = {
   period: string;
   organization: string;
@@ -64,7 +69,12 @@ export type ResumeItem = {
   role: string;
   description: string;
   points: readonly string[];
+  highlightGroups?: readonly {
+    title: string;
+    items: readonly string[];
+  }[];
   projectLinks: readonly ResumeProjectLink[];
+  documentLinks?: readonly ResumeDocumentLink[];
 };
 
 export const experience: readonly ResumeItem[] = [
@@ -77,13 +87,30 @@ export const experience: readonly ResumeItem[] = [
       variant: "wordmark"
     },
     role: "조향SW설계팀 · 연구원",
-    description: "차량 조향 ECU 펌웨어와 OTA 기능을 개발하고, 개발 자동화와 생성형 AI 활용 확산을 함께 추진하고 있습니다.",
-    points: [
-      "C/C++ 기반 EPS 제어기 MCU 펌웨어 설계 및 유지보수",
-      "고객사 요구사항을 분석해 차량 무선 업데이트 과정에 필요한 OTA 서비스를 제어 펌웨어 내부에 구현",
-      "H/W 인터페이스와 영향성을 분석하고 설계·구현·리뷰·검증으로 이어지는 제품 SW 개발 프로세스 수행",
-      "Python·Batch·YAML 기반으로 빌드·배포와 검증 산출물 생성 업무를 자동화하고 유틸리티 프로그램 개발",
-      "코드 리뷰·문서화용 생성형 AI 응용 도구 개발과 사내 활용 사례 확산"
+    description: "차량 조향 장치(EPS)에 탑재되는 C언어 기반의 ECU 펌웨어 설계 및 유지보수를 담당하고 있습니다.",
+    points: [],
+    highlightGroups: [
+      {
+        title: "제어기 펌웨어 설계 및 유지보수",
+        items: [
+          "C/C++을 활용한 EPS 제어기 MCU 펌웨어 개발 및 유지보수",
+          "고객사 요구 사양을 바탕으로 차량 무선 업데이트 과정(OTA)에 필요한 서비스 구현"
+        ]
+      },
+      {
+        title: "SW 개발 환경 자동화",
+        items: [
+          "Python 및 Batch Script를 활용하여 SW 개발 과정에서 발생하는 반복 작업 자동화",
+          "빌드, 배포, 검증 과정에 필요한 유틸리티 프로그램 개발 및 개발 환경 안정화"
+        ]
+      },
+      {
+        title: "생성형 AI Key Man",
+        items: [
+          "코드 리뷰, 문서화, 데이터 처리 등에 필요한 AI 응용 프로그램 개발",
+          "AI 공유회, PoC, Pilot 활동 등 조직 내 생성형 AI 도구 확산을 위한 KeyMan 업무 수행"
+        ]
+      }
     ],
     projectLinks: []
   },
@@ -111,12 +138,10 @@ export const experience: readonly ResumeItem[] = [
       alt: "경북대학교 엠블럼",
       variant: "emblem"
     },
-    role: "전자공학부(주) · 컴퓨터학부(부)",
+    role: "전자공학(주) · 컴퓨터학(부)",
     description: "하드웨어와 소프트웨어의 기반을 함께 쌓았습니다.",
     points: [
       "학점 4.13 / 4.5",
-      "마이크로프로세서·운영체제·임베디드시스템 프로그래밍 이수",
-      "알고리즘·컴퓨터구조·데이터통신·딥러닝 이수"
     ],
     projectLinks: []
   }
@@ -127,7 +152,7 @@ export const publications: readonly ResumeItem[] = [
     period: "2024.07",
     organization: "경북대학교 전자공학부 학술대회",
     role: "제1저자 · 포스터 발표",
-    description: "Optimizing Vision Transformers via Post-Training Quantization for Edge Computing",
+    description: "AI 모델 경량화를 주제로 논문을 작성하고, 교내 학술대회에서 포스터 발표를 진행하였습니다.",
     points: [
       "ViT·EfficientNet·LeViT의 양자화 전후 정확도와 CPU 추론 지연시간 비교",
       "ImageNet-1K validation image 5,000장과 PyTorch Profiler를 활용한 성능 검증"
@@ -141,9 +166,10 @@ export const awards: readonly ResumeItem[] = [
     period: "2025.11",
     organization: "현대모비스 사내 아이디어 공모전",
     role: "은상",
-    description: "AI 기반 교통 법규 안내 시스템 아이디어를 제안했습니다.",
+    description: "차량 내의 생성형 AI를 활용한 AR 교통 법규 안내 시스템 아이디어를 제안했습니다.",
     points: ["현장 문제를 AI 서비스 아이디어로 구체화"],
-    projectLinks: []
+    projectLinks: [],
+    documentLinks: [{ label: "수상 자료 보기", id: "mobis-idea-award" }]
   },
   {
     period: "2023.11",
@@ -151,49 +177,75 @@ export const awards: readonly ResumeItem[] = [
     role: "금상 · 해양수산부 장관상",
     description: "항만 컨테이너 자동 운송을 위한 크레인 제어·관리 시스템을 개발했습니다.",
     points: ["대한민국 소프트웨어 대전에서 작품 시연"],
-    projectLinks: [{ label: "수상 프로젝트 상세", id: "container-crane-automation" }]
+    projectLinks: [{ label: "수상 프로젝트 상세", id: "container-crane-automation" }],
+    documentLinks: [{ label: "수상 자료 보기", id: "smart-maritime-award" }]
   }
 ];
 
 export const activities: readonly ResumeItem[] = [
   {
     period: "2024.07 — 2024.08",
-    organization: "삼성전자 알고리즘 역량강화 교육",
+    organization: "삼성전자 DX부문 알고리즘 역량강화 과정",
     role: "교육생",
     description: "멘토 피드백을 바탕으로 자료구조, 알고리즘과 C++ 코드 최적화를 집중적으로 학습했습니다.",
-    points: ["Trie·Segment Tree·최단경로·시뮬레이션 문제 풀이와 성능 개선"],
-    projectLinks: []
+    points: [
+      "알고리즘 문제 풀이 우수자를 대상으로 진행된 알고리즘 교육 과정 수료",
+      "자료구조, 그래프 탐색, 동적 계획법 등 주요 알고리즘을 집중 학습하며 문제 해결 역량 강화",
+      "현직 멘토 피드백을 통해 코드 최적화, 예외 조건 처리, 시간 복잡도 개선 관점 학습",
+      "제한된 시간 안에 문제를 분석하고 효율적인 로직으로 구현하는 SW 개발 기초 역량 확보"
+    ],
+    projectLinks: [],
+    documentLinks: [{ label: "교육 이수증 보기", id: "samsung-algorithm-certificate" }]
   },
   {
     period: "2024.01 — 2024.02",
     organization: "LG Aimers",
     role: "교육생",
     description: "머신러닝·딥러닝 교육을 이수하고 B2B 영업 기회 전환 여부를 예측하는 이진 분류 문제를 수행했습니다.",
-    points: [],
-    projectLinks: []
+    points: [
+      "AI 모델 개발 교육 과정 수료",
+      "ML/DL 모델 개발을 위한 기초 이론과 데이터 기반 문제 해결 방법 학습",
+      "잠재 고객 데이터를 활용하여 영업 전환 가능성이 높은 고객을 선별하는 이진 분류 모델 개발",
+      "실제 데이터를 바탕으로 전처리, 모델 학습, 성능 평가 과정을 수행하며 AI 활용 역량 강화"
+    ],
+    projectLinks: [],
+    documentLinks: [{ label: "교육 이수증 보기", id: "lg-aimers-certificate" }]
   },
   {
     period: "2023.04 — 2023.06",
     organization: "CJ Remote Internship",
     role: "교육생",
     description: "Python 데이터 분석과 스마트 헬스케어 데이터 분석 프로젝트를 수행했습니다.",
-    points: [],
-    projectLinks: []
+    points: [
+      "Python 기반 데이터 분석 교육 과정 수료",
+      "NumPy, Pandas 등 Python 라이브러리를 활용한 데이터 처리 및 분석 방법 학습",
+      "스마트 헬스케어 서비스 기획 프로젝트에서 데이터 분석가로 활동",
+      "데이터를 기반으로 서비스 문제를 정의하고, 분석 결과를 서비스 기획 방향으로 연결하는 경험 축적"
+    ],
+    projectLinks: [],
+    documentLinks: [{ label: "교육 이수증 보기", id: "cj-remote-internship-certificate" }]
   },
   {
     period: "2024.03 — 2024.10",
     organization: "알고리즘 동아리 Gori",
     role: "동아리원",
-    description: "C++ 기반 알고리즘 문제 풀이와 코드 리뷰 활동에 참여했습니다.",
-    points: [],
-    projectLinks: []
+    description: "교내 알고리즘 동아리에서 활동하였습니다.",
+    points: [
+      "팀원들과 주기적인 스터디 활동",
+      "교내외 알고리즘 대회 참가 및 문제 해결 역량 강화"
+    ],
+    projectLinks: [],
+    documentLinks: [{ label: "활동 증명서 보기", id: "gori-activity-certificate" }]
   },
   {
     period: "2023.11",
     organization: "대한민국 소프트웨어 대전",
     role: "프로젝트 부스 운영",
     description: "항만 컨테이너 크레인 자동화 프로젝트를 전시하고 IoT 기술 도입에 관해 참관객과 소통했습니다.",
-    points: [],
+    points: [
+      "항만 컨테이너 크레인 자동화 프로젝트 전시 및 시연",
+      "IoT 기술 도입 방식과 프로젝트 구현 내용을 참관객에게 설명"
+    ],
     projectLinks: [{ label: "전시 프로젝트 상세", id: "container-crane-automation" }]
   }
 ];

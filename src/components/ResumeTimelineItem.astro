@@ -26,12 +26,15 @@ const {
     <strong>{item.role}</strong>
     <p>{item.description}</p>
     {emphasizePoints
-      ? <ResumeHighlights items={item.points} />
+      ? <ResumeHighlights items={item.points} groups={item.highlightGroups} />
       : item.points.length > 0 && <ul>{item.points.map((point) => <li>{point}</li>)}</ul>}
-    {item.projectLinks.length > 0 && (
+    {(item.projectLinks.length > 0 || (item.documentLinks?.length ?? 0) > 0) && (
       <div class="resume-item-links">
         {item.projectLinks.map((link) => (
           <a href={withBase(`/projects/${link.id}/`)}>{link.label} →</a>
+        ))}
+        {item.documentLinks?.map((link) => (
+          <a href={withBase(`/resume/documents/${link.id}/`)} target="_blank" rel="noreferrer">{link.label} ↗</a>
         ))}
       </div>
     )}

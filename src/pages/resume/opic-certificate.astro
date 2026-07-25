@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PopupEscapeClose from "../../components/PopupEscapeClose.astro";
+import { withBase } from "../../lib/site";
+
+const resumeUrl = withBase("/resume/");
+const pdfUrl = withBase(`/files/${encodeURIComponent("오픽성적서_2026.pdf")}`);
+---
+
+<BaseLayout
+  title="OPIc 성적서"
+  description="박성국의 2026년 OPIc 영어 말하기 성적서를 확인합니다."
+  type="article"
+>
+  <header class="page-hero report-page-hero">
+    <div class="shell">
+      <a class="back-link" href={resumeUrl}>← 이력서</a>
+      <p class="eyebrow">Language certificate</p>
+      <h1>OPIc 성적서</h1>
+      <p class="lead">2026년 OPIc 영어 말하기 성적서입니다.</p>
+      <div class="button-row">
+        <a class="button" href={pdfUrl} target="_blank" rel="noreferrer">새 창에서 PDF 열기 ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="report-viewer-section">
+    <div class="shell report-viewer-shell">
+      <iframe
+        class="report-viewer"
+        src={`${pdfUrl}#view=FitH&toolbar=1&navpanes=0`}
+        title="2026년 OPIc 영어 말하기 성적서 PDF"
+      ></iframe>
+      <p class="report-viewer-fallback">
+        PDF가 표시되지 않으면 <a href={pdfUrl} target="_blank" rel="noreferrer">OPIc 성적서 열기</a>를 이용해 주세요.
+      </p>
+    </div>
+  </section>
+  <PopupEscapeClose fallbackUrl={resumeUrl} />
+</BaseLayout>

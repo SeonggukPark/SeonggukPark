@@ -1,8 +1,11 @@
 ---
 title: "PCB 코팅 불량 탐지 모델"
-description: "작업자 육안에 의존하던 PCB 코팅 불량 판정을 Vision 모델로 자동화하고 Jetson Nano에서 검증한 산학 프로젝트입니다."
+description: "LIG넥스원과 함께 수행한 산학과제에서 UV 이미지를 바탕으로 불량품 여부를 판단하는 이진 분류 모델 개발을 수행하였습니다."
+cardPoints:
+  - "카메라 입력부터 PCB 검출·코팅 불량 판정까지 Edge AI 파이프라인 구성"
+  - "Jetson Nano 실시간 추론 검증 및 약 85% 불량 탐지 정확도 확보"
 period: "2024.09 — 2024.12"
-category: "AI"
+categories: ["AI"]
 role: "데이터 전처리·PCB 검출·코팅 불량 판정·Jetson Nano 추론 검증"
 tags: ["Python", "PyTorch"]
 featured: true
@@ -12,8 +15,7 @@ outcomes:
   - "약 85% 수준의 코팅 불량 탐지 정확도"
   - "PCB 코팅 불량 자동 판정 파이프라인 설계"
   - "Jetson 환경에서 실시간 추론 성능 검증"
-relatedNotes:
-  - "linux-observability-first-checks"
+relatedNotes: []
 ---
 
 ![PCB 코팅 자동화 시스템 구성](/SeonggukPark/images/notion/pcb-1.png)

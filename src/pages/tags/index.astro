@@ -2,13 +2,16 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { isPublished } from "../../lib/collections";
+import { getProjectSkillTags } from "../../lib/projectTags";
 import { tagSlug, withBase } from "../../lib/site";
 
 const projects = await getCollection("projects", isPublished);
 const posts = await getCollection("posts", isPublished);
-const notes = await getCollection("notes", isPublished);
 const counts = new Map<string, number>();
-for (const entry of [...projects, ...posts, ...notes]) {
+for (const project of projects) {
+  for (const tag of getProjectSkillTags(project.data.tags)) counts.set(tag, (counts.get(tag) ?? 0) + 1);
+}
+for (const entry of posts) {
   for (const tag of entry.data.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
 }
 const tags = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));

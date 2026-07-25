@@ -1,11 +1,14 @@
 ---
 title: "C++"
 description: "언어 기초와 객체지향부터 STL, 메모리 관리, 모던 C++까지 연결하는 C++ 학습 아카이브입니다."
+cardPoints:
+  - "C++ 언어 기초·객체지향·메모리 관리"
+  - "STL 활용과 Modern C++ 설계 기법"
 period: "2025.10.17 — 2026.01.29"
 status: "완료"
 order: 2
 tags: ["C++", "OOP", "STL", "Modern C++"]
-noteIds: ["modern-cpp-baseline", "cpp-solid-design-checklist", "cpp-stl-container-selection"]
+noteIds: []
 draft: false
 source: "https://app.notion.com/p/28e6b9674ad880d094a7e97fb1dd4e5e"
 importedAt: 2026-07-24

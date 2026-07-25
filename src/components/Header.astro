@@ -6,7 +6,7 @@ const nav = [
   { label: "홈", href: "/", matches: ["/"] },
   { label: "이력서", href: "/resume/", matches: ["/resume/"] },
   { label: "프로젝트", href: "/projects/", matches: ["/projects/"] },
-  { label: "기록", href: "/posts/", matches: ["/posts/", "/notes/"] },
+  { label: "학습 기록", href: "/posts/", matches: ["/posts/"] },
 ];
 const current = Astro.url.pathname;
 const isCurrent = (item: (typeof nav)[number]) => item.href === "/"

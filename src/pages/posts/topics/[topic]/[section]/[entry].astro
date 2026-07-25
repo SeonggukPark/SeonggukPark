@@ -1,0 +1,72 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../../../layouts/BaseLayout.astro";
+import { subjectTopics, type SubjectTopic, type SubjectTopicItem, type SubjectTopicSection } from "../../../../../data/subjectTopics";
+import { withBase } from "../../../../../lib/site";
+
+interface Props {
+  topic: SubjectTopic;
+  section: SubjectTopicSection;
+  item: SubjectTopicItem;
+  note: CollectionEntry<"notes">;
+  itemIndex: number;
+  siblings: Array<SubjectTopicItem & { title: string }>;
+  previous?: { slug: string; title: string };
+  next?: { slug: string; title: string };
+}
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+
+  return subjectTopics
+    .filter((topic) => topic.mode === "grouped")
+    .flatMap((topic) => topic.mode === "grouped" ? topic.sections.flatMap((section) => {
+      const available = section.items
+        .map((item) => ({ ...item, note: notes.find((note) => note.id === item.id) }))
+        .filter((item): item is typeof item & { note: CollectionEntry<"notes"> } => Boolean(item.note));
+
+      return available.map((item, itemIndex) => ({
+        params: { topic: topic.id, section: section.id, entry: item.slug },
+        props: {
+          topic,
+          section,
+          item,
+          note: item.note,
+          itemIndex,
+          siblings: available.map((sibling) => ({ ...sibling, title: sibling.label ?? sibling.note.data.title })),
+          previous: available[itemIndex - 1] ? { slug: available[itemIndex - 1].slug, title: available[itemIndex - 1].label ?? available[itemIndex - 1].note.data.title } : undefined,
+          next: available[itemIndex + 1] ? { slug: available[itemIndex + 1].slug, title: available[itemIndex + 1].label ?? available[itemIndex + 1].note.data.title } : undefined
+        }
+      }));
+    }) : []);
+}
+
+const { topic, section, item, note, itemIndex, siblings, previous, next } = Astro.props as Props;
+const { Content } = await render(note);
+const entryHref = (slug: string) => withBase(`/posts/topics/${topic.id}/${section.id}/${slug}/`);
+---
+
+<BaseLayout title={note.data.title} description={note.data.description} type="article">
+  <header class="page-hero topic-entry-hero"><div class="shell">
+    <a class="back-link" href={withBase(`/posts/topics/${topic.id}/`)}>← {topic.title}</a>
+    <p class="eyebrow">{topic.title} · {section.title}</p>
+    <h1>{item.label ?? note.data.title}</h1>
+    <p class="lead">{note.data.description}</p>
+    <div class="topic-entry-path" aria-label="주제 학습 기록 계층">
+      <span>주제 학습 기록</span><b>›</b><span>{topic.title}</span><b>›</b><span>{section.title}</span><b>›</b><strong>{String(itemIndex + 1).padStart(2, "0")}</strong>
+    </div>
+  </div></header>
+
+  <section class="page-section section-soft"><div class="shell prose-layout topic-entry-layout">
+    <article class="prose article-prose topic-content-prose"><Content /></article>
+    <aside class="article-aside topic-entry-aside">
+      <p class="eyebrow">Subtopic</p><h2>{section.title}</h2>
+      <ol>{siblings.map((sibling, index) => <li><a class:list={{ current: sibling.id === item.id }} href={entryHref(sibling.slug)} aria-current={sibling.id === item.id ? "page" : undefined}><span>{String(index + 1).padStart(2, "0")}</span>{sibling.title}</a></li>)}</ol>
+    </aside>
+  </div></section>
+
+  {(previous || next) && <nav class="topic-entry-pagination shell" aria-label="이전 및 다음 학습 콘텐츠">
+    {previous ? <a href={entryHref(previous.slug)}><small>이전</small><strong>← {previous.title}</strong></a> : <span />}
+    {next ? <a href={entryHref(next.slug)}><small>다음</small><strong>{next.title} →</strong></a> : <span />}
+  </nav>}
+</BaseLayout>

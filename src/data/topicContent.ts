@@ -18,7 +18,12 @@ export const topicContent: TopicContentMap = {
     {
       title: "Git & GitHub 학습 기록",
       items: [
-        { id: "notion/git-github", slug: "study-record", label: "Git과 GitHub 전체 학습 기록" }
+        { id: "notion/git-github/01-getting-started", slug: "01-getting-started" },
+        { id: "notion/git-github/02-version-control", slug: "02-version-control" },
+        { id: "notion/git-github/03-branches-merging", slug: "03-branches-merging" },
+        { id: "notion/git-github/04-github-basics", slug: "04-github-basics" },
+        { id: "notion/git-github/05-collaboration", slug: "05-collaboration" },
+        { id: "notion/git-github/06-communication", slug: "06-communication" }
       ]
     }
   ],

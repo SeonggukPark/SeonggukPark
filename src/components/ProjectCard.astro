@@ -1,25 +1,48 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { getProjectSkillTags } from "../lib/projectTags";
 import { withBase } from "../lib/site";
 
 interface Props {
   project: CollectionEntry<"projects">;
+  variant?: "card" | "topic";
+  order?: number;
 }
 
-const { project } = Astro.props;
+const { project, variant = "card", order = 1 } = Astro.props;
+const tags = getProjectSkillTags(project.data.tags);
+const cardPoints = project.data.cardPoints.length > 0 ? project.data.cardPoints : [project.data.description];
 ---
 
-<a class="project-card" href={withBase(`/projects/${project.id}/`)}>
-  <div class="card-meta">
-    <span>{project.data.category}</span>
-    <span>{project.data.period}</span>
-  </div>
-  <h3>{project.data.title}</h3>
-  <p>{project.data.description}</p>
-  {project.data.outcomes[0] && <strong class="project-outcome">{project.data.outcomes[0]}</strong>}
-  <div class="tag-row" aria-label="사용 기술">
-    {project.data.tags.slice(0, 5).map((tag) => <span class="tag">{tag}</span>)}
-  </div>
-  <span class="card-link">사례 자세히 보기 <span aria-hidden="true">→</span></span>
-</a>
-
+{variant === "topic" ? (
+  <a class="topic-card project-topic-card" data-project-categories={project.data.categories.join("|")} href={withBase(`/projects/${project.id}/`)}>
+    <div class="topic-card-meta">
+      <span>{String(order).padStart(2, "0")}</span>
+      <strong>{project.data.categories.join(" · ")}</strong>
+    </div>
+    <h2>{project.data.title}</h2>
+    <ul class="topic-card-points">
+      {cardPoints.map((point) => <li>{point}</li>)}
+    </ul>
+    <div class="topic-card-footer">
+      <span>{project.data.period}</span>
+      <span aria-label="사용 기술">{tags.slice(0, 4).join(" · ")}</span>
+    </div>
+    <span class="card-link">프로젝트 자세히 보기 <span aria-hidden="true">→</span></span>
+  </a>
+) : (
+  <a class="project-card" href={withBase(`/projects/${project.id}/`)}>
+    <div class="card-meta">
+      <span>{project.data.categories.join(" · ")}</span>
+      <span>{project.data.period}</span>
+    </div>
+    <h3>{project.data.title}</h3>
+    <ul class="topic-card-points">
+      {cardPoints.map((point) => <li>{point}</li>)}
+    </ul>
+    <div class="tag-row" aria-label="사용 기술">
+      {tags.slice(0, 5).map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+    <span class="card-link">사례 자세히 보기 <span aria-hidden="true">→</span></span>
+  </a>
+)}

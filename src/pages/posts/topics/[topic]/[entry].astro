@@ -1,0 +1,35 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { subjectTopics, type SubjectTopic, type SubjectTopicItem } from "../../../../data/subjectTopics";
+import { withBase } from "../../../../lib/site";
+
+interface Props {
+  topic: SubjectTopic;
+  item: SubjectTopicItem;
+  note: CollectionEntry<"notes">;
+}
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+  return subjectTopics
+    .filter((topic) => topic.mode === "flat")
+    .flatMap((topic) => topic.mode === "flat" ? topic.items.flatMap((item) => {
+      const note = notes.find((note) => note.id === item.id);
+      return note ? [{ params: { topic: topic.id, entry: item.slug }, props: { topic, item, note } }] : [];
+    }) : []);
+}
+
+const { topic, item, note } = Astro.props as Props;
+const { Content } = await render(note);
+---
+
+<BaseLayout title={note.data.title} description={note.data.description} type="article">
+  <header class="page-hero topic-entry-hero"><div class="shell">
+    <a class="back-link" href={withBase(`/posts/topics/${topic.id}/`)}>← {topic.title}</a>
+    <p class="eyebrow">{topic.title} · Topic Note</p>
+    <h1>{item.label ?? note.data.title}</h1>
+    <p class="lead">{note.data.description}</p>
+  </div></header>
+  <section class="page-section section-soft"><article class="shell prose article-prose topic-content-prose"><Content /></article></section>
+</BaseLayout>

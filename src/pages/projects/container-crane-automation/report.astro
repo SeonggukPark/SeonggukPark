@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PopupEscapeClose from "../../../components/PopupEscapeClose.astro";
+import { withBase } from "../../../lib/site";
+
+const projectUrl = withBase("/projects/container-crane-automation/");
+const pdfUrl = withBase("/files/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B2%B0%EA%B3%BC%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf");
+---
+
+<BaseLayout
+  title="항만 컨테이너 크레인 자동화 프로젝트 결과보고서"
+  description="항만 컨테이너 크레인 자동화 프로젝트 결과보고서를 웹에서 열람합니다."
+  type="article"
+>
+  <header class="page-hero report-page-hero">
+    <div class="shell">
+      <a class="back-link" href={projectUrl}>← 항만 컨테이너 크레인 자동화</a>
+      <p class="eyebrow">Project report</p>
+      <h1>프로젝트 결과보고서</h1>
+      <p class="lead">KNURANE 항만 컨테이너 크레인 자동화 프로젝트의 전체 결과보고서입니다.</p>
+      <div class="button-row">
+        <a class="button" href={pdfUrl} target="_blank" rel="noreferrer">새 탭에서 보기 ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="report-viewer-section">
+    <div class="shell report-viewer-shell">
+      <iframe
+        class="report-viewer"
+        src={`${pdfUrl}#view=FitH&toolbar=1&navpanes=0`}
+        title="항만 컨테이너 크레인 자동화 프로젝트 결과보고서 PDF"
+      ></iframe>
+      <p class="report-viewer-fallback">
+        PDF가 표시되지 않으면 <a href={pdfUrl} target="_blank" rel="noreferrer">새 탭에서 보고서 열기</a>를 이용해 주세요.
+      </p>
+    </div>
+  </section>
+  <PopupEscapeClose fallbackUrl={projectUrl} />
+</BaseLayout>

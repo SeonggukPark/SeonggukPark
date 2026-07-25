@@ -1,0 +1,68 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { subjectTopics, type SubjectTopic, type SubjectTopicItem } from "../../../data/subjectTopics";
+import { withBase } from "../../../lib/site";
+
+export function getStaticPaths() {
+  return subjectTopics.map((topic) => ({ params: { topic: topic.id }, props: { topic } }));
+}
+
+interface Props {
+  topic: SubjectTopic;
+}
+
+const { topic } = Astro.props;
+const notes = await getCollection("notes");
+const resolveItems = (items: SubjectTopicItem[]) => items
+  .map((item) => ({ ...item, note: notes.find((note) => note.id === item.id) }))
+  .filter((item): item is typeof item & { note: CollectionEntry<"notes"> } => Boolean(item.note));
+const flatItems = topic.mode === "flat" ? resolveItems(topic.items) : [];
+const groupedSections = topic.mode === "grouped"
+  ? topic.sections.map((section) => ({ ...section, items: resolveItems(section.items) }))
+  : [];
+---
+
+<BaseLayout title={`${topic.title} 주제 기록`} description={topic.description}>
+  <header class="page-hero topic-page-hero"><div class="shell">
+    <a class="back-link" href={withBase("/posts/")}>← 학습 기록</a>
+    <div class="topic-heading-meta">
+      <p class="eyebrow">Topic Notes</p>
+      <span data-status={topic.status}>{topic.status}</span>
+    </div>
+    <h1>{topic.title}</h1>
+    <p class="lead">{topic.description}</p>
+    <div class="tag-row">
+      {topic.tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+  </div></header>
+  <section class="page-section section-soft"><div class="shell">
+    <div class="section-heading"><div><p class="eyebrow">Study Notes</p><h2>{topic.title} 학습 기록</h2></div><p>실제 작성한 내용만 순서대로 연결합니다.</p></div>
+    {topic.mode === "grouped" ? (
+      groupedSections.length > 0 ? <div class="topic-content-tree">
+        {groupedSections.map((section, sectionIndex) => <section class="topic-content-section">
+          <div class="topic-content-section-heading"><span>{String(sectionIndex + 1).padStart(2, "0")}</span><div><h3>{section.title}</h3><p>{section.description}</p></div></div>
+          {section.items.length > 0 ? <ol class="topic-content-list">
+            {section.items.map((item, itemIndex) => <li><a href={withBase(`/posts/topics/${topic.id}/${section.id}/${item.slug}/`)}>
+              <span>{String(itemIndex + 1).padStart(2, "0")}</span>
+              <div class="topic-content-title">
+                <strong>{item.label ?? item.note.data.title}</strong>
+              </div>
+              <b aria-hidden="true">→</b>
+            </a></li>)}
+          </ol> : <p class="topic-content-pending">아직 작성된 콘텐츠가 없습니다.</p>}
+        </section>)}
+      </div> : <div class="empty-state">아직 공개된 {topic.title} 학습 기록이 없습니다.</div>
+    ) : (
+      flatItems.length > 0 ? <ol class="topic-content-list">
+        {flatItems.map((item, index) => <li><a href={withBase(`/posts/topics/${topic.id}/${item.slug}/`)}>
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <div class="topic-content-title">
+            <strong>{item.label ?? item.note.data.title}</strong>
+          </div>
+          <b aria-hidden="true">→</b>
+        </a></li>)}
+      </ol> : <div class="empty-state">아직 공개된 {topic.title} 학습 기록이 없습니다.</div>
+    )}
+  </div></section>
+</BaseLayout>

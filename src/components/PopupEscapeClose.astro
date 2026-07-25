@@ -1,0 +1,104 @@
+---
+interface Props {
+  fallbackUrl: string;
+}
+
+const { fallbackUrl } = Astro.props;
+---
+
+<button
+  class="popup-escape-close"
+  type="button"
+  data-popup-escape-close
+  data-fallback-url={fallbackUrl}
+  aria-label="문서 팝업 닫기"
+  aria-keyshortcuts="Escape"
+>
+  <kbd>ESC</kbd>
+  <span>닫기</span>
+</button>
+
+<script>
+  const closeControl = document.querySelector<HTMLElement>("[data-popup-escape-close]");
+
+  const leaveDocumentViewer = () => {
+    if (!closeControl) return;
+
+    const fallbackUrl = closeControl.dataset.fallbackUrl;
+    const wasOpenedAsPopup = window.opener !== null || window.history.length <= 1;
+
+    if (wasOpenedAsPopup) {
+      window.close();
+
+      window.setTimeout(() => {
+        if (!window.closed && fallbackUrl) window.location.assign(fallbackUrl);
+      }, 120);
+      return;
+    }
+
+    if (document.referrer) {
+      window.history.back();
+    } else if (fallbackUrl) {
+      window.location.assign(fallbackUrl);
+    }
+  };
+
+  closeControl?.addEventListener("click", leaveDocumentViewer);
+
+  window.addEventListener(
+    "keydown",
+    (event) => {
+      if (event.key !== "Escape" || event.defaultPrevented) return;
+      if (document.querySelector("dialog[open]")) return;
+
+      event.preventDefault();
+      leaveDocumentViewer();
+    },
+    { capture: true },
+  );
+</script>
+
+<style>
+  .popup-escape-close {
+    position: fixed;
+    right: clamp(16px, 2.5vw, 32px);
+    bottom: clamp(16px, 2.5vw, 32px);
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 13px;
+    border: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+  }
+
+  .popup-escape-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .popup-escape-close:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--accent) 32%, transparent);
+    outline-offset: 3px;
+  }
+
+  .popup-escape-close kbd {
+    padding: 2px 6px;
+    border: 1px solid currentColor;
+    border-radius: 5px;
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .popup-escape-close span {
+    font-size: 0.84rem;
+    font-weight: 750;
+  }
+</style>

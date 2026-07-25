@@ -1,0 +1,27 @@
+---
+import { getSubjectTopicItemCount, type SubjectTopic } from "../data/subjectTopics";
+import { withBase } from "../lib/site";
+
+interface Props {
+  topic: SubjectTopic;
+}
+
+const { topic } = Astro.props;
+const itemCount = getSubjectTopicItemCount(topic);
+---
+
+<a class="topic-card" href={withBase(`/posts/topics/${topic.id}/`)}>
+  <div class="topic-card-meta">
+    <span>{String(topic.order).padStart(2, "0")}</span>
+  </div>
+  <h2>{topic.title}</h2>
+  <p class="subject-topic-description">{topic.description}</p>
+  <div class="tag-row" aria-label="주제 태그">
+    {topic.tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+  <div class="topic-card-footer">
+    <span>주제 학습</span>
+    <span>연결된 기록 {itemCount}개</span>
+  </div>
+  <span class="card-link">주제 페이지 열기 <span aria-hidden="true">→</span></span>
+</a>

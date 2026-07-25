@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PopupEscapeClose from "../../../components/PopupEscapeClose.astro";
+import { resumeDocuments, type ResumeDocument } from "../../../data/resumeDocuments";
+import { withBase } from "../../../lib/site";
+
+export function getStaticPaths() {
+  return resumeDocuments.map((document) => ({
+    params: { id: document.id },
+    props: { document },
+  }));
+}
+
+interface Props {
+  document: ResumeDocument;
+}
+
+const { document } = Astro.props;
+const resumeUrl = withBase("/resume/");
+const fileUrl = withBase(`/files/${encodeURIComponent(document.fileName)}`);
+---
+
+<BaseLayout title={document.title} description={document.description} type="article">
+  <header class="page-hero report-page-hero">
+    <div class="shell">
+      <a class="back-link" href={resumeUrl}>← 이력서</a>
+      <p class="eyebrow">Resume document</p>
+      <h1>{document.title}</h1>
+      <p class="lead">{document.description}</p>
+      <div class="button-row">
+        <a class="button" href={fileUrl} target="_blank" rel="noreferrer">원본 파일 열기 ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="report-viewer-section">
+    <div class="shell report-viewer-shell">
+      {document.kind === "pdf" ? (
+        <iframe
+          class="report-viewer"
+          src={`${fileUrl}#view=FitH&toolbar=1&navpanes=0`}
+          title={`${document.title} PDF`}
+        ></iframe>
+      ) : (
+        <div class="resume-document-image-viewer">
+          <img src={fileUrl} alt={document.title} />
+        </div>
+      )}
+      <p class="report-viewer-fallback">
+        자료가 표시되지 않으면 <a href={fileUrl} target="_blank" rel="noreferrer">원본 파일 열기</a>를 이용해 주세요.
+      </p>
+    </div>
+  </section>
+  <PopupEscapeClose fallbackUrl={resumeUrl} />
+</BaseLayout>
+
+<style>
+  .resume-document-image-viewer {
+    min-height: 580px;
+    display: grid;
+    place-items: center;
+    padding: clamp(16px, 3vw, 40px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .resume-document-image-viewer img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 82vh;
+    box-shadow: var(--shadow);
+  }
+
+  @media (max-width: 620px) {
+    .resume-document-image-viewer {
+      min-height: 380px;
+      border-radius: 14px;
+    }
+  }
+</style>

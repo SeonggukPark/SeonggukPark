@@ -5,6 +5,7 @@ import { z } from "astro/zod";
 const shared = {
   title: z.string(),
   description: z.string(),
+  cardPoints: z.array(z.string()).default([]),
   tags: z.array(z.string()).default([]),
   draft: z.boolean().default(false),
   source: z.string().optional(),
@@ -16,7 +17,7 @@ const projects = defineCollection({
   schema: z.object({
     ...shared,
     period: z.string(),
-    category: z.string(),
+    categories: z.array(z.enum(["Embedded", "Linux", "AI"])).min(1),
     role: z.string(),
     featured: z.boolean().default(false),
     repository: z.url().optional(),

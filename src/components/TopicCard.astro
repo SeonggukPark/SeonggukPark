@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { topic, noteCount } = Astro.props;
+const cardPoints = topic.data.cardPoints.length > 0 ? topic.data.cardPoints : [topic.data.description];
 ---
 
 <a class="topic-card" href={withBase(`/posts/${topic.id}/`)}>
@@ -16,7 +17,9 @@ const { topic, noteCount } = Astro.props;
     <strong data-status={topic.data.status}>{topic.data.status}</strong>
   </div>
   <h2>{topic.data.title}</h2>
-  <p>{topic.data.description}</p>
+  <ul class="topic-card-points">
+    {cardPoints.map((point) => <li>{point}</li>)}
+  </ul>
   <div class="topic-card-footer">
     <span>{topic.data.period}</span>
     <span>연결된 기록 {noteCount}개</span>

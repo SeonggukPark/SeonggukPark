@@ -4,27 +4,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ResumeHighlights from "../components/ResumeHighlights.astro";
 import ResumeTimelineItem from "../components/ResumeTimelineItem.astro";
 import { activities, awards, certifications, coursework, experience, personalInfo, publications, site, skills } from "../data/site";
-import { isPublished, selectByIds } from "../lib/collections";
+import { isPublished } from "../lib/collections";
+import { getProjectSkillTags } from "../lib/projectTags";
+import { sortProjects } from "../lib/projects";
 import { withBase } from "../lib/site";
 
 const workExperience = experience.filter((item) => item.organization === "현대모비스");
 const education = experience.filter((item) => item.organization === "경북대학교");
 const researchExperience = experience.filter((item) => item.organization.includes("Brain AI Lab"));
-const trainingOrganizations = new Set(["삼성전자 알고리즘 역량강화 교육", "LG Aimers", "CJ Remote Internship"]);
+const trainingOrganizations = new Set(["삼성전자 DX부문 알고리즘 역량강화 과정", "LG Aimers", "CJ Remote Internship"]);
 const training = activities.filter((item) => trainingOrganizations.has(item.organization));
 const otherActivities = activities.filter((item) => !trainingOrganizations.has(item.organization));
 const languageItems = [...certifications].sort((a, b) => b.period.localeCompare(a.period, "ko"));
 const otherItems = [...publications, ...researchExperience, ...otherActivities]
   .sort((a, b) => b.period.localeCompare(a.period, "ko"));
-const publicProjects = await getCollection("projects", isPublished);
-const resumeProjectIds = [
-  "container-crane-automation",
-  "pcb-defect-detection",
-  "air-conditioner-clustering",
-  "mcu-human-detection",
-  "vision-transformer-quantization"
-];
-const resumeProjects = selectByIds(publicProjects, resumeProjectIds);
+const resumeProjects = sortProjects(await getCollection("projects", isPublished));
 ---
 
 <BaseLayout title="이력서" description="임베디드 소프트웨어 엔지니어 박성국의 경력과 기술 이력입니다.">
@@ -84,10 +78,9 @@ const resumeProjects = selectByIds(publicProjects, resumeProjectIds);
             <time>{project.data.period}</time>
             <div>
               <h3>{project.data.title}</h3>
-              <strong>{project.data.category} · {project.data.role}</strong>
               <p>{project.data.description}</p>
-              <ResumeHighlights items={project.data.outcomes} />
-              <div class="tag-row resume-project-tags">{project.data.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
+              <ResumeHighlights items={project.data.cardPoints.length > 0 ? project.data.cardPoints : [project.data.description]} />
+              <div class="tag-row resume-project-tags">{getProjectSkillTags(project.data.tags).map((tag) => <span class="tag">{tag}</span>)}</div>
               <div class="resume-item-links"><a href={withBase(`/projects/${project.id}/`)}>프로젝트 상세 →</a></div>
             </div>
           </article>
@@ -95,7 +88,7 @@ const resumeProjects = selectByIds(publicProjects, resumeProjectIds);
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>교육</h2></div>
-        {training.map((item) => <ResumeTimelineItem item={item} plainOrganization />)}
+        {training.map((item) => <ResumeTimelineItem item={item} emphasizePoints plainOrganization />)}
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>수상</h2></div>
@@ -103,11 +96,19 @@ const resumeProjects = selectByIds(publicProjects, resumeProjectIds);
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>어학</h2></div>
-        {languageItems.map((item) => <ResumeTimelineItem item={item} />)}
+        {languageItems.map((item) => (
+          <ResumeTimelineItem item={item}>
+            {item.organization.startsWith("OPIc") && (
+              <div class="resume-item-links">
+                <a href={withBase("/resume/opic-certificate/")} target="_blank" rel="noreferrer">OPIc 성적서 보기 ↗</a>
+              </div>
+            )}
+          </ResumeTimelineItem>
+        ))}
       </section>
       <section class="resume-section">
         <div class="resume-heading"><h2>기타</h2></div>
-        {otherItems.map((item) => <ResumeTimelineItem item={item} />)}
+        {otherItems.map((item) => <ResumeTimelineItem item={item} emphasizePoints />)}
       </section>
     </div>
   </section>

@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import ImageLightbox from "../components/ImageLightbox.astro";
 import { site } from "../data/site";
 import { withBase } from "../lib/site";
 
@@ -50,6 +51,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <Header />
     <main id="main"><slot /></main>
     <Footer />
+    <ImageLightbox />
     <script>
       document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
         button.addEventListener("click", () => {
@@ -61,4 +63,3 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </script>
   </body>
 </html>
-

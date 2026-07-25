@@ -1,11 +1,14 @@
 ---
 title: "모던 리눅스 교과서"
 description: "커널과 셸부터 파일시스템, 네트워킹, 관측가능성까지 현대 Linux 시스템을 운영 관점에서 정리합니다."
+cardPoints:
+  - "Linux 커널·셸·파일시스템 구조와 운용"
+  - "네트워킹·관측가능성 기반 시스템 문제 분석"
 period: "2026.04.07 — 2026.07.14"
 status: "완료"
 order: 4
 tags: ["Linux", "System Software", "Networking", "Observability"]
-noteIds: ["linux-network-troubleshooting", "linux-observability-first-checks"]
+noteIds: []
 repository: "https://github.com/SeonggukPark/Modern_Linux"
 draft: false
 source: "https://app.notion.com/p/33a6b9674ad88095a179c67dd5f3e76d"
