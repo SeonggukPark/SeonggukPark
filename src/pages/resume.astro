@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ResumeHighlights from "../components/ResumeHighlights.astro";
 import ResumeTimelineItem from "../components/ResumeTimelineItem.astro";
-import { activities, awards, certifications, coursework, experience, personalInfo, publications, site, skills } from "../data/site";
+import { activities, awards, certifications, coursework, experience, personalInfo, site, skills } from "../data/site";
 import { isPublished } from "../lib/collections";
 import { getProjectSkillTags } from "../lib/projectTags";
 import { sortProjects } from "../lib/projects";
@@ -16,8 +16,7 @@ const trainingOrganizations = new Set(["삼성전자 DX부문 알고리즘 역�
 const training = activities.filter((item) => trainingOrganizations.has(item.organization));
 const otherActivities = activities.filter((item) => !trainingOrganizations.has(item.organization));
 const languageItems = [...certifications].sort((a, b) => b.period.localeCompare(a.period, "ko"));
-const otherItems = [...publications, ...researchExperience, ...otherActivities]
-  .sort((a, b) => b.period.localeCompare(a.period, "ko"));
+const otherItems = [...researchExperience, ...otherActivities];
 const resumeProjects = sortProjects(await getCollection("projects", isPublished));
 ---
 

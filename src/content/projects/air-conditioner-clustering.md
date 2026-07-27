@@ -1,12 +1,12 @@
 ---
 title: "시스템 에어컨 실내기 분류 모델"
-description: "LG전자와 함께 수행한 산학과제에서 “시스템에어컨 자율 제어”를 주제로 AI 개발 과제를 수행하였습니다."
+description: "LG전자와 함께 수행한 산학과제에서 “시스템에어컨 자율 제어”를 주제로 임베디드 AI 모델 개발 과제를 수행 (4인 팀 프로젝트)"
 cardPoints:
-  - "Python 시계열 군집화 모델의 C++ 전환 및 Linux AI 엔진 이식"
-  - "실제 현장 데이터 기반 동작 검증 및 약 90% 분류 정확도 확보"
+  - "동일한 공간에 위치한 에어컨 실내기 Clustering을 위한 K-Means 기반 ML모델 설계"
+  - "Python 기반의 모델을 C++로 변환 및 Linux 기반 AP 이식"
 period: "2024.07 — 2024.12"
 categories: ["Linux", "AI"]
-role: "클러스터링 모델 개발·C++ 전환·AI 엔진 이식"
+role: "클러스터링 모델 개발·모델 C++ 변환 및 Linux AP 이식"
 tags: ["C++", "Python", "Linux"]
 featured: true
 source: "https://app.notion.com/p/bba14d837011451e9317f029232ece52"

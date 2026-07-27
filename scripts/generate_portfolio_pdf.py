@@ -525,7 +525,7 @@ def build_story(styles: dict[str, ParagraphStyle]) -> list:
                 (
                     "제어기 펌웨어 설계 및 유지보수",
                     [
-                        "C/C++을 활용한 EPS 제어기 MCU 펌웨어 개발 및 유지보수",
+                        "C언어를 활용한 EPS 제어기 펌웨어 개발 및 유지보수",
                         "고객사 요구 사양을 바탕으로 차량 무선 업데이트 과정(OTA)에 필요한 서비스 구현",
                     ],
                 ),
@@ -567,9 +567,9 @@ def build_story(styles: dict[str, ParagraphStyle]) -> list:
     story.append(
         info_card(
             "2024.01 - 2024.12",
+            "딥러닝 연구실 학부연구생",
             "경북대학교 Brain AI Lab",
-            "학부연구생",
-            "딥러닝 모델을 개발하고 제한된 임베디드 환경에 이식하는 연구를 수행했습니다.",
+            "임베디드 환경에서 동작하는 AI 모델을 개발하고 최적화하는 연구를 수행했습니다.",
             [
                 "LG전자 · LIG넥스원 산학과제 모델 개발 및 임베디드 추론 환경 이식",
                 "Vision Transformer 양자화 연구 및 교내 학술대회 포스터 발표",

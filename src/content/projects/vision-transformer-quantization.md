@@ -1,12 +1,12 @@
 ---
 title: "Vision Transformer 양자화"
-description: "개인 연구 과제로서 ViT 모델에 양자화(PTQ)를 적용하는 프로젝트를 수행하였습니다."
+description: "개인 연구 과제로서 ViT 모델에 양자화(PTQ)를 적용하는 프로젝트를 수행 (개인 프로젝트)"
 cardPoints:
-  - "PyTorch Profiler 기반 CPU 연산 병목 분석 및 INT8 양자화"
-  - "정확도·지연시간 비교 검증을 통한 추론 속도 약 43% 개선"
+  - "Visino Transformer 경량화를 위한 양자화(PTQ) 적용"
+  - "양자화 전후의 성능 trade-off를 검증 및 추론 속도 약 43% 개선"
 period: "2024.05 — 2024.07"
 categories: ["AI"]
-role: "자원 분석·INT8 양자화·성능 검증"
+role: "모델 경량화"
 tags: ["Python", "PyTorch"]
 featured: true
 outcomes:
@@ -48,5 +48,3 @@ Vision Transformer를 모바일과 Edge 환경에서 실행하기 위해 모델�
 ![모델별 양자화 전후 지연시간과 속도 향상 비율](/SeonggukPark/images/notion/vit-2.png)
 
 ![2024 KNU-EERC 포스터 발표](/SeonggukPark/images/notion/vit-4.jpg)
-
-논문 제목은 `Optimizing Vision Transformers via Post-Training Quantization for Edge Computing`이며, 2024년 7월 교내 학술대회에서 발표했습니다.

@@ -1,12 +1,12 @@
 ---
 title: "통합 가전 제어 시스템"
-description: "마이크로프로세서설계 강의에서 가전 제어를 위한 펌웨어 개발 프로젝트를 수행하였습니다."
+description: "마이크로프로세서설계 강의에서 가전 제어를 위한 펌웨어 개발 프로젝트를 수행 (3인 팀 프로젝트)"
 cardPoints:
-  - "C 기반 MCU 펌웨어와 센서 연동 가전 제어 로직 구현"
-  - "데이터시트 기반 레지스터 오류 추적 및 모터 구동 장애 해결"
+  - "S32K MCU 보드를 활용하여 센서 연동 가전 제어 펌웨어 구현"
+  - "DataSheet 기반의 로그 분석을 통한 레지스터 오설정 추적 및 모터 구동 장애 해결"
 period: "2023.09 ~ 2023.12"
 categories: ["Embedded"]
-role: "팀장·개발 관리·펌웨어 개발·H/W-S/W 통합"
+role: "팀장, 펌웨어 개발·H/W-S/W 통합"
 tags: ["C"]
 featured: false
 outcomes:
@@ -36,6 +36,17 @@ relatedNotes: []
 S32K는 교육용 보드와 달리 프로젝트에서 바로 활용할 수 있는 고수준 API가 제한적이었습니다. 인터럽트와 주변장치를 사용하고 원하는 입출력 신호를 생성하기 위해 데이터시트를 확인하며 비트 단위로 레지스터 값을 설정했습니다.
 
 센서 입력을 ADC로 변환하고, 변환 결과에 따라 모터를 포함한 가전 장치를 제어하도록 전체 흐름을 구성했습니다. 각 팀원이 작성한 모듈을 하나의 펌웨어로 통합한 뒤 실제 회로와 연결해 동작을 검증했습니다.
+
+<div class="project-image-row">
+  <figure>
+    <img src="/SeonggukPark/images/notion/마프설_보드.png" alt="S32K 보드에 센서와 모터, 디스플레이를 연결한 통합 가전 제어 시스템" loading="lazy" />
+    <figcaption>S32K 보드와 센서·모터·디스플레이를 연결한 H/W-S/W 통합 구성</figcaption>
+  </figure>
+  <figure>
+    <img src="/SeonggukPark/images/notion/마프설_비밀번호구현.jpg" alt="키패드로 비밀번호를 입력하고 7-Segment에 값을 표시하는 구현 화면" loading="lazy" />
+    <figcaption>키패드 입력과 7-Segment 출력을 연동한 비밀번호 기능 구현</figcaption>
+  </figure>
+</div>
 
 ## 모터 구동 문제 해결
 

@@ -32,7 +32,7 @@ export const resumeDocuments: readonly ResumeDocument[] = [
     id: "mobis-idea-award",
     title: "현대모비스 사내 아이디어 공모전 수상 자료",
     description: "현대모비스 사내 아이디어 공모전 은상 수상 자료입니다.",
-    fileName: "수상_아이디어공모전.png",
+    fileName: "mobis_award.png",
     kind: "image",
   },
   {

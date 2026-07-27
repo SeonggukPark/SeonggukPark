@@ -7,9 +7,6 @@
 최근에는 업무 과정에서 필요한 지식 스터디 및 AI를 활용한 Side Project 기록용으로 활용하고 있습니다.
 
 ### Portfolio
-
-- [포트폴리오 웹사이트](https://seonggukpark.github.io/SeonggukPark/)
-- [포트폴리오 소스 코드](https://github.com/SeonggukPark/SeonggukPark)
-
+- (https://seonggukpark.github.io/SeonggukPark/)
 
 [![solved.ac tier](http://mazassumnida.wtf/api/pastel/generate_badge?boj=skook77)](https://solved.ac/skook77)

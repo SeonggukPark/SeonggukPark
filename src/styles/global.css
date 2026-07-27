@@ -247,6 +247,7 @@ p { margin-top: 0; }
 .back-link { display: inline-block; margin-bottom: 34px; color: var(--muted); font-size: 13px; font-weight: 700; }
 .back-link:hover { color: var(--ink); }
 .project-page-hero .lead { max-width: 850px; }
+.project-page-hero h1 { max-width: 1100px; word-break: keep-all; }
 .project-summary-list { display: grid; max-width: 900px; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; }
 .project-summary-list li { position: relative; padding-left: 20px; color: var(--muted); font-size: 17px; line-height: 1.7; }
 .project-summary-list li::before { position: absolute; top: .85em; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); content: ""; transform: translateY(-50%); }
@@ -365,6 +366,13 @@ p { margin-top: 0; }
 .prose ul, .prose ol { padding-left: 24px; }
 .prose li + li { margin-top: 8px; }
 .prose blockquote { margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--warm); }
+.prose .project-figure { margin: 28px 0; }
+.prose .project-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface-raised); }
+.prose .project-figure figcaption, .prose .project-image-row figcaption { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.prose .project-figure-terminal img { background: #220b1b; }
+.prose .project-figure-terminal-crop img { padding: 18px; background: #220b1b; object-fit: contain; }
+.prose .project-figure-code img { padding: 14px; background: #1e1e1e; }
+.prose .project-figure-diagram img { background: #fff; }
 .prose .project-image-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
 .prose .project-image-row-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .prose .project-image-row img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border: 1px solid var(--line); border-radius: 16px; }
@@ -448,8 +456,10 @@ p { margin-top: 0; }
 }
 
 @media print {
-  .site-header, .site-footer, .button-row { display: none !important; }
+  .site-header, .site-footer, .button-row, .skip-link { display: none !important; }
   :root { --bg: #fff; --surface: #fff; --surface-raised: #fff; --ink: #111; --muted: #444; --line: #ccc; }
   .page-section, .page-hero { padding: 30px 0; }
   .project-card, .article-aside { break-inside: avoid; box-shadow: none; }
+  .resume-heading { break-after: avoid; }
+  .resume-item, .resume-highlights, .resume-skills article { break-inside: avoid; }
 }

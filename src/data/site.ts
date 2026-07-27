@@ -20,7 +20,7 @@ export const skills = [
   { name: "Languages", items: ["C", "C++", "Python"] },
   { name: "Automotive", items: ["AUTOSAR Classic", "CAN(FD)", "UDS", "XCP", "OTA"] },
   { name: "Tools", items: ["Git", "Jira", "VS Code", "Jupyter Notebook", "Windows Batch"] },
-  { name: "AI/ML", items: ["PyTorch", "TensorFlow", "TensorFlow Lite"] },
+  { name: "AI/ML", items: ["PyTorch", "TensorFlow"] },
   { name: "Etc", items: ["Linux"] }
 ] as const;
 
@@ -93,7 +93,7 @@ export const experience: readonly ResumeItem[] = [
       {
         title: "제어기 펌웨어 설계 및 유지보수",
         items: [
-          "C/C++을 활용한 EPS 제어기 MCU 펌웨어 개발 및 유지보수",
+          "C언어를 활용한 EPS 제어기 펌웨어 개발 및 유지보수",
           "고객사 요구 사양을 바탕으로 차량 무선 업데이트 과정(OTA)에 필요한 서비스 구현"
         ]
       },
@@ -118,11 +118,10 @@ export const experience: readonly ResumeItem[] = [
     period: "2024.01 — 2024.12",
     organization: "경북대학교 Brain AI Lab",
     role: "학부연구생",
-    description: "딥러닝 모델을 개발하고 제한된 임베디드 환경에 이식하는 연구를 수행했습니다.",
+    description: "임베디드 환경에서 동작하는 AI 모델을 개발하고 최적화하는 연구를 수행했습니다.",
     points: [
-      "LG전자·LIG넥스원 산학과제 모델 개발 및 임베디드 추론 엔진 이식",
-      "Vision Transformer 양자화 연구 및 교내 학술대회 포스터 발표",
-      "정확도뿐 아니라 메모리·연산량·실제 배포 환경을 함께 검증"
+      "산학과제를 통한 AI 모델 개발 및 임베디드 추론 엔진 이식",
+      "모델 경량화 연구 및 교내 학술대회 포스터 발표",
     ],
     projectLinks: [
       { label: "시스템 에어컨 분류 모델", id: "air-conditioner-clustering" },
@@ -144,20 +143,6 @@ export const experience: readonly ResumeItem[] = [
       "학점 4.13 / 4.5",
     ],
     projectLinks: []
-  }
-];
-
-export const publications: readonly ResumeItem[] = [
-  {
-    period: "2024.07",
-    organization: "경북대학교 전자공학부 학술대회",
-    role: "제1저자 · 포스터 발표",
-    description: "AI 모델 경량화를 주제로 논문을 작성하고, 교내 학술대회에서 포스터 발표를 진행하였습니다.",
-    points: [
-      "ViT·EfficientNet·LeViT의 양자화 전후 정확도와 CPU 추론 지연시간 비교",
-      "ImageNet-1K validation image 5,000장과 PyTorch Profiler를 활용한 성능 검증"
-    ],
-    projectLinks: [{ label: "연구 프로젝트 상세", id: "vision-transformer-quantization" }]
   }
 ];
 
@@ -187,12 +172,12 @@ export const activities: readonly ResumeItem[] = [
     period: "2024.07 — 2024.08",
     organization: "삼성전자 DX부문 알고리즘 역량강화 과정",
     role: "교육생",
-    description: "멘토 피드백을 바탕으로 자료구조, 알고리즘과 C++ 코드 최적화를 집중적으로 학습했습니다.",
+    description: "문제 해결 능력 향상을 위한 알고리즘 교육을 수료하였습니다.",
     points: [
-      "알고리즘 문제 풀이 우수자를 대상으로 진행된 알고리즘 교육 과정 수료",
+      "사전 문제 풀이 우수자를 대상으로 진행된 알고리즘 교육 과정 수료",
       "자료구조, 그래프 탐색, 동적 계획법 등 주요 알고리즘을 집중 학습하며 문제 해결 역량 강화",
-      "현직 멘토 피드백을 통해 코드 최적화, 예외 조건 처리, 시간 복잡도 개선 관점 학습",
-      "제한된 시간 안에 문제를 분석하고 효율적인 로직으로 구현하는 SW 개발 기초 역량 확보"
+      "현직 멘토 피드백을 통해 문제를 분석하고 효율적인 로직으로 구현하는 SW 개발 기초 역량 확보",
+      "삼성전자 사내 SW 자격 인증(Professional) 취득"
     ],
     projectLinks: [],
     documentLinks: [{ label: "교육 이수증 보기", id: "samsung-algorithm-certificate" }]
@@ -201,7 +186,7 @@ export const activities: readonly ResumeItem[] = [
     period: "2024.01 — 2024.02",
     organization: "LG Aimers",
     role: "교육생",
-    description: "머신러닝·딥러닝 교육을 이수하고 B2B 영업 기회 전환 여부를 예측하는 이진 분류 문제를 수행했습니다.",
+    description: "실무 현장에서의 AI 모델 개발을 위한 교육 수강 및 프로젝트를 수행했습니다.",
     points: [
       "AI 모델 개발 교육 과정 수료",
       "ML/DL 모델 개발을 위한 기초 이론과 데이터 기반 문제 해결 방법 학습",
@@ -215,7 +200,7 @@ export const activities: readonly ResumeItem[] = [
     period: "2023.04 — 2023.06",
     organization: "CJ Remote Internship",
     role: "교육생",
-    description: "Python 데이터 분석과 스마트 헬스케어 데이터 분석 프로젝트를 수행했습니다.",
+    description: "Python 데이터 분석 교육 수강 및 프로젝트를 수행했습니다.",
     points: [
       "Python 기반 데이터 분석 교육 과정 수료",
       "NumPy, Pandas 등 Python 라이브러리를 활용한 데이터 처리 및 분석 방법 학습",
@@ -241,7 +226,7 @@ export const activities: readonly ResumeItem[] = [
     period: "2023.11",
     organization: "대한민국 소프트웨어 대전",
     role: "프로젝트 부스 운영",
-    description: "항만 컨테이너 크레인 자동화 프로젝트를 전시하고 IoT 기술 도입에 관해 참관객과 소통했습니다.",
+    description: "'항만 컨테이너 크레인 자동화 프로젝트'의 결과물을 전시하고, 유관 현직자와 IoT 기술 도입에 관해 소통하는 시간을 가졌습니다.",
     points: [
       "항만 컨테이너 크레인 자동화 프로젝트 전시 및 시연",
       "IoT 기술 도입 방식과 프로젝트 구현 내용을 참관객에게 설명"

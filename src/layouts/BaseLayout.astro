@@ -22,13 +22,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f4f1ea" />
+    <meta name="theme-color" content="#0f1117" />
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content={type} />
@@ -41,8 +41,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <script is:inline>
       (() => {
         const saved = localStorage.getItem("portfolio-theme");
-        const systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme = saved || (systemDark ? "dark" : "light");
+        document.documentElement.dataset.theme = saved === "light" ? "light" : "dark";
       })();
     </script>
   </head>
