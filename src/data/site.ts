@@ -19,7 +19,7 @@ export const personalInfo = {
 export const skills = [
   { name: "Languages", items: ["C", "C++", "Python"] },
   { name: "Automotive", items: ["AUTOSAR Classic", "CAN(FD)", "UDS", "XCP", "OTA"] },
-  { name: "Tools", items: ["Git", "Jira", "VS Code", "Jupyter Notebook", "Windows Batch"] },
+  { name: "Tools", items: ["Git", "Jira", "VS Code", "Windows Batch", "Vector Tools (CANoe, CANape, DaVinci)"] },
   { name: "AI/ML", items: ["PyTorch", "TensorFlow"] },
   { name: "Etc", items: ["Linux"] }
 ] as const;
@@ -105,10 +105,10 @@ export const experience: readonly ResumeItem[] = [
         ]
       },
       {
-        title: "생성형 AI Key Man",
+        title: "생성형 AI 활용 및 확산 담당",
         items: [
           "코드 리뷰, 문서화, 데이터 처리 등에 필요한 AI 응용 프로그램 개발",
-          "AI 공유회, PoC, Pilot 활동 등 조직 내 생성형 AI 도구 확산을 위한 KeyMan 업무 수행"
+          "AI 공유회, PoC, Pilot 활동 등 조직 내 생성형 AI 도구의 활용 확산 활동 수행"
         ]
       }
     ],
@@ -118,7 +118,7 @@ export const experience: readonly ResumeItem[] = [
     period: "2024.01 — 2024.12",
     organization: "경북대학교 Brain AI Lab",
     role: "학부연구생",
-    description: "임베디드 환경에서 동작하는 AI 모델을 개발하고 최적화하는 연구를 수행했습니다.",
+    description: "임베디드 환경에서 동작하는 AI 모델을 개발하고 최적화하는 연구를 수행하였습니다.",
     points: [
       "산학과제를 통한 AI 모델 개발 및 임베디드 추론 엔진 이식",
       "모델 경량화 연구 및 교내 학술대회 포스터 발표",
@@ -137,7 +137,7 @@ export const experience: readonly ResumeItem[] = [
       alt: "경북대학교 엠블럼",
       variant: "emblem"
     },
-    role: "전자공학(주) · 컴퓨터학(부)",
+    role: "전자공학(주전공) · 컴퓨터학(부전공)",
     description: "하드웨어와 소프트웨어의 기반을 함께 쌓았습니다.",
     points: [
       "학점 4.13 / 4.5",
@@ -151,7 +151,7 @@ export const awards: readonly ResumeItem[] = [
     period: "2025.11",
     organization: "현대모비스 사내 아이디어 공모전",
     role: "은상",
-    description: "차량 내의 생성형 AI를 활용한 AR 교통 법규 안내 시스템 아이디어를 제안했습니다.",
+    description: "차량 내의 생성형 AI를 활용한 AR 교통 법규 안내 시스템 아이디어를 제안하였습니다.",
     points: ["현장 문제를 AI 서비스 아이디어로 구체화"],
     projectLinks: [],
     documentLinks: [{ label: "수상 자료 보기", id: "mobis-idea-award" }]
@@ -160,7 +160,7 @@ export const awards: readonly ResumeItem[] = [
     period: "2023.11",
     organization: "스마트 해상물류 경진대회",
     role: "금상 · 해양수산부 장관상",
-    description: "항만 컨테이너 자동 운송을 위한 크레인 제어·관리 시스템을 개발했습니다.",
+    description: "항만 컨테이너 자동 운송을 위한 크레인 제어·관리 시스템을 개발하였습니다.",
     points: ["대한민국 소프트웨어 대전에서 작품 시연"],
     projectLinks: [{ label: "수상 프로젝트 상세", id: "container-crane-automation" }],
     documentLinks: [{ label: "수상 자료 보기", id: "smart-maritime-award" }]
@@ -177,7 +177,7 @@ export const activities: readonly ResumeItem[] = [
       "사전 문제 풀이 우수자를 대상으로 진행된 알고리즘 교육 과정 수료",
       "자료구조, 그래프 탐색, 동적 계획법 등 주요 알고리즘을 집중 학습하며 문제 해결 역량 강화",
       "현직 멘토 피드백을 통해 문제를 분석하고 효율적인 로직으로 구현하는 SW 개발 기초 역량 확보",
-      "삼성전자 사내 SW 자격 인증(Professional) 취득"
+      "삼성전자 SW 역량테스트 Professional 등급 취득"
     ],
     projectLinks: [],
     documentLinks: [{ label: "교육 이수증 보기", id: "samsung-algorithm-certificate" }]
@@ -186,7 +186,7 @@ export const activities: readonly ResumeItem[] = [
     period: "2024.01 — 2024.02",
     organization: "LG Aimers",
     role: "교육생",
-    description: "실무 현장에서의 AI 모델 개발을 위한 교육 수강 및 프로젝트를 수행했습니다.",
+    description: "실무 현장에서의 AI 모델 개발을 위한 교육 수강 및 프로젝트를 수행하였습니다.",
     points: [
       "AI 모델 개발 교육 과정 수료",
       "ML/DL 모델 개발을 위한 기초 이론과 데이터 기반 문제 해결 방법 학습",
@@ -200,9 +200,8 @@ export const activities: readonly ResumeItem[] = [
     period: "2023.04 — 2023.06",
     organization: "CJ Remote Internship",
     role: "교육생",
-    description: "Python 데이터 분석 교육 수강 및 프로젝트를 수행했습니다.",
+    description: "Python 데이터 분석 교육 수강 및 프로젝트를 수행하였습니다.",
     points: [
-      "Python 기반 데이터 분석 교육 과정 수료",
       "NumPy, Pandas 등 Python 라이브러리를 활용한 데이터 처리 및 분석 방법 학습",
       "스마트 헬스케어 서비스 기획 프로젝트에서 데이터 분석가로 활동",
       "데이터를 기반으로 서비스 문제를 정의하고, 분석 결과를 서비스 기획 방향으로 연결하는 경험 축적"
@@ -226,7 +225,7 @@ export const activities: readonly ResumeItem[] = [
     period: "2023.11",
     organization: "대한민국 소프트웨어 대전",
     role: "프로젝트 부스 운영",
-    description: "'항만 컨테이너 크레인 자동화 프로젝트'의 결과물을 전시하고, 유관 현직자와 IoT 기술 도입에 관해 소통하는 시간을 가졌습니다.",
+    description: "'항만 컨테이너 크레인 자동화 프로젝트'의 결과물을 대한민국 소프트웨어 대전에서 전시 및 소개하였습니다.",
     points: [
       "항만 컨테이너 크레인 자동화 프로젝트 전시 및 시연",
       "IoT 기술 도입 방식과 프로젝트 구현 내용을 참관객에게 설명"

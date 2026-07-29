@@ -1,9 +1,9 @@
 ---
 title: "Vision Transformer 양자화"
-description: "개인 연구 과제로서 ViT 모델에 양자화(PTQ)를 적용하는 프로젝트를 수행 (개인 프로젝트)"
+description: "ViT 모델에 양자화(PTQ)를 적용하는 연구를 수행 (개인 프로젝트)"
 cardPoints:
-  - "Visino Transformer 경량화를 위한 양자화(PTQ) 적용"
-  - "양자화 전후의 성능 trade-off를 검증 및 추론 속도 약 43% 개선"
+  - "Vision Transformer 경량화를 위한 양자화(PTQ) 적용"
+  - "양자화 전후의 정확도와 지연시간을 비교하고, 추론 지연시간 약 43% 단축"
 period: "2024.05 — 2024.07"
 categories: ["AI"]
 role: "모델 경량화"

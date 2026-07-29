@@ -2,7 +2,7 @@
 title: "PCB 코팅 불량 탐지 모델"
 description: "LIG넥스원과 함께 수행한 산학과제에서 UV 이미지를 바탕으로 불량품 여부를 판단하는 AI 모델 개발을 수행 (개인 프로젝트)"
 cardPoints:
-  - "Python을 활용한 Detection 모델 개발"
+  - "Python을 활용한 코팅 불량 탐지 모델 개발"
   - "Jetson Nano에서의 실시간 추론을 통해 코팅 불량 탐지 정확도 약 85% 확보"
 period: "2024.09 — 2024.12"
 categories: ["AI"]

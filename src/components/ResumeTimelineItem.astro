@@ -15,10 +15,11 @@ const {
   emphasizePoints = false,
   plainOrganization = false
 } = Astro.props;
+const displayPeriod = item.period.replaceAll("—", "-").replaceAll("–", "-").replaceAll("‑", "-");
 ---
 
 <article class="resume-item">
-  <time>{item.period}</time>
+  <time><span class="screen-only">{item.period}</span><span class="print-only">{displayPeriod}</span></time>
   <div>
     {plainOrganization
       ? <h3>{item.organization}</h3>

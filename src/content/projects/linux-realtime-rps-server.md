@@ -1,6 +1,6 @@
 ---
 title: "Linux 멀티스레드 TCP 서버"
-description: "운영체제 과목 강의에서 Linux 환경에서의 TCP 기반 다중 클라이언트 서버 구현 프로젝트를 수행 (개인 프로젝트)"
+description: "운영체제 강의에서 Linux 기반 TCP 다중 클라이언트 서버 구현 프로젝트를 수행 (개인 프로젝트)"
 cardPoints:
   - "Linux 환경에서 C 기반 멀티스레드 TCP 서버 구현"
 period: "2023.03 — 2023.06"

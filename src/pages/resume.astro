@@ -18,6 +18,7 @@ const otherActivities = activities.filter((item) => !trainingOrganizations.has(i
 const languageItems = [...certifications].sort((a, b) => b.period.localeCompare(a.period, "ko"));
 const otherItems = [...researchExperience, ...otherActivities];
 const resumeProjects = sortProjects(await getCollection("projects", isPublished));
+const displayPeriod = (period: string) => period.replaceAll("—", "-").replaceAll("–", "-").replaceAll("‑", "-");
 ---
 
 <BaseLayout title="이력서" description="임베디드 소프트웨어 엔지니어 박성국의 경력과 기술 이력입니다.">
@@ -31,6 +32,10 @@ const resumeProjects = sortProjects(await getCollection("projects", isPublished)
           <div><dt>생년월일</dt><dd>{personalInfo.birthDate || "—"}</dd></div>
           <div><dt>이메일</dt><dd><a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a></dd></div>
         </dl>
+        <p class="resume-portfolio-guide">
+          <span>주요 경험과 프로젝트의 상세 내용은 웹 포트폴리오에서 확인하실 수 있습니다.</span>
+          <a href="https://seonggukpark.github.io/SeonggukPark/" target="_blank" rel="noreferrer">seonggukpark.github.io/SeonggukPark</a>
+        </p>
         <div class="button-row">
           <a class="button" href={site.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         </div>
@@ -43,7 +48,12 @@ const resumeProjects = sortProjects(await getCollection("projects", isPublished)
       <section class="resume-section">
         <div class="resume-heading"><h2>기술 스택</h2></div>
         <div class="resume-skills resume-skills-top">
-          {skills.map((group) => <article><h3>{group.name}</h3><div class="tag-row">{group.items.map((item) => <span class="tag">{item}</span>)}</div></article>)}
+          {skills.map((group) => (
+            <article>
+              <h3><span class="screen-only">{group.name}</span><span class="print-only">{group.name.replace("/", " / ")}</span></h3>
+              <div class="tag-row">{group.items.map((item) => <span class="tag">{item}</span>)}</div>
+            </article>
+          ))}
         </div>
       </section>
       <section class="resume-section">
@@ -74,7 +84,7 @@ const resumeProjects = sortProjects(await getCollection("projects", isPublished)
         <div class="resume-heading"><h2>프로젝트</h2></div>
         {resumeProjects.map((project) => (
           <article class="resume-item">
-            <time>{project.data.period}</time>
+            <time><span class="screen-only">{project.data.period}</span><span class="print-only">{displayPeriod(project.data.period)}</span></time>
             <div>
               <h3>{project.data.title}</h3>
               <p>{project.data.description}</p>
