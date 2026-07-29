@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 12. 객체지향 분석과 설계"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 12. 객체지향 분석과 설계 학습 기록입니다."
+description: "객체지향 개념, 분석·설계 절차와 모델링 방법을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 12-1. 객체지향의 개념
 
-[Notion 원본](https://app.notion.com/p/3486b9674ad880348835c498bbe88923)
+<!-- Notion source: https://app.notion.com/p/3486b9674ad880348835c498bbe88923 -->
 
 ### (1) 객체지향의 기원
 - 객체지향 프로그래밍이 일반화 → 설계, 분석, 도구 등 소프트웨어 개발 영역에 객체지향 개념 도입
@@ -45,7 +43,7 @@ importedAt: 2026-07-24
 
 ## 12-2. 객체지향 개념과 원리
 
-[Notion 원본](https://app.notion.com/p/3486b9674ad8800988a6cf8900ee67c1)
+<!-- Notion source: https://app.notion.com/p/3486b9674ad8800988a6cf8900ee67c1 -->
 
 ### (1) 객체지향 기법의 핵심 요소 및 원리
 ![12-2. 객체지향 개념과 원리 이미지](/SeonggukPark/images/notion/notes/software-engineering/12-02-1.png)
@@ -79,7 +77,7 @@ importedAt: 2026-07-24
 
 ## 12-3. 객체지향 분석
 
-[Notion 원본](https://app.notion.com/p/3486b9674ad8808da916f483b0c12398)
+<!-- Notion source: https://app.notion.com/p/3486b9674ad8808da916f483b0c12398 -->
 
 ### (1) 객체지향 분석의 개요
 #### 1) 객체지향 분석(OOA) 접근 기법
@@ -139,7 +137,7 @@ importedAt: 2026-07-24
 
 ## 12-4. 객체지향 설계
 
-[Notion 원본](https://app.notion.com/p/3486b9674ad8810bbb41cbd3b7d1cc86)
+<!-- Notion source: https://app.notion.com/p/3486b9674ad8810bbb41cbd3b7d1cc86 -->
 
 ### (1) 객체지향 설계 작성
 ##### \[1\] 설계 단계에서의 객체, 연산, 메세지
@@ -166,7 +164,7 @@ importedAt: 2026-07-24
 
 ## 12-5. 객체지향 프로그래밍
 
-[Notion 원본](https://app.notion.com/p/3486b9674ad881f1ae52eec7df707ad4)
+<!-- Notion source: https://app.notion.com/p/3486b9674ad881f1ae52eec7df707ad4 -->
 
 ### (1) 객체지향 언어
 - C++
@@ -174,4 +172,3 @@ importedAt: 2026-07-24
 - Java
 ### (2) 객체지향 프로그래밍 지침
 ![12-5. 객체지향 프로그래밍 이미지](/SeonggukPark/images/notion/notes/software-engineering/12-05-1.png)
-

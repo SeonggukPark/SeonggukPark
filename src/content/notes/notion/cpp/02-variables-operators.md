@@ -1,14 +1,12 @@
 ---
 title: "C++ 02. 변수와 연산자"
-description: "Notion MCP에서 직접 가져온 C++ 02. 변수와 연산자 학습 기록입니다."
+description: "표준 입출력, 데이터 형식, 변수, 연산자와 형 변환을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2a86b9674ad880bd98fff76e3602039d"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 ## (1) C++ 표준 입출력
 <table>
@@ -401,4 +399,3 @@ ex) 조건식 ? 참일때_표현식 : 거짓일때_표현식
 ### 연산자 우선순위
 - 헷갈릴 때는 괄호()로 우선순위 정할 것
 ![C++ 02. 변수와 연산자 이미지](/SeonggukPark/images/notion/notes/cpp/02-variables-operators-11.png)
-

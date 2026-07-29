@@ -1,14 +1,12 @@
 ---
 title: "모던 리눅스 1. 리눅스 소개"
-description: "Notion MCP에서 직접 가져온 모던 리눅스 1. 리눅스 소개 학습 기록입니다."
+description: "현대 시스템 환경, 리눅스의 역사와 운영체제·배포판 개념을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Linux", "System Software"]
 draft: true
 source: "https://app.notion.com/p/33a6b9674ad881c783f6c4a28d587181"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 모던 환경이란?
 ### 모바일 디바이스
@@ -55,4 +53,3 @@ importedAt: 2026-07-24
 - 유닉스 운영체제용 서비스 인터페이스를 정의하는 IEEE 표준
 
 # (7) 정리
-

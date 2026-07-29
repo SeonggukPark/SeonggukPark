@@ -1,14 +1,12 @@
 ---
 title: "모던 리눅스 4. 접근 제어"
-description: "Notion MCP에서 직접 가져온 모던 리눅스 4. 접근 제어 학습 기록입니다."
+description: "리소스 소유권, 사용자·파일 권한과 DAC·MAC 접근 제어를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Linux", "System Software"]
 draft: true
 source: "https://app.notion.com/p/33a6b9674ad8802986afcf2e586f6018"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 기본 개요
 ## 리소스와 소유권
@@ -215,4 +213,3 @@ importedAt: 2026-07-24
 - 감사(auditing) : 모든 작업들을 변조 불가능 한 방법으로 결과 로그에 기록
 # (6) 정리
 - 리눅스에서 작업 시, 사용자/프로세스/파일 간의 관계를 기억해야 함
-

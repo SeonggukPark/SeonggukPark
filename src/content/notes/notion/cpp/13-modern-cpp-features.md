@@ -1,14 +1,12 @@
 ---
 title: "C++ 13. 모던 C++에 추가된 기능"
-description: "Notion MCP에서 직접 가져온 C++ 13. 모던 C++에 추가된 기능 학습 기록입니다."
+description: "C++11부터 C++23까지의 주요 변화와 현대적 C++ 관점을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2de6b9674ad8800d8345e965ef4012e5"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) C++ 버전별 주요 특징
 - C++98에서 C++의 기본 골격 확립 (C++03은 C++98의 결함 수정판)
@@ -66,4 +64,3 @@ importedAt: 2026-07-24
 - char\* 대신 string, \[\]array 대신 vector\<\> 사용
 - 포인터 대신 레퍼런스 사용
 - 메모리 직접 관리하지 말고, RAII (Resource Acquisition Is Initialization) 사용
-

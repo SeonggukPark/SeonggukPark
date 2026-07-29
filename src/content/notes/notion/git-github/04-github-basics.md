@@ -8,8 +8,6 @@ source: "https://app.notion.com/p/28e6b9674ad880ef84a1d6e36be29aae"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 4-1. 원격 저장소와 GitHub
 - 로컬 저장소(local repository): 사용자 컴퓨터에 있는 저장소
 - 원격 저장소(remote repository): local이 아닌 컴퓨터 or 서버에 만든 저장소

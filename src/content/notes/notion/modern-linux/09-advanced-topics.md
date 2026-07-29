@@ -1,14 +1,12 @@
 ---
 title: "모던 리눅스 9. 심화 주제"
-description: "Notion MCP에서 직접 가져온 모던 리눅스 9. 심화 주제 학습 기록입니다."
+description: "프로세스 간 통신, 가상 머신과 현대 리눅스 배포판을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Linux", "System Software"]
 draft: true
 source: "https://app.notion.com/p/33a6b9674ad88014b761fce10747d625"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 프로세스 간 통신
 - IPC는 프로세스가 통신하고, 활동을 동기화하고, 데이터를 공유할 수 있게 해줌
@@ -76,4 +74,3 @@ importedAt: 2026-07-24
 ##  클라우드 IDE상의 리눅스
 
 # (6) 정리
-

@@ -1,14 +1,12 @@
 ---
 title: "C++ 12. STL 컨테이너와 알고리즘"
-description: "Notion MCP에서 직접 가져온 C++ 12. STL 컨테이너와 알고리즘 학습 기록입니다."
+description: "순차·연관·어댑터 컨테이너, 반복자와 STL 알고리즘을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2cb6b9674ad88079978df5115f69e3e2"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 컨테이너와 반복자
 ## 컨테이너
@@ -280,4 +278,3 @@ auto d = std::distance(v.begin(), v.end()); // 5
 ```c++
 bool exists = std::binary_search(begin, end, value);
 ```
-

@@ -1,14 +1,12 @@
 ---
 title: "5) 코틀린의 유용한 기법"
-description: "Notion에서 가져온 5) 코틀린의 유용한 기법 학습 기록입니다."
+description: "람다·고차 함수, 제네릭과 확장 함수 등 Kotlin 활용 기법을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2ba6b9674ad88081be36ff2b18503dfd"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) 람다 함수</span>
 ## 람다 함수
@@ -183,4 +181,3 @@ println(some(null))
 }
 ```
 ![05-kotlin-techniques 이미지 4](/SeonggukPark/images/notion/notes/android-kotlin/05-kotlin-techniques-4.png)
-

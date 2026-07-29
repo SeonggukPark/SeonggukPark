@@ -1,14 +1,12 @@
 ---
 title: "10) 다이얼로그와 알림 이용하기"
-description: "Notion에서 가져온 10) 다이얼로그와 알림 이용하기 학습 기록입니다."
+description: "API 호환성·권한, 다이얼로그와 소리·진동·알림을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2fe6b9674ad8804ab187d8b0bb5ab2bd"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) API 레벨 호환성 고려하기</span>
 - 앱 개발시 minSDK 설정값보다 상위 버전에서 제공하는 API를 사용한다면 호환성을 고려해야 함
@@ -293,4 +291,3 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
 # <span color="gray_bg">(5) 알림 띄우기</span>
 # <span color="gray_bg">(6) 카카오톡 알림 만들기</span>
-

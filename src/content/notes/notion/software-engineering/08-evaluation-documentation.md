@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 8. 시스템의 평가와 문서화"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 8. 시스템의 평가와 문서화 학습 기록입니다."
+description: "시스템 도입·운용 평가, 비용 산정과 문서화 절차를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 8-1. 시스템 도입 평가
 
-[Notion 원본](https://app.notion.com/p/3446b9674ad88129ab09d8594916a621)
+<!-- Notion source: https://app.notion.com/p/3446b9674ad88129ab09d8594916a621 -->
 
 ### (1) 시스템 도입 원가 견적
 - 정보생성 원가 = 처리시간 \* 단위 시간당 비용
@@ -54,7 +52,7 @@ importedAt: 2026-07-24
 
 ## 8-2. 시스템 운용 평가
 
-[Notion 원본](https://app.notion.com/p/3446b9674ad881099a19f5348847a2f0)
+<!-- Notion source: https://app.notion.com/p/3446b9674ad881099a19f5348847a2f0 -->
 
 ### (1) 시스템 평가 항목
 - 시스템 성능, 시스템 유용성, 정보처리 신뢰성 등
@@ -116,7 +114,7 @@ importedAt: 2026-07-24
 
 ## 8-3. 시스템 문서화
 
-[Notion 원본](https://app.notion.com/p/3446b9674ad8816890cbe6c00546ebb7)
+<!-- Notion source: https://app.notion.com/p/3446b9674ad8816890cbe6c00546ebb7 -->
 
 ### (1) 문서화의 필요성
 ##### \[1\] 개발 및 업무의 계속성 유지
@@ -138,4 +136,3 @@ importedAt: 2026-07-24
 ##### \[2\] 개발 시스템 관련 문서
 ##### \[3\] 운용 지침서
 #### 3) 작성 규칙
-

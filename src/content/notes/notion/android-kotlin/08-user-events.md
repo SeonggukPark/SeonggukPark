@@ -1,14 +1,12 @@
 ---
 title: "08) 사용자 이벤트 처리하기"
-description: "Notion에서 가져온 08) 사용자 이벤트 처리하기 학습 기록입니다."
+description: "터치·키·뷰 이벤트의 발생 과정과 처리 방법을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2fe6b9674ad88012a5b7f8338973f475"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) 터치와 키 이벤트</span>
 ## 터치 이벤트
@@ -175,4 +173,3 @@ button.setOnLongClickListener {
 
 ## \[5\] 앱 실행
 ![08-user-events 이미지 9](/SeonggukPark/images/notion/notes/android-kotlin/08-user-events-9.png)
-

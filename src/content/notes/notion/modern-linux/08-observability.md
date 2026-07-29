@@ -1,14 +1,12 @@
 ---
 title: "모던 리눅스 8. 관측가능성"
-description: "Notion MCP에서 직접 가져온 모던 리눅스 8. 관측가능성 학습 기록입니다."
+description: "관측가능성 전략, 로그·지표·추적과 텔레메트리 신호를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Linux", "System Software"]
 draft: true
 source: "https://app.notion.com/p/33a6b9674ad880b5b0f5da309ee63caa"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 ![모던 리눅스 8. 관측가능성 이미지](/SeonggukPark/images/notion/notes/modern-linux/08-observability-1.png)
 # (1) 기본 개요
@@ -164,4 +162,3 @@ importedAt: 2026-07-24
 
 # (5) 정리
 - 진단에 사용되는 주요 시그널 유형은 로그(텍스트)와 지표(숫자)
-

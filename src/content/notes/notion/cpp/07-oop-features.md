@@ -1,14 +1,12 @@
 ---
 title: "C++ 07. 객체지향 프로그래밍 특징"
-description: "Notion MCP에서 직접 가져온 C++ 07. 객체지향 프로그래밍 특징 학습 기록입니다."
+description: "추상화·캡슐화·상속·다형성과 연산자 오버로딩을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2a86b9674ad880d182f5e0a20c8cb881"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 추상화와 캡슐화
 ## 추상화 (Abstraction)
@@ -782,4 +780,3 @@ public:
 - 접근 지정자는 객체지향에서 추상화와 은닉화를 구현하기 위한 수단
 → 은닉화를 깨트리는 friend를 남용하는 것은 매우 나쁜 습관
 → 꼭 필요한 지, 구조 변경으로 대체 가능한지 다시 한번 확인해 볼것
-

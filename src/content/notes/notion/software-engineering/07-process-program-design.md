@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 7. 프로세스와 프로그램 설계"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 7. 프로세스와 프로그램 설계 학습 기록입니다."
+description: "프로세스 설계, 흐름도와 프로그램 설계·검사 방법을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 7-1. 프로세스 설계의 개요
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad880f4be34d8a5e2be54a7)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad880f4be34d8a5e2be54a7 -->
 
 ### (1) 프로세스의 설계 원칙
 ##### \[1\] 처리 과정을 명확하게 정의
@@ -39,7 +37,7 @@ importedAt: 2026-07-24
 
 ## 7-2. 흐름도
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad8814fadbbc317f2b99964)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad8814fadbbc317f2b99964 -->
 
 ### (1) 흐름도 종류
 #### 1) 블록 차트
@@ -64,7 +62,7 @@ importedAt: 2026-07-24
 
 ## 7-3. 데이터 프로세스 유형
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad8802599fdd6e003618c97)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad8802599fdd6e003618c97 -->
 
 ### (1) 매체 변환(Conversion)
 ![7-3. 데이터 프로세스 유형 이미지](/SeonggukPark/images/notion/notes/software-engineering/07-03-1.png)
@@ -91,7 +89,7 @@ importedAt: 2026-07-24
 
 ## 7-4. 오류 체크 설계
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad881d981a2c0b0f2ed9afc)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad881d981a2c0b0f2ed9afc -->
 
 ### 1) 원시 데이터 발생장소에서의 검증
 - 원시 전표 기입과정에서 오류 발생 가능
@@ -117,7 +115,7 @@ importedAt: 2026-07-24
 
 ## 7-5. 신뢰성 설계
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad88001bf2ee731ce5dcd39)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad88001bf2ee731ce5dcd39 -->
 
 ### (1) 장애의 종류
 #### 1) 기계 고장에 의한 장애
@@ -161,7 +159,7 @@ importedAt: 2026-07-24
 
 ## 7-6. 프로그램 설계 및 작성
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad88004b5fafd2f3bc9edfc)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad88004b5fafd2f3bc9edfc -->
 
 - 프로그램 설계는 시스템 설계의 마지막 단계
 ### (1) 프로그램 설계 개요
@@ -181,7 +179,7 @@ importedAt: 2026-07-24
 
 ## 7-7. 프로그램 테스트
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad881b4bb6df6db504ed225)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad881b4bb6df6db504ed225 -->
 
 ### (1) 테스트 계획 수립
 ![7-7. 프로그램 테스트 이미지](/SeonggukPark/images/notion/notes/software-engineering/07-07-1.png)
@@ -209,4 +207,3 @@ importedAt: 2026-07-24
 - 사용자 테스트(사용자 승인을 받기 위해 사용자 환경에서)
 - 알파 테스트(선택된 사용자가 개발 환경에서)
 - 베타 테스트(고객의 사용환경에서)
-

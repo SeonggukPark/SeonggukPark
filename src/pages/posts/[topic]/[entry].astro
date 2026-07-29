@@ -4,6 +4,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { topicContent, type TopicContentItem, type TopicContentSection } from "../../../data/topicContent";
 import { isPublished } from "../../../lib/collections";
 import { withBase } from "../../../lib/site";
+import { studyContentTitle, studySubheading } from "../../../lib/studyTitles";
 
 interface Props {
   topic: CollectionEntry<"topics">;
@@ -36,7 +37,9 @@ export async function getStaticPaths() {
           const candidate = ordered[absoluteIndex + offset];
           if (!candidate) return undefined;
           const note = notes.find((entry) => entry.id === candidate.id);
-          return note ? { slug: candidate.slug, title: candidate.label ?? note.data.title } : undefined;
+          const candidateSection = sections.find((entrySection) => entrySection.items.some((entry) => entry.id === candidate.id));
+          const candidateIndex = candidateSection?.items.findIndex((entry) => entry.id === candidate.id) ?? 0;
+          return note ? { slug: candidate.slug, title: studySubheading(candidate.label ?? note.data.title, candidateIndex) } : undefined;
         };
 
         return {
@@ -52,7 +55,7 @@ export async function getStaticPaths() {
               id: sibling.id,
               slug: sibling.slug,
               label: sibling.label,
-              title: sibling.label ?? sibling.note.data.title
+              title: studyContentTitle(sibling.label ?? sibling.note.data.title)
             })),
             previous: adjacent(-1),
             next: adjacent(1)
@@ -71,8 +74,7 @@ const { Content } = await render(note);
   <header class="page-hero topic-entry-hero"><div class="shell">
     <a class="back-link" href={withBase(`/posts/${topic.id}/`)}>← {topic.data.title}</a>
     <p class="eyebrow">{topic.data.title} · {section.title}</p>
-    <h1>{item.label ?? note.data.title}</h1>
-    <p class="lead">{note.data.description}</p>
+    <h1>{studySubheading(item.label ?? note.data.title, itemIndex)}</h1>
     <div class="topic-entry-path" aria-label="학습 기록 계층">
       <span>스터디 플래너</span><b>›</b><span>{topic.data.title}</span><b>›</b><span>{section.title}</span><b>›</b><strong>{String(itemIndex + 1).padStart(2, "0")}</strong>
     </div>
@@ -87,7 +89,7 @@ const { Content } = await render(note);
         <ol>
           {siblings.map((sibling, index) => <li>
             <a class:list={{ current: sibling.id === item.id }} href={withBase(`/posts/${topic.id}/${sibling.slug}/`)} aria-current={sibling.id === item.id ? "page" : undefined}>
-              <span>{String(index + 1).padStart(2, "0")}</span>{sibling.title}
+              <span>{String(index + 1).padStart(2, "0")}.</span>{sibling.title}
             </a>
           </li>)}
         </ol>

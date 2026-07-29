@@ -1,14 +1,12 @@
 ---
 title: "C++ 14. 새로운 데이터 형식과 라이브러리"
-description: "Notion MCP에서 직접 가져온 C++ 14. 새로운 데이터 형식과 라이브러리 학습 기록입니다."
+description: "형식 연역, 열거형, constexpr과 새로운 표준 기능을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2de6b9674ad880dd87dad30309f1d828"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 형식 연역, 열거형, 수학 상수, 널 포인터, 2진수 표현
 ### auto
@@ -406,4 +404,3 @@ int main() {
 ```
 ![C++ 14. 새로운 데이터 형식과 라이브러리 이미지](/SeonggukPark/images/notion/notes/cpp/14-new-types-libraries-7.png)
 → C++14 이후로는 make_unique 함수 사용하면 편리하게 사용 가능
-

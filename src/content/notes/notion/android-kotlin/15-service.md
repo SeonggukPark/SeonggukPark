@@ -1,14 +1,12 @@
 ---
 title: "15) 서비스 컴포넌트"
-description: "Notion에서 가져온 15) 서비스 컴포넌트 학습 기록입니다."
+description: "서비스·바인딩, 백그라운드 제약과 잡 스케줄러를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/3326b9674ad88071acd5fdfd07c5c236"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) 서비스 이해하기</span>
 

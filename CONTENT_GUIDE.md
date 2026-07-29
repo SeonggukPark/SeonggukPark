@@ -90,6 +90,14 @@ relatedProjects: ["container-crane-automation"]
 
 Notion MCP에서 자동으로 가져온 문서는 `src/content/notes/notion`에 있으며 모두 `draft: true` 상태입니다. 원문 경로는 `source`, 가져온 날짜는 `importedAt`에 기록합니다. 공개할 때는 가져온 파일을 직접 덮어쓰기보다 루트 `src/content/notes`에 공개용 문서를 새로 작성해 원본 초안을 보존합니다. 제목과 설명을 다듬고, 코드·출처·이미지를 검증한 뒤 `publishedAt`을 실제 공개일로 지정합니다.
 
+### Notion 원문 동기화 원칙
+
+- `src/content/notes/notion`의 본문은 요약·재서술·문장 보완·맞춤법 교정을 하지 않고 Notion 원문을 그대로 보존합니다.
+- 허용하는 변환은 로컬 메타데이터 추가, 만료되는 이미지 URL의 로컬 경로 교체, 렌더러가 지원하지 않는 블록 문법의 최소 변환뿐입니다.
+- 여러 하위 페이지를 합칠 때 필요한 원본 주소는 화면에 문장을 추가하지 않고 HTML 주석으로 보존합니다.
+- 목록 번호나 간결한 화면 제목은 Markdown 원문을 고치지 않고 페이지 템플릿에서 처리합니다.
+- 편집하거나 보충한 글이 필요하면 `src/content/notes/notion`을 수정하지 않고 공개용 문서를 별도로 작성합니다.
+
 개발 서버를 실행한 뒤 `/SeonggukPark/drafts/`에서 가져온 초안을 검색하고 본문을 미리볼 수 있습니다. 이 경로는 개발 모드에서만 생성되며 프로덕션 빌드와 GitHub Pages에는 포함되지 않습니다.
 
 공개 노트의 `relatedProjects`에는 `src/content/projects`의 파일명에서 확장자를 제외한 ID를 적습니다. 해당 프로젝트 페이지에서도 노트를 연결하려면 프로젝트의 `relatedNotes`에 노트 ID를 추가합니다.

@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 10. 프로그래밍 지원 기법"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 10. 프로그래밍 지원 기법 학습 기록입니다."
+description: "IPT·HIPO·CASE 등 프로그래밍과 개발 지원 기법을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 10-1. 프로그래밍지원 기법 개요
 
-[Notion 원본](https://app.notion.com/p/3466b9674ad880d3b27dcb2c1433e5ab)
+<!-- Notion source: https://app.notion.com/p/3466b9674ad880d3b27dcb2c1433e5ab -->
 
 ### (1) 개념
 - 프로그램을 **효율적으로 개발·관리·검증·유지보수**할 수 있도록 도와주는 각종 방법과 도구
@@ -29,7 +27,7 @@ importedAt: 2026-07-24
 
 ## 10-2. IPT
 
-[Notion 원본](https://app.notion.com/p/3466b9674ad880b9b9abcf0fd1e49236)
+<!-- Notion source: https://app.notion.com/p/3466b9674ad880b9b9abcf0fd1e49236 -->
 
 ### (1) 출현 배경
 - Improved Programming Technologies (프로그래밍 개선 기법) 이라는 용어는 원래 IBM이 개발한 효과적으로 프로그램을 개발하는 기법을 총칭하는 말로 시작
@@ -124,7 +122,7 @@ importedAt: 2026-07-24
 
 ## 10-3. HIPO
 
-[Notion 원본](https://app.notion.com/p/3466b9674ad8805aa6bac517cadbacca)
+<!-- Notion source: https://app.notion.com/p/3466b9674ad8805aa6bac517cadbacca -->
 
 ### (1) HIPO의 개요
 - HIPO(Hierarchy plus Input-Process-Output)은 IBM이 개발한 프로그램 설계 도구
@@ -166,7 +164,7 @@ importedAt: 2026-07-24
 
 ## 10-4. 모듈설계
 
-[Notion 원본](https://app.notion.com/p/3466b9674ad880ffa3b5fac2030eacad)
+<!-- Notion source: https://app.notion.com/p/3466b9674ad880ffa3b5fac2030eacad -->
 
 ### (1) 모듈의 개념
 - 모듈이란, 독립되어 컴파일되는 단위로서 각각의 이름을 갖고 다른 모듈에서 호출이 가능함
@@ -205,7 +203,7 @@ importedAt: 2026-07-24
 
 ## 10-5. 4세대 언어(4GL)
 
-[Notion 원본](https://app.notion.com/p/3466b9674ad880739dcdf1b2ac3ce2bc)
+<!-- Notion source: https://app.notion.com/p/3466b9674ad880739dcdf1b2ac3ce2bc -->
 
 ### (1) 4세대 언어의 개요
 - 개발자 명세에 기초하여 원시코드를 자동 생성
@@ -221,7 +219,7 @@ importedAt: 2026-07-24
 
 ## 10-6. 컴포넌트 기반 개발(CBD)
 
-[Notion 원본](https://app.notion.com/p/3466b9674ad880eba472cf14ddbc44f1)
+<!-- Notion source: https://app.notion.com/p/3466b9674ad880eba472cf14ddbc44f1 -->
 
 ### (1) 컴포넌트 기반 개발(CBD)의 등장 배경
 - **컴포넌트**
@@ -248,7 +246,7 @@ importedAt: 2026-07-24
 
 ## 10-7. CASE 도구(Tools)
 
-[Notion 원본](https://app.notion.com/p/3466b9674ad8808e8acbd0dbccb1b763)
+<!-- Notion source: https://app.notion.com/p/3466b9674ad8808e8acbd0dbccb1b763 -->
 
 ### (1) CASE의 정의
 - Computer-Aided Software Engineering
@@ -278,4 +276,3 @@ importedAt: 2026-07-24
 ##### \[5\] 정보 저장소 기술
 - 소프트웨어 요구 분석과 관련된 논리/물리적 자료 정의와 모형, 프로세스 자료와 규칙등이 해당
 ##### \[6\] 설계 분석과 오류 발견
-

@@ -1,14 +1,12 @@
 ---
 title: "01) 개발 환경 준비하기"
-description: "Notion에서 가져온 01) 개발 환경 준비하기 학습 기록입니다."
+description: "Android Studio·SDK 설정, 앱 실행과 서명·배포 절차를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2ba6b9674ad88056b200d5f88594fbed"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # (01-1) 안드로이드 스튜디오 설치하기
 ## Android Studio
@@ -211,4 +209,3 @@ A. 앱 실행할 때 포함된 모든 파일이 실행되지 않음. 예를 들�
 
 ![01-development-environment 이미지 34](/SeonggukPark/images/notion/notes/android-kotlin/01-development-environment-34.png)
 → 이후 \[새 버전 만들기\] 해서 세부 정보 입력
-

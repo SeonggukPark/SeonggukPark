@@ -1,14 +1,12 @@
 ---
 title: "07) 뷰를 배치하는 레이아웃"
-description: "Notion에서 가져온 07) 뷰를 배치하는 레이아웃 학습 기록입니다."
+description: "Linear·Relative·Frame·Grid·ConstraintLayout 배치 방식을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2fe6b9674ad88031a9e1c1923c2abd1d"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 - 레이아웃 클래스는 다른 뷰 객체를 포함하는 일종의 그릇 역할
 - 안드로이드가 제공하는 레이아웃 클래스는 저마다 뷰를 배치하는 규칙이 존재
@@ -486,4 +484,3 @@ A. 불가능하지는 않지만, 굳이.. 다른 레이아웃은 도구가 많�
 
 ## \[4\] 앱 실행
 ![07-layouts 이미지 28](/SeonggukPark/images/notion/notes/android-kotlin/07-layouts-28.png)
-

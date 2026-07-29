@@ -1,14 +1,12 @@
 ---
 title: "06) 뷰를 이용한 화면 구성"
-description: "Notion에서 가져온 06) 뷰를 이용한 화면 구성 학습 기록입니다."
+description: "액티비티·뷰 구조, XML 레이아웃과 기본 View 사용법을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2fe6b9674ad88146b8d5e05459d0596c"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) 화면을 구성하는 방법</span>
 ## 액티비티-뷰 구조
@@ -426,4 +424,3 @@ binding.button.setOnClickListener { }
 
 ## \[4\] 앱 실행
 ![06-view-ui 이미지 12](/SeonggukPark/images/notion/notes/android-kotlin/06-view-ui-12.png)
-

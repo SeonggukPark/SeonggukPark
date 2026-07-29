@@ -8,8 +8,6 @@ source: "https://app.notion.com/p/28e6b9674ad880ef84a1d6e36be29aae"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## **3-1. Branch 알아보기**
 - branch(분기): 기존 branch에서 새 branch를 만드는 것
 - merge(병합): 새 branch의 내용을 기존 branch와 병합하는 것

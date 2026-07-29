@@ -1,14 +1,12 @@
 ---
 title: "모던 리눅스 5. 파일시스템"
-description: "Notion MCP에서 직접 가져온 모던 리눅스 5. 파일시스템 학습 기록입니다."
+description: "드라이브·파티션·볼륨, 아이노드와 링크 등 파일시스템 구조를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Linux", "System Software"]
 draft: true
 source: "https://app.notion.com/p/33a6b9674ad880c68aadfcd387118a3b"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 기본 개요
 - 일부 예외를 제외하면 오늘날 대부분의 파일시스템은 계층 구조
@@ -271,4 +269,3 @@ importedAt: 2026-07-24
 </tr>
 </table>
 # (5) 정리
-

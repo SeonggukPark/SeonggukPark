@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 2. 시스템 분석"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 2. 시스템 분석 학습 기록입니다."
+description: "시스템 분석의 목표, 분석가의 역할과 현상 조사 방법을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 2-1. 시스템 분석의 개요
 
-[Notion 원본](https://app.notion.com/p/33b6b9674ad8804591a6f9cf137c277c)
+<!-- Notion source: https://app.notion.com/p/33b6b9674ad8804591a6f9cf137c277c -->
 
 **1) 시스템 분석의 목표**
 \[1\] 고객의 필요사항 식별
@@ -31,7 +29,7 @@ importedAt: 2026-07-24
 
 ## 2-2. 시스템 분석가
 
-[Notion 원본](https://app.notion.com/p/33b6b9674ad88088887decf300437b7e)
+<!-- Notion source: https://app.notion.com/p/33b6b9674ad88088887decf300437b7e -->
 
 ##### 시스템 분석가(System Analyst)
 - 소프트웨어 개발 생명주기의 전체 과정에 대해 책임을 지는 사람
@@ -56,7 +54,7 @@ importedAt: 2026-07-24
 
 ## 2-3. 시스템 현상 분석
 
-[Notion 원본](https://app.notion.com/p/33b6b9674ad88081bcf4f7b7776b4904)
+<!-- Notion source: https://app.notion.com/p/33b6b9674ad88081bcf4f7b7776b4904 -->
 
 ##### 현상 분석
 - 수동 시스템 업무를 전산화하기 위한 분석과정
@@ -100,7 +98,7 @@ importedAt: 2026-07-24
 
 ## 2-4. 시스템 조사 방법
 
-[Notion 원본](https://app.notion.com/p/33b6b9674ad880b69968f0d3acde5beb)
+<!-- Notion source: https://app.notion.com/p/33b6b9674ad880b69968f0d3acde5beb -->
 
 ### (1) 자료수집법 - 자료조사
 - 필요한 자료를 수집하여 정리하는 방법
@@ -140,7 +138,7 @@ importedAt: 2026-07-24
 
 ## 2-5. 시스템 분석의 목표
 
-[Notion 원본](https://app.notion.com/p/33b6b9674ad88024a6cce12123803b6f)
+<!-- Notion source: https://app.notion.com/p/33b6b9674ad88024a6cce12123803b6f -->
 
 ![2-5. 시스템 분석의 목표 이미지](/SeonggukPark/images/notion/notes/software-engineering/02-05-1.png)
 ### (1) 필요사항의 식별
@@ -216,4 +214,3 @@ importedAt: 2026-07-24
 - 기술 분석에 사용할 수 있는 도구: 수학적 모델링, 최적화 기법, 확률, 통계, 대기이론, 제어이론
 - 분석적 평가가 항상 가능하지 않다는 것을 인지하는 것이 중요
 - 모델링은 기술 분석에 효율적, 모형은 실세계의 관찰에 근거해서 생성되거나 시스템 목표에 근거해서 근사 값 생성
-

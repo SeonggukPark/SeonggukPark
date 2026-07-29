@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 9. 소프트웨어 공학"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 9. 소프트웨어 공학 학습 기록입니다."
+description: "소프트웨어공학의 정의, 개발 생명주기와 품질 관리 개념을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 9-1. 공학의 분류
 
-[Notion 원본](https://app.notion.com/p/3456b9674ad881fcbc51e54f6f52d7a1)
+<!-- Notion source: https://app.notion.com/p/3456b9674ad881fcbc51e54f6f52d7a1 -->
 
 ### (1) 공학
 #### 1) 정의
@@ -59,7 +57,7 @@ importedAt: 2026-07-24
 
 ## 9-2. 소프트웨어 공학의 적용
 
-[Notion 원본](https://app.notion.com/p/3456b9674ad880338fe4fa3aa30b0781)
+<!-- Notion source: https://app.notion.com/p/3456b9674ad880338fe4fa3aa30b0781 -->
 
 ### (1) 소프트웨어공학의 적용 효과
 ##### \[1\] 소프트웨어에 내재된 직/간접적 손해가 따를 수 있는 문제 해결 가능
@@ -125,7 +123,7 @@ importedAt: 2026-07-24
 
 ## 9-3. 소프트웨어 개발 생명주기와 프로세스
 
-[Notion 원본](https://app.notion.com/p/3456b9674ad880bbb2eee1f872d58dbb)
+<!-- Notion source: https://app.notion.com/p/3456b9674ad880bbb2eee1f872d58dbb -->
 
 ### (1) 소프트웨어 개발 생명주기
 ![9-3. 소프트웨어 개발 생명주기와 프로세스 이미지](/SeonggukPark/images/notion/notes/software-engineering/09-03-1.png)
@@ -135,7 +133,7 @@ importedAt: 2026-07-24
 
 ## 9-4. 소프트웨어 개발 프로세스
 
-[Notion 원본](https://app.notion.com/p/3456b9674ad880f58d60cc146b36d571)
+<!-- Notion source: https://app.notion.com/p/3456b9674ad880f58d60cc146b36d571 -->
 
 ### (1) 폭포수 모델(Waterfall Model)
 - 단계적 생명주기 모델
@@ -312,7 +310,7 @@ importedAt: 2026-07-24
 
 ## 9-5. 소프트웨어 개발 방법론
 
-[Notion 원본](https://app.notion.com/p/3456b9674ad8800abcd4fd6027fe8a3d)
+<!-- Notion source: https://app.notion.com/p/3456b9674ad8800abcd4fd6027fe8a3d -->
 
 ### (1) 소프트웨어 개발 방법론 개요
 - 전체 개발 프로세스에 지속적으로 적용 가능한 조직의 구성, 방법, 절차, 기법 등을 포함시킨 것
@@ -420,4 +418,3 @@ importedAt: 2026-07-24
 ### (8) 소프트웨어 개발 방법론 비교
 ![9-5. 소프트웨어 개발 방법론 이미지](/SeonggukPark/images/notion/notes/software-engineering/09-05-14.png)
 ![9-5. 소프트웨어 개발 방법론 이미지](/SeonggukPark/images/notion/notes/software-engineering/09-05-15.png)
-

@@ -8,8 +8,6 @@ source: "https://app.notion.com/p/28e6b9674ad880ef84a1d6e36be29aae"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## **6-1. GitHub Profile 관리하기**
 - 자신의 깃허브에 커밋 올리는 것 뿐만 아니라, 다른 오픈소스 프로젝트에 PR를 등록하는 것처럼 깃허브에서 하는 모든 활동
 

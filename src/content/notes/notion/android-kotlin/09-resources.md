@@ -1,14 +1,12 @@
 ---
 title: "9) 리소스 활용하기"
-description: "Notion에서 가져온 9) 리소스 활용하기 학습 기록입니다."
+description: "레이아웃·이미지·값·색상·글꼴 등 Android 리소스를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2fe6b9674ad880b5ba5fc301b10865a2"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) 리소스의 종류와 특징</span>
 - 앱에서 사용하는 리소스는 앱 리소스와 플랫폼 리소스로 구분
@@ -170,4 +168,3 @@ binding.textView.text =
 
 ![09-resources 이미지 17](/SeonggukPark/images/notion/notes/android-kotlin/09-resources-17.png)
 ![09-resources 이미지 18](/SeonggukPark/images/notion/notes/android-kotlin/09-resources-18.png)
-

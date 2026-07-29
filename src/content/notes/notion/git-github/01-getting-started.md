@@ -8,8 +8,6 @@ source: "https://app.notion.com/p/28e6b9674ad880ef84a1d6e36be29aae"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 - 학습 기간: 2025/10/01 ~ 2025/10/10
 - 참고도서: **Do it! 5일 만에 끝내는 깃&깃허브 입문**
 

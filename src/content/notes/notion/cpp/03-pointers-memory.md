@@ -1,14 +1,12 @@
 ---
 title: "C++ 03. 포인터와 메모리 구조"
-description: "Notion MCP에서 직접 가져온 C++ 03. 포인터와 메모리 구조 학습 기록입니다."
+description: "포인터·배열·동적 메모리, 함수·구조체와 메모리 영역을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2a86b9674ad880808f7acd2b79481dc1"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 ## (1) 포인터와 메모리
 ### 포인터와 연산자
@@ -395,4 +393,3 @@ int &ref_val = val;
 
 Q. 레퍼런스와 포인터의 차이점?
 ![C++ 03. 포인터와 메모리 구조 이미지](/SeonggukPark/images/notion/notes/cpp/03-pointers-memory-7.png)
-

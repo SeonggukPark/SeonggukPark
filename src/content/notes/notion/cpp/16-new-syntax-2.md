@@ -1,14 +1,12 @@
 ---
 title: "C++ 16. 새로운 구문 2"
-description: "Notion MCP에서 직접 가져온 C++ 16. 새로운 구문 2 학습 기록입니다."
+description: "폴드 표현식, 3방향 비교, using과 함수 지정자를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2de6b9674ad88062ad06c5747e832a2a"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 폴드 표현식
 - C++17에서 도입
@@ -344,4 +342,3 @@ public:
     void foo() override; // 컴파일 에러
 };
 ```
-

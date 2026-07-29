@@ -1,14 +1,12 @@
 ---
 title: "C++ 15. 새로운 구문 1"
-description: "Notion MCP에서 직접 가져온 C++ 15. 새로운 구문 1 학습 기록입니다."
+description: "튜플·구조적 바인딩, 범위 기반 반복문과 람다 표현식을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2de6b9674ad8808cb863e589e4a34e8e"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 튜플과 구조적 바인딩
 ## 튜플
@@ -274,4 +272,3 @@ f();
 cout << x << endl;   // 여전히 10
 
 ```
-

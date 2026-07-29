@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 4. 입력 설계"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 4. 입력 설계 학습 기록입니다."
+description: "입력 표준화, 자료의 발생·수집·매체화와 입력 검사를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 4-1. 입력 설계의 개요
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad880f193f7e30ea157596c)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad880f193f7e30ea157596c -->
 
 - 입력 설계: 사용자에게 요구되는 다양한 정보중 입력할 정보를 선택
 ![4-1. 입력 설계의 개요 이미지](/SeonggukPark/images/notion/notes/software-engineering/04-01-1.png)
@@ -78,7 +76,7 @@ importedAt: 2026-07-24
 
 ## 4-2. 원시전표의 설계
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad88045b9baccc0a97eef15)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad88045b9baccc0a97eef15 -->
 
 - 원시전표 : 시스템에 투입되는 최초 자료
 ### (1) 원시전표 작성 설계 개요
@@ -118,7 +116,7 @@ importedAt: 2026-07-24
 
 ## 4-3. 입력 매체의 설계
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad880d9a12feeaf8227ee07)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad880d9a12feeaf8227ee07 -->
 
 ![4-3. 입력 매체의 설계 이미지](/SeonggukPark/images/notion/notes/software-engineering/04-03-1.png)
 #### 1) 키보드 입력 방식
@@ -153,7 +151,7 @@ importedAt: 2026-07-24
 
 ## 4-4. 입력 형태의 종류
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad880dabf9ef30f0e4aec9d)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad880dabf9ef30f0e4aec9d -->
 
 ### (1) 온라인 입력 방식
 - 입력 장치(단말기)가 **컴퓨터와 직접 연결된 상태에서 데이터를 입력과 동시에 처리하는 방식**
@@ -190,7 +188,7 @@ importedAt: 2026-07-24
 
 ## 4-5. 사용자 인터페이스 설계
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad880bc9ff7c9a5be7d73f8)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad880bc9ff7c9a5be7d73f8 -->
 
 - 사용자 인터페이스는 설계 후 이를 소프트웨어 설계에 반영해서 완성
 - 사용자 인터페이스는 사용자-컴퓨터 사이를 연결해주는 수단
@@ -216,7 +214,7 @@ importedAt: 2026-07-24
 
 ## 4-6. 입력 데이터 체크
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad88056b4f6fd4da4dcfac7)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad88056b4f6fd4da4dcfac7 -->
 
 - 오류 데이터를 이용하기 전에 수정함으로써 정확한 데이터 처리가 되도록 한다 
 #### 1) 입력 데이터 체크 방식
@@ -235,4 +233,3 @@ importedAt: 2026-07-24
 - 특정 규칙에 따라 에러 데이터를 대체 혹은 정정하여 다시 입력
 ##### \[3\] 에러 데이터 제거 방식
 - 한번에 처리하지 않거나 일부 데이터를 버리고 처리해도 결과에 영항을 미치지 않을 경우, 에러 데이터를 제거하고 정상 데이터만으로 처리
-

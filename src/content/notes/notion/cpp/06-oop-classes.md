@@ -1,14 +1,12 @@
 ---
 title: "C++ 06. 객체지향과 클래스"
-description: "Notion MCP에서 직접 가져온 C++ 06. 객체지향과 클래스 학습 기록입니다."
+description: "프로그래밍 패러다임, 객체지향 개념과 클래스·인스턴스를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2a86b9674ad880618a60e6a361b9da9e"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 ## (1) 객체지향 이전의 프로그래밍 패러다임
 - 프로그래밍 패러다임: “프로그램을 어떤 절차와 구조로 만들 것인가”에 대한 스타일, 접근 방식
@@ -92,4 +90,3 @@ delete p; // 메모리 해제 필수
 ![C++ 06. 객체지향과 클래스 이미지](/SeonggukPark/images/notion/notes/cpp/06-oop-classes-2.png)
 ![C++ 06. 객체지향과 클래스 이미지](/SeonggukPark/images/notion/notes/cpp/06-oop-classes-3.png)
 ![C++ 06. 객체지향과 클래스 이미지](/SeonggukPark/images/notion/notes/cpp/06-oop-classes-4.png)
-

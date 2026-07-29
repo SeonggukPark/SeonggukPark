@@ -1,14 +1,12 @@
 ---
 title: "02) 안드로이드 앱의 기본 구조"
-description: "Notion에서 가져온 02) 안드로이드 앱의 기본 구조 학습 기록입니다."
+description: "Android OS 구조, 앱 컴포넌트와 프로젝트 구성 요소를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2ba6b9674ad880a8b9affb82d6fa4c4a"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) 안드로이드 소개</span>
 - 리눅스 커널을 기반으로 구글에서 제작한 모바일 OS
@@ -293,4 +291,3 @@ A. 그건 일반 클래스로 이용하겠다는 것과 같음. 시스템에서 
 → 클래스 실행 시 onCreate() 함수 자동 호출
 → enableEdgeToEdge() : Status Bar(상단 배터리 표시가 있는 영역) \~ Navigation Bar(하단 안드로이드 버튼이 있는 영역)까지 액티비티 화면이 나오도록 설정\\
 → setOnApply\~(): 액티비티 출력 내용이 Navigation Bar 등과 겹치지 않도록 하기 위한 설정
-

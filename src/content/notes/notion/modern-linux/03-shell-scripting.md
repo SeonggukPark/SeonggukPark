@@ -1,14 +1,12 @@
 ---
 title: "모던 리눅스 3. 쉘과 스크립팅"
-description: "Notion MCP에서 직접 가져온 모던 리눅스 3. 쉘과 스크립팅 학습 기록입니다."
+description: "터미널·셸·스트림, 변수와 명령 조합을 이용한 스크립팅을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Linux", "System Software"]
 draft: true
 source: "https://app.notion.com/p/33a6b9674ad880b38d46cf6bd29f0d52"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 기본 개요
 - CLI 관점에서 리눅스와 상호 작용 하는 방법은 크게 **수동**(대화식 명령 입력), **스크립팅** 2가지 존재
@@ -228,4 +226,3 @@ importedAt: 2026-07-24
 ## 전체 예제: 깃허브 사용자 정보 스크립트
 
 # (5) 정리
-

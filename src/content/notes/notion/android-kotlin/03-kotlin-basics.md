@@ -1,14 +1,12 @@
 ---
 title: "3) 코틀린 시작하기"
-description: "Notion에서 가져온 3) 코틀린 시작하기 학습 기록입니다."
+description: "Kotlin의 특징, 변수·함수·자료형과 기본 제어 구문을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2ba6b9674ad8804aa4ebdcc29d628e02"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) 코틀린 언어 소개</span>
 ## 코틀린 등장 배경
@@ -508,4 +506,3 @@ do {
 } while (i < 5)
 
 ```
-

@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 6. 파일 설계"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 6. 파일 설계 학습 기록입니다."
+description: "자료의 구성 단위, 파일의 종류와 편성·설계 절차를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 6-1. 파일 설계의 개요
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad88092aed6d4ee31fabbd7)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad88092aed6d4ee31fabbd7 -->
 
 ### (1) 자료의 기본 구성
 #### 1) 비트(Bit)
@@ -85,7 +83,7 @@ importedAt: 2026-07-24
 
 ## 6-2. 파일 편성의 설계
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad881a8b634e0cab7940842)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad881a8b634e0cab7940842 -->
 
 ### (1) 순차 파일
 - SAM(Sequential Access Method) 파일이라고도 한다
@@ -156,7 +154,7 @@ importedAt: 2026-07-24
 
 ## 6-3. 파일 매체의 설계
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad880b9b34adb940b61b590)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad880b9b34adb940b61b590 -->
 
 ### (1) 파일 매체의 선정
 #### 1) 주요 검토 항목
@@ -182,4 +180,3 @@ importedAt: 2026-07-24
 #### 6) 파일 편성법의 설계
 #### 7) 파일의 레이아웃 설계
 #### 8) 파일의 운영관리 설계
-

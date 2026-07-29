@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { topicContent } from "../../data/topicContent";
 import { isPublished } from "../../lib/collections";
 import { formatDate, tagSlug, withBase } from "../../lib/site";
+import { studyContentTitle } from "../../lib/studyTitles";
 
 type ArticleProps = { kind: "article"; entry: CollectionEntry<"posts"> };
 type TopicProps = { kind: "topic"; entry: CollectionEntry<"topics"> };
@@ -55,8 +56,8 @@ const contentSections = props.kind === "topic"
           {section.items.length > 0 ? <ol class="topic-content-list">
             {section.items.map((item, itemIndex) => <li>
               <a href={withBase(`/posts/${props.entry.id}/${item.slug}/`)}>
-                <span>{String(itemIndex + 1).padStart(2, "0")}</span>
-                <div><strong>{item.label ?? item.entry.data.title}</strong><small>{item.entry.data.description}</small></div>
+                <span>{String(itemIndex + 1).padStart(2, "0")}.</span>
+                <div><strong>{studyContentTitle(item.label ?? item.entry.data.title)}</strong></div>
                 <b aria-hidden="true">→</b>
               </a>
             </li>)}

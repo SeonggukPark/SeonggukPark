@@ -1,14 +1,12 @@
 ---
 title: "04) 코틀린 객체지향 프로그래밍"
-description: "Notion에서 가져온 04) 코틀린 객체지향 프로그래밍 학습 기록입니다."
+description: "클래스와 생성자, 상속·프로퍼티·인터페이스를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/2ba6b9674ad880e698e7d769f26bd330"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) 클래스와 생성자</span>
 # 클래스
@@ -392,4 +390,3 @@ MyClass.some()
 
 Q. 컴패니언 클래스는 자바 static이랑 같은거 같은데, 코틀린에는 static 키워드가 없는지?
 A. ㅇㅇ 코틀린은 static 키워드 지원 안됨. 그래서 컴패니언 클래스는 결과적으로 자바 static 대체한다고 할 수 있음. 사실 코틀린은 최상위에 함수, 변수 선언이 가능해서 객체 이용이 필요 없는 멤버를 굳이 class로 선언 안해도 됨. 근데 자바의 static 처럼 클래스 멤버를 쓸 때도 있긴 하니까 companion 클래스를 지원하는 것.
-

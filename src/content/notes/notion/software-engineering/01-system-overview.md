@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 1. 시스템의 개요"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 1. 시스템의 개요 학습 기록입니다."
+description: "시스템의 개념과 구성 요소, 정보시스템과 개발 단계를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 1-1. 시스템의 개념
 
-[Notion 원본](https://app.notion.com/p/33b6b9674ad8814ba31cf50684c063ce)
+<!-- Notion source: https://app.notion.com/p/33b6b9674ad8814ba31cf50684c063ce -->
 
 ### (1) 시스템의 정의
 - 어떤 목적을 위해 하나 이상의 기능 요소가 상호 관련하여 유기적으로 결합된 집합체
@@ -98,7 +96,7 @@ importedAt: 2026-07-24
 
 ## 1-2. 경영과 정보시스템
 
-[Notion 원본](https://app.notion.com/p/33b6b9674ad88155bd81faad004fdd92)
+<!-- Notion source: https://app.notion.com/p/33b6b9674ad88155bd81faad004fdd92 -->
 
 ### (1) 정보시스템과 기능
 - 정보시스템이란, 정보를 전송 또는 변형 하는 일을 목적으로 하는 시스템
@@ -143,7 +141,7 @@ importedAt: 2026-07-24
 
 ## 1-3. 시스템의 개발
 
-[Notion 원본](https://app.notion.com/p/33b6b9674ad881ffbd33db3524c8da4f)
+<!-- Notion source: https://app.notion.com/p/33b6b9674ad881ffbd33db3524c8da4f -->
 
 ### (1) 시스템 개발 목표
 - 시스템 개발은 먼저 추상적인 개념 설정 후 그것을 구체화 하는 활동으로 연결시키는 과정
@@ -184,7 +182,7 @@ importedAt: 2026-07-24
 
 ## 1-4. 시스템 개발 단계
 
-[Notion 원본](https://app.notion.com/p/33b6b9674ad88198a74cf9b807098b89)
+<!-- Notion source: https://app.notion.com/p/33b6b9674ad88198a74cf9b807098b89 -->
 
 - 시스템 분석과 설계(Systems Analysis and Design)
 - 계획을 세우고 정보시스템을 만드는 과정
@@ -300,4 +298,3 @@ importedAt: 2026-07-24
 - 역공학, 재공학 기법 활용
 
 ![1-4. 시스템 개발 단계 이미지](/SeonggukPark/images/notion/notes/software-engineering/01-04-2.png)
-

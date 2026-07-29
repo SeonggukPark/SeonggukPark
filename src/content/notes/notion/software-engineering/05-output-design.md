@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 5. 출력 설계"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 5. 출력 설계 학습 기록입니다."
+description: "출력 표준화, 요구사항 분석과 출력 매체·형식 설계를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 5-1. 출력 설계의 개요
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad881ac9cdef742ddc832f6)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad881ac9cdef742ddc832f6 -->
 
 ### (1) 출력의 표준화
 #### 1) 형식의 표준화
@@ -56,7 +54,7 @@ importedAt: 2026-07-24
 
 ## 5-2. 출력장치와 출력매체
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad8815a9b6de8cbdec2f1c7)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad8815a9b6de8cbdec2f1c7 -->
 
 ![5-2. 출력장치와 출력매체 이미지](/SeonggukPark/images/notion/notes/software-engineering/05-02-1.png)
 
@@ -84,7 +82,7 @@ importedAt: 2026-07-24
 
 ## 5-3. 출력 보고서의 설계
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad88161bbf1d853693c7881)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad88161bbf1d853693c7881 -->
 
 - 출력 보고서는 업무용, 참조형, 검사형 등으로 나뉨
 ### (1) 보고서 설계의 원칙
@@ -109,7 +107,7 @@ importedAt: 2026-07-24
 
 ## 5-4. 화면 출력 설계
 
-[Notion 원본](https://app.notion.com/p/3416b9674ad881969c80c55678a14ca3)
+<!-- Notion source: https://app.notion.com/p/3416b9674ad881969c80c55678a14ca3 -->
 
 ### (1) 화면 설계 원칙
 - 화면 설계는 일관성을 유지해야 하고, 사용자 중심으로 설계 되도록 해야 함
@@ -123,4 +121,3 @@ importedAt: 2026-07-24
 #### 3) 질의 응답 방식
 - 사용자가 직접 명령어를 입력하거나 질문에 대한 흥답을 통해 시스템과 대화하는 방식
 ![5-4. 화면 출력 설계 이미지](/SeonggukPark/images/notion/notes/software-engineering/05-04-3.png)
-

@@ -8,8 +8,6 @@ source: "https://app.notion.com/p/28e6b9674ad880ef84a1d6e36be29aae"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## **5-1. 다른 PC에서 원격 저장소 같이 쓰기**
 ### git clone
 - 원격저장소를 로컬에 복사

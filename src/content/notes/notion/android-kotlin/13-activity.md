@@ -1,14 +1,12 @@
 ---
 title: "13) 액티비티 컴포넌트"
-description: "Notion에서 가져온 13) 액티비티 컴포넌트 학습 기록입니다."
+description: "인텐트, 액티비티 생명주기와 코루틴 기반 작업 처리를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Android", "Kotlin"]
 draft: true
 source: "https://app.notion.com/p/3326b9674ad880e3a446e5a8e985733e"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 Notion MCP 원본에서 직접 가져온 학습 기록입니다.
 
 # <span color="gray_bg">(1) 인텐트 이해하기</span>
 

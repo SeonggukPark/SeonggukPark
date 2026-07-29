@@ -1,14 +1,12 @@
 ---
 title: "C++ 08. 객체지향을 돕는 기능"
-description: "Notion MCP에서 직접 가져온 C++ 08. 객체지향을 돕는 기능 학습 기록입니다."
+description: "컴포지션·어그리게이션, 가상 함수와 동적 바인딩을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2a86b9674ad880dda3bef139b8513060"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 컴포지션과 어그리게이션
 ## 다중 상속(multi inheritance)
@@ -562,4 +560,3 @@ int monster::mon_count = 0;
 - 유틸리티 함수: 문자열 조작, 날짜/시간 계산, 수학 계산 등 특정 작업 지원하는 함수
 - 정적 멤버 변수만 접근 가능하므로 매개변수로 객체를 입력받아야 함
 - 정적 멤버로만 구성된 클래스를 보통 ‘정적 클래스’라고 함
-

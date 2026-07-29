@@ -1,14 +1,12 @@
 ---
 title: "C++ 04. 실행 흐름 제어"
-description: "Notion MCP에서 직접 가져온 C++ 04. 실행 흐름 제어 학습 기록입니다."
+description: "조건문과 반복문, 표현식과 구문을 통한 실행 흐름 제어를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2a86b9674ad880c4b6d5fdbcdb0e075d"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 ## (1) 조건문
 - 기본적으로 C와 동일
@@ -56,4 +54,3 @@ a = 5;          // 대입 구문
 if (a > 0) {}   // 제어 구문
 return 0;       // 반환 구문
 ```
-

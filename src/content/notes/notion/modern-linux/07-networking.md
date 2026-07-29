@@ -1,14 +1,12 @@
 ---
 title: "모던 리눅스 7. 네트워킹"
-description: "Notion MCP에서 직접 가져온 모던 리눅스 7. 네트워킹 학습 기록입니다."
+description: "TCP/IP 계층, 네트워크 인터페이스와 주소·라우팅·DNS를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Linux", "System Software"]
 draft: true
 source: "https://app.notion.com/p/33a6b9674ad880e782b8c7622082cff4"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 기본 개요
 - 네트워크에는 변화하는 분야, 계층이 많아 문제 발생 시 HW/SW 문제 파악 힘듦
@@ -279,4 +277,3 @@ importedAt: 2026-07-24
 - geoiplookup: IP를 지리적 영역에 매핑 가능
 - 터널: VPN과 기타 사이트 간 네트워킹 솔루션의 대안, inlets 같은 도구로 활성화
 - 비트토렌트: 파일을 토렌트라는 패키지로 그룹화하는 P2P 시스템
-

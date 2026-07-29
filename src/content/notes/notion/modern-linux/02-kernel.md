@@ -1,14 +1,12 @@
 ---
 title: "모던 리눅스 2. 리눅스 커널"
-description: "Notion MCP에서 직접 가져온 모던 리눅스 2. 리눅스 커널 학습 기록입니다."
+description: "리눅스 아키텍처, CPU 구조와 커널의 주요 구성 요소를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Linux", "System Software"]
 draft: true
 source: "https://app.notion.com/p/33a6b9674ad880fc953bf2298d5208d2"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 리눅스 아키텍처
 ![모던 리눅스 2. 리눅스 커널 이미지](/SeonggukPark/images/notion/notes/modern-linux/02-kernel-1.png)
@@ -166,4 +164,3 @@ importedAt: 2026-07-24
 - 리눅스 커널은 리눅스 운영체제의 근간
 - 커널이 하드웨어의 차이를 추상화 → 리눅스 이식성 ↑
 -
-

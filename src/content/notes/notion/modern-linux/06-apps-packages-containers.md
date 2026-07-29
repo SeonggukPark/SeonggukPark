@@ -1,14 +1,12 @@
 ---
 title: "모던 리눅스 6. 애플리케이션·패키지·컨테이너"
-description: "Notion MCP에서 직접 가져온 모던 리눅스 6. 애플리케이션·패키지·컨테이너 학습 기록입니다."
+description: "프로그램·프로세스·데몬, 패키지 관리와 컨테이너 실행 환경을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Linux", "System Software"]
 draft: true
 source: "https://app.notion.com/p/33a6b9674ad880109cd9ce3eb4d7115c"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 1
 ![모던 리눅스 6. 애플리케이션·패키지·컨테이너 이미지](/SeonggukPark/images/notion/notes/modern-linux/06-apps-packages-containers-1.png)
@@ -214,4 +212,3 @@ importedAt: 2026-07-24
 - e.g.) 리눅스 데스크톱 사용자가 GUI 앱을 쉽게 설치할 수 있게 하는 경우
 
 # (8) 정리
-

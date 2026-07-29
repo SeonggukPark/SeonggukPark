@@ -1,14 +1,12 @@
 ---
 title: "C++ 09. 객체지향 설계 원칙 SOLID"
-description: "Notion MCP에서 직접 가져온 C++ 09. 객체지향 설계 원칙 SOLID 학습 기록입니다."
+description: "SRP·OCP·LSP·ISP·DIP로 구성된 SOLID 설계 원칙을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2a86b9674ad8803c96aee0163ba48df1"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 ## SOLID 원칙
 - 로버트 C. 마틴이 2000년대 초반에 발표한 객체지향 설계의 다섯가지 원칙
@@ -111,4 +109,3 @@ public:
 
 ![C++ 09. 객체지향 설계 원칙 SOLID 이미지](/SeonggukPark/images/notion/notes/cpp/09-solid-4.png)
 → 의존 역전 원칙 적용 사례
-

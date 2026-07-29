@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 3. 코드 설계"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 3. 코드 설계 학습 기록입니다."
+description: "코드의 기능과 설계 원칙, 분류 방식과 오류 검출 코드를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 3-1. 코드 설계의 개요
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad881d7af3fcb2e10f83c03)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad881d7af3fcb2e10f83c03 -->
 
 ### (1) 코드의 정의
 - 코드는 데이터 사용 목적에 따라 식별, 분류, 배열하기 위해 사용되는 숫자, 문자 혹은 기호
@@ -50,7 +48,7 @@ importedAt: 2026-07-24
 
 ## 3-2. 코드의 종류
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad8811cb8a2d479b6db96c7)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad8811cb8a2d479b6db96c7 -->
 
 ### (1) 순차 코드 (Sequence Code)
 - 일정한 순서에 따라 **연속적으로 번호를 부여하는 방식**
@@ -178,7 +176,7 @@ importedAt: 2026-07-24
 
 ## 3-3. 오류 형태와 검출
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad881bdb6cdf95d304e7000)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad881bdb6cdf95d304e7000 -->
 
 ### (1) 입력 과정에서의 오류
 #### 1) Transcription Error (변위 오류)
@@ -245,7 +243,7 @@ importedAt: 2026-07-24
 
 ## 3-4. 코드 설계 순서
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad881f68a4dea28265d559a)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad881f68a4dea28265d559a -->
 
 ![3-4. 코드 설계 순서 이미지](/SeonggukPark/images/notion/notes/software-engineering/03-04-1.png)
 ### (1) 코드화 대상 항목 선정과 확인
@@ -290,7 +288,7 @@ importedAt: 2026-07-24
 
 ## 3-5. 코드 유지보수
 
-[Notion 원본](https://app.notion.com/p/33f6b9674ad881398c68f0a01cc695ba)
+<!-- Notion source: https://app.notion.com/p/33f6b9674ad881398c68f0a01cc695ba -->
 
 ### (1) 코드 관리
 #### 코드 유지보수
@@ -299,4 +297,3 @@ importedAt: 2026-07-24
 ##### 3) 코드 폐지 등록
 ##### 4) 코드의 대장, 코드 표 등의 보관 및 정리
 ### (2) 코드의 관리 기준
-

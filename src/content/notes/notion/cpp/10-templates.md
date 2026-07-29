@@ -1,14 +1,12 @@
 ---
 title: "C++ 10. 템플릿"
-description: "Notion MCP에서 직접 가져온 C++ 10. 템플릿 학습 기록입니다."
+description: "함수·클래스 템플릿, 특수화와 템플릿 매개변수를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2a86b9674ad8806c8182faf767c48d16"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 함수 템플릿
 - 자료형에 의존하지 않는 함수를 일반화해서 정의하는 문법
@@ -480,4 +478,3 @@ int main() {
 ![C++ 10. 템플릿 이미지](/SeonggukPark/images/notion/notes/cpp/10-templates-12.png)
 → 전역 범위에서 함수 정의시, data_package에서 선언한 템플릿 매개변수(T)는 사용 불가
 → printout_friend_element 함수를 위한 템플릿 매개변수(C)를 별도 선언
-

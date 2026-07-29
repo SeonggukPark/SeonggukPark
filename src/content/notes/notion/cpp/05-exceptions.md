@@ -1,14 +1,12 @@
 ---
 title: "C++ 05. 예외 처리"
-description: "Notion MCP에서 직접 가져온 C++ 05. 예외 처리 학습 기록입니다."
+description: "try·catch·throw, assert, noexcept와 예외 실패 대응을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2a66b9674ad880c6887ff930d33dca49"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 ## (1) 예외 처리 구문
 - **예외처리: 프로그램 실행 중 발생할 수 있는 비정상적인 상황을 감지하고, 그에 적절히 대응하여 프로그램의 비정상 종료를 막는 과정**
@@ -139,4 +137,3 @@ int main() {
 → cerr은 C++ 표준 라이브러리에서 제공하는 표준 에러 출력 스트림
 → cerr은 버퍼링되지 않으므로 오류 메시지가 발생한 시점에 즉시 출력되어 프로그램이 비정상적으로 종료되었을 때 사용자에게 빠르게 정보를 제공 가능
 → 일반적으로 프로그램에서 오류 메시지를 출력할 때 cerr을 사용하는 것이 좋음
-

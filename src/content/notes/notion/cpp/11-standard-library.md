@@ -1,14 +1,12 @@
 ---
 title: "C++ 11. 표준 라이브러리"
-description: "Notion MCP에서 직접 가져온 C++ 11. 표준 라이브러리 학습 기록입니다."
+description: "C++ 표준 라이브러리의 구성과 문자열 처리 기능을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
 source: "https://app.notion.com/p/2ca6b9674ad880c9a617f180446c3cfd"
 importedAt: 2026-07-24
 ---
-
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
 
 # (1) 표준 라이브러리 구성과 사용법
 ## 표준 라이브러리 구성
@@ -465,4 +463,3 @@ std::vector<int> dst;
 std::copy(src.begin(), src.end(), std::back_inserter(dst));
 ```
 → `std::back_inserter`:  컨테이너의 `push_back()`을 출력 반복자 형태로 감싸는 어댑터
-

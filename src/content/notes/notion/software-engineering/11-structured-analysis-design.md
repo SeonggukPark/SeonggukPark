@@ -1,6 +1,6 @@
 ---
 title: "소프트웨어공학 11. 구조적 분석과 설계"
-description: "Notion MCP에서 직접 가져온 소프트웨어공학 11. 구조적 분석과 설계 학습 기록입니다."
+description: "구조적 분석 절차, 자료흐름도와 구조적 설계 도구를 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["Software Engineering", "System Analysis"]
 draft: true
@@ -8,11 +8,9 @@ source: "https://app.notion.com/p/33b6b9674ad8801689fdfe4782e979b1"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## 11-1. 구조적 분석
 
-[Notion 원본](https://app.notion.com/p/3486b9674ad880aeb8bcc8fd2860c73c)
+<!-- Notion source: https://app.notion.com/p/3486b9674ad880aeb8bcc8fd2860c73c -->
 
 ### (1) 구조적 분석의 개요
 - 구조적 프로그래밍으로부터 구조적 분석/설계로 확대 적용하려는 기법
@@ -52,7 +50,7 @@ importedAt: 2026-07-24
 
 ## 11-2. 자료흐름도
 
-[Notion 원본](https://app.notion.com/p/3486b9674ad88087a81fe831c98b6e44)
+<!-- Notion source: https://app.notion.com/p/3486b9674ad88087a81fe831c98b6e44 -->
 
 ### (1) 자료 흐름도의 기본 개념
 - 데이터가 소프트웨어 내의 각 프로세스를 따라 진행되면서 변환되는 과정을 나타낸 그림
@@ -167,7 +165,7 @@ importedAt: 2026-07-24
 
 ## 11-3. 자료사전
 
-[Notion 원본](https://app.notion.com/p/3486b9674ad88033bcade13820d6b1d7)
+<!-- Notion source: https://app.notion.com/p/3486b9674ad88033bcade13820d6b1d7 -->
 
 ### (1) 자료 사전의 기본 개념
 - 자료 흐름도에 표현된 자료 저장소를 구체적으로 명시하기 위한 것
@@ -218,7 +216,7 @@ importedAt: 2026-07-24
 
 ## 11-4. 구조적 설계
 
-[Notion 원본](https://app.notion.com/p/3486b9674ad8819bb739d8e065ccf3d4)
+<!-- Notion source: https://app.notion.com/p/3486b9674ad8819bb739d8e065ccf3d4 -->
 
 ### (1) 구조적 설계의 정의
 ![11-4. 구조적 설계 이미지](/SeonggukPark/images/notion/notes/software-engineering/11-04-1.png)
@@ -339,4 +337,3 @@ importedAt: 2026-07-24
 - 시스템의 출력을 근거로 데이터 구조 결정 → 프로그램 구조 결정
 - 선택과 반복 구조만으로 프로그램 표현
 ##### \[4\] 구조적 프로그래밍의 의미
-

@@ -8,8 +8,6 @@ source: "https://app.notion.com/p/28e6b9674ad880ef84a1d6e36be29aae"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## **2-1. 깃 저장소 만들기**
 ```plain text
 $ git init // 현재 디렉토리에서 깃 사용 위해 초기화

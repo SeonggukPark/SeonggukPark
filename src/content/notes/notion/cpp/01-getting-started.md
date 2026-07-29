@@ -1,6 +1,6 @@
 ---
 title: "C++ 01. 프로그래밍 시작하기"
-description: "Notion MCP에서 직접 가져온 C++ 01. 프로그래밍 시작하기 학습 기록입니다."
+description: "C++의 발전 과정, 빌드 단계, 언어 특징과 개발 환경을 정리한 학습 기록입니다."
 publishedAt: 2026-07-24
 tags: ["C++", "Programming"]
 draft: true
@@ -8,11 +8,8 @@ source: "https://app.notion.com/p/2a86b9674ad88095818fed099c93b738"
 importedAt: 2026-07-24
 ---
 
-> 이 문서는 ZIP export가 아닌 Notion MCP 원본에서 직접 가져온 초안입니다.
-
 ## (1) C++ 언어 알아보기
 ### C++ 발전 과정
-> 첨부 파일은 [Notion 원본](https://app.notion.com/p/2a86b9674ad88095818fed099c93b738)에서 확인할 수 있습니다.
 - **C with Classes** (C++ 초기 언어 규약)
 - 클래스 도입
 
@@ -83,4 +80,3 @@ importedAt: 2026-07-24
 
 ## (2) 개발 환경 준비하기
 - int main() 처럼 리턴값 있는 함수는 return 포함해야 하지만, main()은 특별한 함수이므로 생략해도 return 0를 반환
-
