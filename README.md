@@ -8,5 +8,3 @@
 
 ### Portfolio
 - (https://seonggukpark.github.io/SeonggukPark/)
-
-[![solved.ac tier](http://mazassumnida.wtf/api/pastel/generate_badge?boj=skook77)](https://solved.ac/skook77)
